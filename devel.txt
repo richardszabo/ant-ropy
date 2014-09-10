@@ -1,4 +1,5 @@
 Ant-ropy with html5/css/javascript/jquery
 =========================================
 2014. 09. 10.
-First version in git.
+- First version in git.
+- Separate js file with some dummy function.
