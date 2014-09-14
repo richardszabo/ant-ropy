@@ -11,3 +11,5 @@ Ant-ropy with html5/css/javascript/jquery
 
 - Starting Food class.
 - Random placement of one food.
+- Gaussian random. (http://stackoverflow.com/a/20161247/21047)
+- Several food around a food source.
