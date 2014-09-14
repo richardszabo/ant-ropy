@@ -3,3 +3,11 @@ Ant-ropy with html5/css/javascript/jquery
 2014. 09. 10.
 - First version in git.
 - Separate js file with some dummy function.
+- Making ant-ropy19 work:
+  - Downloading repast3.0
+  - Creating a start.sh script to strt the program. 
+
+2014. 09. 14.
+
+- Starting Food class.
+- Random placement of one food.
