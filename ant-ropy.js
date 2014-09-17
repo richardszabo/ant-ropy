@@ -2,9 +2,8 @@ var canvas;
 var ctx;
 var width;
 var height;
-var foodNumber = 10;
-var food = [];
 var cellSize = 5;
+var foods;
 
 function init(canvasid) {
     //Canvas stuff
@@ -13,7 +12,8 @@ function init(canvasid) {
     width = $(canvasid).width();
     height = $(canvasid).height();
     init_hive();
-    init_food();
+    foods = new Foods();
+    foods.init();
 }
 
 function init_hive() {
@@ -33,24 +33,29 @@ function get2DGaussian(mean, deviation) {
     return point;
 }
 
-function init_food() {
+function Point () {
+    var x;
+    var y;
+}
+
+function Foods () {
+    this.foodNumber = 10;
+    this.food = [];    
+}
+
+Foods.prototype.init = function() {
     ctx.fillStyle = "yellow";
     var foodSource = new Point();
     foodSource.x = Math.floor((gauss_random() + 1 ) / 2 * width);
     foodSource.y = Math.floor((gauss_random() + 1 ) / 2 * height);
-    for(i = 0; i < foodNumber; ++i ) {
+    for(i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(foodSource,50);
 	//alert('i:' + i + ' ' + point.x + ' ' + point.y + ':');
-	food[i] = new Food();
-	food[i].setX(Math.floor(point.x));
-	food[i].setY(Math.floor(point.y));
-	ctx.fillRect(food[i].getX(), food[i].getY(), cellSize, cellSize);
+	this.food[i] = new Food();
+	this.food[i].setX(Math.floor(point.x));
+	this.food[i].setY(Math.floor(point.y));
+	ctx.fillRect(this.food[i].getX(), this.food[i].getY(), cellSize, cellSize);
     } 
-}
-
-function Point () {
-    var x;
-    var y;
 }
 
 function Food () {
