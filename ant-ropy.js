@@ -18,10 +18,12 @@ function init(canvasid) {
     hive.init();
     foods = new Foods();
     foods.init();
+    ants = new Ants();
+    ants.init();
 }
 
 function Hive () {
-    this.hiveSize = 10;
+    this.hiveSize = 5;
 }
 
 Hive.prototype.init = function() {
@@ -29,7 +31,6 @@ Hive.prototype.init = function() {
     ctx.beginPath();
     ctx.arc(width/2,height/2,this.hiveSize,0,2*Math.PI);
     ctx.fill();
-    ctx.stroke();
 }
 
 function gauss_random() {
@@ -50,8 +51,9 @@ function Point () {
 }
 
 function Foods () {
-    this.foodSize = 3;
+    this.foodSize = 2;
     this.foodNumber = 10;
+    this.foodDeviation = 50;
     this.food = [];    
 }
 
@@ -61,7 +63,7 @@ Foods.prototype.init = function() {
     foodSource.x = Math.floor((gauss_random() + 1 ) / 2 * width);
     foodSource.y = Math.floor((gauss_random() + 1 ) / 2 * height);
     for(var i = 0; i < this.foodNumber; ++i ) {
-	var point = get2DGaussian(foodSource,50);
+	var point = get2DGaussian(foodSource,this.foodDeviation);
 	//alert('i:' + i + ' ' + point.x + ' ' + point.y + ':');
 	this.food[i] = new Food();
 	this.food[i].x = Math.floor(point.x);
@@ -69,11 +71,50 @@ Foods.prototype.init = function() {
 	ctx.beginPath();
 	ctx.arc(this.food[i].x,this.food[i].y,this.foodSize,0,2*Math.PI);
 	ctx.fill();
-	ctx.stroke();
     } 
 }
 
 function Food () {
-    var x = 0;
-    var y = 0;
+    var x;
+    var y;
+}
+
+function Ants () {
+    this.antSize = 2;
+    this.antNumber = 10;
+    this.ant = [];
+}
+
+Ants.prototype.init = function() {
+    for(var i = 0; i < this.antNumber; ++i ) {
+	this.ant[i] = new Ant();
+	this.ant[i].draw();
+    } 
+}
+
+function Ant() {
+    var x;
+    var y;
+    var heading;
+    var prevX;
+    var prevY;
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+}
+
+Ant.prototype.draw = function() {
+    ctx.strokeStyle = "blue";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,ants.antSize,0,2*Math.PI);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(this.x,this.y);
+    ctx.lineTo(this.x+3,
+	       this.y+3);
+    ctx.stroke();
+/*		   (int)((x+0.5)*g.getCellWidthScale()),
+		   (int)((x+0.5+neighbours[heading][0])*g.getCellWidthScale()),
+		   (int)((y+0.5)*g.getCellHeightScale()),
+		   (int)((y+0.5+neighbours[heading][1])*g.getCellHeightScale()));
+*/
 }

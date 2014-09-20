@@ -23,4 +23,5 @@ Ant-ropy with html5/css/javascript/jquery
 - Food is filled circle instead of rectangle.
 - Hive is filled circle instead of rectangle.
 - use strict
+- Ants and Ant "classes".
 
