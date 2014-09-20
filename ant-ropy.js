@@ -1,7 +1,10 @@
+"use strict";
+
 var canvas;
 var ctx;
 var width;
 var height;
+var hive;
 var foods;
 
 function init(canvasid) {
@@ -10,14 +13,22 @@ function init(canvasid) {
     ctx = canvas.getContext("2d");
     width = $(canvasid).width();
     height = $(canvasid).height();
-    init_hive();
+    hive = new Hive();
+    hive.init();
     foods = new Foods();
     foods.init();
 }
 
-function init_hive() {
+function Hive () {
+    this.hiveSize = 25;
+}
+
+Hive.prototype.init = function() {
     ctx.fillStyle = "red";
-    ctx.fillRect(width/2-10, height/2-10,20, 20);
+    ctx.beginPath();
+    ctx.arc(width/2,height/2,this.hiveSize,0,2*Math.PI);
+    ctx.fill();
+    ctx.stroke();
 }
 
 function gauss_random() {
@@ -48,7 +59,7 @@ Foods.prototype.init = function() {
     var foodSource = new Point();
     foodSource.x = Math.floor((gauss_random() + 1 ) / 2 * width);
     foodSource.y = Math.floor((gauss_random() + 1 ) / 2 * height);
-    for(i = 0; i < this.foodNumber; ++i ) {
+    for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(foodSource,50);
 	//alert('i:' + i + ' ' + point.x + ' ' + point.y + ':');
 	this.food[i] = new Food();
