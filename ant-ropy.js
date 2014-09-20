@@ -2,7 +2,6 @@ var canvas;
 var ctx;
 var width;
 var height;
-var cellSize = 5;
 var foods;
 
 function init(canvasid) {
@@ -39,6 +38,7 @@ function Point () {
 }
 
 function Foods () {
+    this.foodSize = 3;
     this.foodNumber = 10;
     this.food = [];    
 }
@@ -54,7 +54,10 @@ Foods.prototype.init = function() {
 	this.food[i] = new Food();
 	this.food[i].setX(Math.floor(point.x));
 	this.food[i].setY(Math.floor(point.y));
-	ctx.fillRect(this.food[i].getX(), this.food[i].getY(), cellSize, cellSize);
+	ctx.beginPath();
+	ctx.arc(this.food[i].getX(),this.food[i].getY(),this.foodSize,0,2*Math.PI);
+	ctx.fill();
+	ctx.stroke();
     } 
 }
 

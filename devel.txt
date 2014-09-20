@@ -17,3 +17,7 @@ Ant-ropy with html5/css/javascript/jquery
 2014. 09. 17.
 
 - Foods class for static methods of java Food.
+
+2014. 09. 20.
+
+- Food is filled circle instead of rectangle.
