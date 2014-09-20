@@ -6,6 +6,7 @@ var width;
 var height;
 var hive;
 var foods;
+var ants;
 
 function init(canvasid) {
     //Canvas stuff
@@ -20,7 +21,7 @@ function init(canvasid) {
 }
 
 function Hive () {
-    this.hiveSize = 25;
+    this.hiveSize = 10;
 }
 
 Hive.prototype.init = function() {
@@ -63,10 +64,10 @@ Foods.prototype.init = function() {
 	var point = get2DGaussian(foodSource,50);
 	//alert('i:' + i + ' ' + point.x + ' ' + point.y + ':');
 	this.food[i] = new Food();
-	this.food[i].setX(Math.floor(point.x));
-	this.food[i].setY(Math.floor(point.y));
+	this.food[i].x = Math.floor(point.x);
+	this.food[i].y = Math.floor(point.y);
 	ctx.beginPath();
-	ctx.arc(this.food[i].getX(),this.food[i].getY(),this.foodSize,0,2*Math.PI);
+	ctx.arc(this.food[i].x,this.food[i].y,this.foodSize,0,2*Math.PI);
 	ctx.fill();
 	ctx.stroke();
     } 
@@ -76,20 +77,3 @@ function Food () {
     var x = 0;
     var y = 0;
 }
- 
-Food.prototype.getX = function() {
-    return this.x;
-};
-
-Food.prototype.getY = function() {
-    return this.y;
-};
-
-Food.prototype.setX = function(x) {
-    return this.x = x;
-};
-
-Food.prototype.setY = function(y) {
-    return this.y = y;
-};
-
