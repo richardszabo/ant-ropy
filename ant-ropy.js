@@ -85,6 +85,8 @@ function Ants () {
     this.ant = [];
 }
 
+Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
+
 Ants.prototype.init = function() {
     for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i] = new Ant();
@@ -98,8 +100,10 @@ function Ant() {
     var heading;
     var prevX;
     var prevY;
+
     this.x = Math.random() * width;
     this.y = Math.random() * height;
+    this.heading = Math.floor(Math.random() * Ants.neighbours.length);
 }
 
 Ant.prototype.draw = function() {
@@ -109,12 +113,7 @@ Ant.prototype.draw = function() {
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(this.x,this.y);
-    ctx.lineTo(this.x+3,
-	       this.y+3);
+    ctx.lineTo(this.x+5*Ants.neighbours[this.heading][0],
+	       this.y+5*Ants.neighbours[this.heading][1]);
     ctx.stroke();
-/*		   (int)((x+0.5)*g.getCellWidthScale()),
-		   (int)((x+0.5+neighbours[heading][0])*g.getCellWidthScale()),
-		   (int)((y+0.5)*g.getCellHeightScale()),
-		   (int)((y+0.5+neighbours[heading][1])*g.getCellHeightScale()));
-*/
 }

@@ -25,3 +25,6 @@ Ant-ropy with html5/css/javascript/jquery
 - use strict
 - Ants and Ant "classes".
 
+2014. 09. 26.
+
+- Ants heading. Calculated with random. Using neighbours array to draw.
