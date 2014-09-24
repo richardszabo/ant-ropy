@@ -2,8 +2,8 @@
 
 var canvas;
 var ctx;
-var width;
-var height;
+var spaceWidth;
+var spaceHeight;
 var hive;
 var foods;
 var ants;
@@ -12,8 +12,8 @@ function init(canvasid) {
     //Canvas stuff
     canvas = $(canvasid)[0];
     ctx = canvas.getContext("2d");
-    width = $(canvasid).width();
-    height = $(canvasid).height();
+    spaceWidth = $(canvasid).width();
+    spaceHeight = $(canvasid).height();
     hive = new Hive();
     hive.init();
     foods = new Foods();
@@ -23,6 +23,11 @@ function init(canvasid) {
 }
 
 function step() {
+    ctx.clearRect(0, 0, spaceWidth, spaceHeight);
+    hive.draw();
+    foods.draw();
+    ants.step();
+    ants.draw();
     var d = new Date();
     document.getElementById("demo").innerHTML = d.toLocaleTimeString();
 }
@@ -32,9 +37,13 @@ function Hive () {
 }
 
 Hive.prototype.init = function() {
+    this.draw();
+}
+
+Hive.prototype.draw = function() {
     ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.arc(width/2,height/2,this.hiveSize,0,2*Math.PI);
+    ctx.arc(spaceWidth/2,spaceHeight/2,this.hiveSize,0,2*Math.PI);
     ctx.fill();
 }
 
@@ -63,25 +72,34 @@ function Foods () {
 }
 
 Foods.prototype.init = function() {
-    ctx.fillStyle = "yellow";
     var foodSource = new Point();
-    foodSource.x = Math.floor((gauss_random() + 1 ) / 2 * width);
-    foodSource.y = Math.floor((gauss_random() + 1 ) / 2 * height);
+    foodSource.x = Math.floor((gauss_random() + 1 ) / 2 * spaceWidth);
+    foodSource.y = Math.floor((gauss_random() + 1 ) / 2 * spaceHeight);
     for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(foodSource,this.foodDeviation);
-	//alert('i:' + i + ' ' + point.x + ' ' + point.y + ':');
 	this.food[i] = new Food();
 	this.food[i].x = Math.floor(point.x);
 	this.food[i].y = Math.floor(point.y);
-	ctx.beginPath();
-	ctx.arc(this.food[i].x,this.food[i].y,this.foodSize,0,2*Math.PI);
-	ctx.fill();
-    } 
+	this.food[i].draw();
+   } 
+}
+
+Foods.prototype.draw = function() {
+    for(var i = 0; i < this.foodNumber; ++i ) {
+	this.food[i].draw();
+    }
 }
 
 function Food () {
     var x;
     var y;
+}
+
+Food.prototype.draw = function() {
+    ctx.fillStyle = "yellow";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,foods.foodSize,0,2*Math.PI);
+    ctx.fill();
 }
 
 function Ants () {
@@ -93,9 +111,20 @@ function Ants () {
 Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
 
 Ants.prototype.init = function() {
+    this.draw();
+}
+
+Ants.prototype.draw = function() {
     for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i] = new Ant();
 	this.ant[i].draw();
+    } 
+}
+
+Ants.prototype.step = function() {
+    for(var i = 0; i < this.antNumber; ++i ) {
+	this.ant[i] = new Ant();
+	this.ant[i].step();
     } 
 }
 
@@ -106,8 +135,8 @@ function Ant() {
     var prevX;
     var prevY;
 
-    this.x = Math.random() * width;
-    this.y = Math.random() * height;
+    this.x = Math.random() * spaceWidth;
+    this.y = Math.random() * spaceHeight;
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
 }
 
@@ -122,3 +151,15 @@ Ant.prototype.draw = function() {
 	       this.y+5*Ants.neighbours[this.heading][1]);
     ctx.stroke();
 }
+
+Ant.prototype.step = function() {
+    this.randomWalkMode();
+    this.x = (this.x + spaceWidth) % spaceWidth; 
+    this.y = (this.y + spaceHeight) % spaceHeight; 
+}
+
+Ant.prototype.randomWalkMode = function() {
+    this.x += Ants.neighbours[this.heading][0];
+    this.y += Ants.neighbours[this.heading][1];
+}
+
