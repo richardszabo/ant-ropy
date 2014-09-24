@@ -28,3 +28,7 @@ Ant-ropy with html5/css/javascript/jquery
 2014. 09. 26.
 
 - Ants heading. Calculated with random. Using neighbours array to draw.
+
+2014. 09. 27.
+
+- First timing attempt.

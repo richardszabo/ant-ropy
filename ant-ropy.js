@@ -22,6 +22,11 @@ function init(canvasid) {
     ants.init();
 }
 
+function step() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+
 function Hive () {
     this.hiveSize = 5;
 }

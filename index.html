@@ -9,11 +9,13 @@
 <script>
 $( document ).ready(function() {
 init("#canvas");
+setInterval(function() {step();},1000);
 });
 </script>
   </head>
   <body>
     <h1>Playground for ants</h1>
     <canvas id="canvas" width="450" height="450"></canvas>
+    <p id="demo"></p>
   </body>
 </html>
