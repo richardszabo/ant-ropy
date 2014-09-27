@@ -111,19 +111,20 @@ function Ants () {
 Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
 
 Ants.prototype.init = function() {
+    for(var i = 0; i < this.antNumber; ++i ) {
+	this.ant[i] = new Ant();
+    } 
     this.draw();
 }
 
 Ants.prototype.draw = function() {
     for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i] = new Ant();
 	this.ant[i].draw();
     } 
 }
 
 Ants.prototype.step = function() {
     for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i] = new Ant();
 	this.ant[i].step();
     } 
 }
