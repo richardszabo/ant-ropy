@@ -37,3 +37,4 @@ Ant-ropy with html5/css/javascript/jquery
 2014. 09. 27.
 
 - Fixing ant step and draw.
+- Random walk with bias to the current direction.

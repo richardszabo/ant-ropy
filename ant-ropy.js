@@ -47,6 +47,8 @@ Hive.prototype.draw = function() {
     ctx.fill();
 }
 
+//
+// quasi-normal distribution [-1,1) 
 function gauss_random() {
     // http://stackoverflow.com/a/20161247/21047 and http://jsfiddle.net/Guffa/tvt5K/
     return ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()-3)) / 3;
@@ -57,6 +59,11 @@ function get2DGaussian(mean, deviation) {
     point.x = (gauss_random() + 1) / 2 * deviation + mean.x;
     point.y = (gauss_random() + 1) / 2 * deviation + mean.y;
     return point;
+}
+
+function sign(x) {
+    // http://stackoverflow.com/q/7624920/21047
+    return typeof x === 'number' ? x ? x < 0 ? -1 : 1 : x === x ? 0 : NaN : NaN;
 }
 
 function Point () {
@@ -104,11 +111,15 @@ Food.prototype.draw = function() {
 
 function Ants () {
     this.antSize = 2;
-    this.antNumber = 10;
+    this.antNumber = 100;
     this.ant = [];
 }
 
+// neighbours (order is important!)
 Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
+Ants.NO_HEADINGS = Ants.neighbours.length;
+// number of possible directions to move
+Ants.STEPS_AHEAD = 3;
 
 Ants.prototype.init = function() {
     for(var i = 0; i < this.antNumber; ++i ) {
@@ -160,6 +171,14 @@ Ant.prototype.step = function() {
 }
 
 Ant.prototype.randomWalkMode = function() {
+    var dir = gauss_random();
+    //alert('dir:' + dir + ':');
+//    alert("new dir:" + dir + ":" + Math.round(dir) + ":" + Math.abs(Math.round(dir)) + ":" + 
+//sign(dir)*Math.min(Math.abs(Math.round(dir)),Ants.STEPS_AHEAD/2) + ":");
+    this.heading = Math.floor(this.heading +
+		   sign(dir)*Math.min(Math.abs(Math.round(dir)),Ants.STEPS_AHEAD/2) +
+                   Ants.NO_HEADINGS) % Ants.NO_HEADINGS;
+    //alert('heading:' + this.heading + ':');
     this.x += Ants.neighbours[this.heading][0];
     this.y += Ants.neighbours[this.heading][1];
 }
