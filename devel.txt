@@ -42,3 +42,8 @@ Ant-ropy with html5/css/javascript/jquery
 2014. 10. 01.
 
 - Object-level init functions are eliminated.
+- Measuring running speed of step.
+- Optimizing execution with stroke and stroke/fillStyle
+repositioning: almost 2x faster - 25 msec - for 1000 ants and 100 foods.
+- Offscreen drawing: it does not give any advance: 27 msec. I live it
+in the code to have an example off screen drawing.

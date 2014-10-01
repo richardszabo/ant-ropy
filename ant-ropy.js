@@ -1,19 +1,27 @@
 "use strict";
 
 var canvas;
-var ctx;
+var realctx;
 var spaceWidth;
 var spaceHeight;
 var hive;
 var foods;
 var ants;
+var offCanvas;
+var offctx;
+var ctx;
 
 function init(canvasid) {
     //Canvas stuff
     canvas = $(canvasid)[0];
-    ctx = canvas.getContext("2d");
+    realctx = canvas.getContext("2d");
     spaceWidth = $(canvasid).width();
     spaceHeight = $(canvasid).height();
+    offCanvas = document.createElement('canvas');
+    offCanvas.width = spaceWidth;
+    offCanvas.height = spaceHeight;
+    offctx = offCanvas.getContext("2d");
+    ctx = offctx;
     hive = new Hive();
     hive.draw();
     foods = new Foods();
@@ -23,13 +31,17 @@ function init(canvasid) {
 }
 
 function step() {
-    ctx.clearRect(0, 0, spaceWidth, spaceHeight);
+    var start = +new Date(); // log start timestamp
+    realctx.clearRect(0, 0, spaceWidth, spaceHeight);
+    offctx.clearRect(0, 0, spaceWidth, spaceHeight);
     hive.draw();
     foods.draw();
     ants.step();
     ants.draw();
-    var d = new Date();
-    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+    realctx.drawImage(offCanvas,0,0);
+    var end =  +new Date();  // log end timestamp
+    var diff = end - start;
+    document.getElementById("demo").innerHTML = "step cycle: " + diff;
 }
 
 function Hive () {
@@ -69,7 +81,7 @@ function Point () {
 
 function Foods () {
     this.foodSize = 2;
-    this.foodNumber = 10;
+    this.foodNumber = 100;
     this.foodDeviation = 50;
     this.food = [];    
 
@@ -85,6 +97,7 @@ function Foods () {
 }
 
 Foods.prototype.draw = function() {
+    ctx.fillStyle = "yellow";
     for(var i = 0; i < this.foodNumber; ++i ) {
 	this.food[i].draw();
     }
@@ -96,7 +109,6 @@ function Food () {
 }
 
 Food.prototype.draw = function() {
-    ctx.fillStyle = "yellow";
     ctx.beginPath();
     ctx.arc(this.x,this.y,foods.foodSize,0,2*Math.PI);
     ctx.fill();
@@ -104,7 +116,7 @@ Food.prototype.draw = function() {
 
 function Ants () {
     this.antSize = 2;
-    this.antNumber = 100;
+    this.antNumber = 1000;
     this.ant = [];
     for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i] = new Ant();
@@ -118,9 +130,11 @@ Ants.NO_HEADINGS = Ants.neighbours.length;
 Ants.STEPS_AHEAD = 3;
 
 Ants.prototype.draw = function() {
+    ctx.strokeStyle = "blue";
     for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i].draw();
     } 
+    ctx.stroke();
 }
 
 Ants.prototype.step = function() {
@@ -142,7 +156,6 @@ function Ant() {
 }
 
 Ant.prototype.draw = function() {
-    ctx.strokeStyle = "blue";
     ctx.beginPath();
     ctx.arc(this.x,this.y,ants.antSize,0,2*Math.PI);
     ctx.stroke();
@@ -150,7 +163,6 @@ Ant.prototype.draw = function() {
     ctx.moveTo(this.x,this.y);
     ctx.lineTo(this.x+5*Ants.neighbours[this.heading][0],
 	       this.y+5*Ants.neighbours[this.heading][1]);
-    ctx.stroke();
 }
 
 Ant.prototype.step = function() {
