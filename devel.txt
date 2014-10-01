@@ -38,3 +38,7 @@ Ant-ropy with html5/css/javascript/jquery
 
 - Fixing ant step and draw.
 - Random walk with bias to the current direction.
+
+2014. 10. 01.
+
+- Object-level init functions are eliminated.

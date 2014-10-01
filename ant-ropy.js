@@ -15,11 +15,11 @@ function init(canvasid) {
     spaceWidth = $(canvasid).width();
     spaceHeight = $(canvasid).height();
     hive = new Hive();
-    hive.init();
+    hive.draw();
     foods = new Foods();
-    foods.init();
+    foods.draw();
     ants = new Ants();
-    ants.init();
+    ants.draw();
 }
 
 function step() {
@@ -34,10 +34,6 @@ function step() {
 
 function Hive () {
     this.hiveSize = 5;
-}
-
-Hive.prototype.init = function() {
-    this.draw();
 }
 
 Hive.prototype.draw = function() {
@@ -76,9 +72,7 @@ function Foods () {
     this.foodNumber = 10;
     this.foodDeviation = 50;
     this.food = [];    
-}
 
-Foods.prototype.init = function() {
     var foodSource = new Point();
     foodSource.x = Math.floor((gauss_random() + 1 ) / 2 * spaceWidth);
     foodSource.y = Math.floor((gauss_random() + 1 ) / 2 * spaceHeight);
@@ -87,7 +81,6 @@ Foods.prototype.init = function() {
 	this.food[i] = new Food();
 	this.food[i].x = Math.floor(point.x);
 	this.food[i].y = Math.floor(point.y);
-	this.food[i].draw();
    } 
 }
 
@@ -113,6 +106,9 @@ function Ants () {
     this.antSize = 2;
     this.antNumber = 100;
     this.ant = [];
+    for(var i = 0; i < this.antNumber; ++i ) {
+	this.ant[i] = new Ant();
+    } 
 }
 
 // neighbours (order is important!)
@@ -120,13 +116,6 @@ Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
 Ants.NO_HEADINGS = Ants.neighbours.length;
 // number of possible directions to move
 Ants.STEPS_AHEAD = 3;
-
-Ants.prototype.init = function() {
-    for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i] = new Ant();
-    } 
-    this.draw();
-}
 
 Ants.prototype.draw = function() {
     for(var i = 0; i < this.antNumber; ++i ) {
