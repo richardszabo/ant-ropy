@@ -4,12 +4,14 @@ var canvas;
 var realctx;
 var spaceWidth;
 var spaceHeight;
-var hive;
-var foods;
-var ants;
 var offCanvas;
 var offctx;
 var ctx;
+
+var hive;
+var foods;
+var ants;
+var pheromone;
 
 function init(canvasid) {
     //Canvas stuff
@@ -28,16 +30,21 @@ function init(canvasid) {
     foods.draw();
     ants = new Ants();
     ants.draw();
+    pheromone = new Pheromone();
 }
 
 function step() {
     var start = +new Date(); // log start timestamp
     realctx.clearRect(0, 0, spaceWidth, spaceHeight);
     offctx.clearRect(0, 0, spaceWidth, spaceHeight);
+
     hive.draw();
     foods.draw();
     ants.step();
     ants.draw();
+    pheromone.step();
+    pheromone.draw();
+    
     realctx.drawImage(offCanvas,0,0);
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
@@ -184,3 +191,24 @@ Ant.prototype.randomWalkMode = function() {
     this.y += Ants.neighbours[this.heading][1];
 }
 
+function Pheromone() {   
+// write matrix 
+// read matrix
+}
+
+Pheromone.prototype.step = function() {
+    this.diffuse();
+    this.update();
+}
+
+Pheromone.prototype.draw = function() {
+}
+
+Pheromone.prototype.diffuse = function() {
+    // modifying write matrix according to https://supportweb.cs.bham.ac.uk/documentation/java/repast/api/uchicago/src/sim/space/Diffuse2D.html#diffuse%28%29
+    // newValue = evap(ownValue + diffusionConstant * (nghAvg - ownValue)) where nghAvg is the weighted average of a cells eight neighbors, and ownValue is the current value for the current cell.
+}
+
+Pheromone.prototype.update = function() {
+    // copying write matrix to read matrix
+}

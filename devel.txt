@@ -47,3 +47,6 @@ Ant-ropy with html5/css/javascript/jquery
 repositioning: almost 2x faster - 25 msec - for 1000 ants and 100 foods.
 - Offscreen drawing: it does not give any advance: 27 msec. I live it
 in the code to have an example off screen drawing.
+
+2014. 10. 02.
+- Starting Pheromone class. Repast.Diffuse2D's API is here: https://supportweb.cs.bham.ac.uk/documentation/java/repast/api/uchicago/src/sim/space/Diffuse2D.html
