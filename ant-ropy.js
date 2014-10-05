@@ -6,7 +6,6 @@ var spaceWidth;
 var spaceHeight;
 var offCanvas;
 var offctx;
-var ctx;
 
 var hive;
 var foods;
@@ -23,13 +22,12 @@ function init(canvasid) {
     offCanvas.width = spaceWidth;
     offCanvas.height = spaceHeight;
     offctx = offCanvas.getContext("2d");
-    ctx = offctx;
     hive = new Hive();
-    hive.draw();
+    hive.draw(offctx);
     foods = new Foods();
-    foods.draw();
+    foods.draw(offctx);
     ants = new Ants();
-    ants.draw();
+    ants.draw(offctx);
     pheromone = new Pheromone();
 }
 
@@ -38,12 +36,12 @@ function step() {
     realctx.clearRect(0, 0, spaceWidth, spaceHeight);
     offctx.clearRect(0, 0, spaceWidth, spaceHeight);
 
-    hive.draw();
-    foods.draw();
+    hive.draw(offctx);
+    foods.draw(offctx);
     ants.step();
-    ants.draw();
+    ants.draw(offctx);
     pheromone.step();
-    pheromone.draw();
+    pheromone.draw(offctx);
     
     realctx.drawImage(offCanvas,0,0);
     var end =  +new Date();  // log end timestamp
@@ -55,30 +53,11 @@ function Hive () {
     this.hiveSize = 5;
 }
 
-Hive.prototype.draw = function() {
+Hive.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(spaceWidth/2,spaceHeight/2,this.hiveSize,0,2*Math.PI);
     ctx.fill();
-}
-
-//
-// quasi-normal distribution [-1,1) 
-function gauss_random() {
-    // http://stackoverflow.com/a/20161247/21047 and http://jsfiddle.net/Guffa/tvt5K/
-    return ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()-3)) / 3;
-} 
-
-function get2DGaussian(mean, deviation) {
-    var point = new Point();
-    point.x = (gauss_random() + 1) / 2 * deviation + mean.x;
-    point.y = (gauss_random() + 1) / 2 * deviation + mean.y;
-    return point;
-}
-
-function sign(x) {
-    // http://stackoverflow.com/q/7624920/21047
-    return typeof x === 'number' ? x ? x < 0 ? -1 : 1 : x === x ? 0 : NaN : NaN;
 }
 
 function Point () {
@@ -103,10 +82,10 @@ function Foods () {
    } 
 }
 
-Foods.prototype.draw = function() {
+Foods.prototype.draw = function(ctx) {
     ctx.fillStyle = "yellow";
     for(var i = 0; i < this.foodNumber; ++i ) {
-	this.food[i].draw();
+	this.food[i].draw(ctx);
     }
 }
 
@@ -115,7 +94,7 @@ function Food () {
     var y;
 }
 
-Food.prototype.draw = function() {
+Food.prototype.draw = function(ctx) {
     ctx.beginPath();
     ctx.arc(this.x,this.y,foods.foodSize,0,2*Math.PI);
     ctx.fill();
@@ -123,7 +102,7 @@ Food.prototype.draw = function() {
 
 function Ants () {
     this.antSize = 2;
-    this.antNumber = 1000;
+    this.antNumber = 100;
     this.ant = [];
     for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i] = new Ant();
@@ -136,12 +115,11 @@ Ants.NO_HEADINGS = Ants.neighbours.length;
 // number of possible directions to move
 Ants.STEPS_AHEAD = 3;
 
-Ants.prototype.draw = function() {
+Ants.prototype.draw = function(ctx) {
     ctx.strokeStyle = "blue";
     for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i].draw();
+	this.ant[i].draw(ctx);
     } 
-    ctx.stroke();
 }
 
 Ants.prototype.step = function() {
@@ -162,7 +140,7 @@ function Ant() {
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
 }
 
-Ant.prototype.draw = function() {
+Ant.prototype.draw = function(ctx) {
     ctx.beginPath();
     ctx.arc(this.x,this.y,ants.antSize,0,2*Math.PI);
     ctx.stroke();
@@ -170,6 +148,7 @@ Ant.prototype.draw = function() {
     ctx.moveTo(this.x,this.y);
     ctx.lineTo(this.x+5*Ants.neighbours[this.heading][0],
 	       this.y+5*Ants.neighbours[this.heading][1]);
+    ctx.stroke();
 }
 
 Ant.prototype.step = function() {
@@ -192,8 +171,13 @@ Ant.prototype.randomWalkMode = function() {
 }
 
 function Pheromone() {   
-// write matrix 
-// read matrix
+    this.read_matrix = create2DArray(10); //spaceWidth);
+    this.write_matrix = create2DArray(10); //spaceWidth);
+    for(var i = 0; i < this.write_matrix.length; ++i ) {
+	for(var j = 0; j < 10 /* spaceHeight */; ++j ) {
+	    this.write_matrix[i][j] = Math.round(Math.random()*256) + Math.round(Math.random()*65536) + Math.round(Math.random()*256*65536);
+	}
+    }
 }
 
 Pheromone.prototype.step = function() {
@@ -201,7 +185,18 @@ Pheromone.prototype.step = function() {
     this.update();
 }
 
-Pheromone.prototype.draw = function() {
+Pheromone.prototype.draw = function(ctx) {
+    for(var i = 0; i < this.read_matrix.length; ++i ) {
+	for(var j = 0; j < this.read_matrix[i].length; ++j ) {
+	    if( this.read_matrix[i][j] !== undefined ) {
+		if( i === 2 && j === 2 ) {
+		    //alert("read:" + this.read_matrix[i][j] + ":" + this.read_matrix[i][j].toString(16) + ":");
+		} 
+		ctx.fillStyle = this.read_matrix[i][j].toString(16);
+		ctx.fillRect(i,j,1,1);
+	    }
+	}
+    }
 }
 
 Pheromone.prototype.diffuse = function() {
@@ -210,5 +205,44 @@ Pheromone.prototype.diffuse = function() {
 }
 
 Pheromone.prototype.update = function() {
-    // copying write matrix to read matrix
+    this.read_matrix = [];
+    copy2DArray(this.write_matrix, this.read_matrix);
+}
+
+// -----------------------------------------------------------------------------------------------------
+// auxiliary functions
+//
+// quasi-normal distribution [-1,1) 
+function gauss_random() {
+    // http://stackoverflow.com/a/20161247/21047 and http://jsfiddle.net/Guffa/tvt5K/
+    return ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()-3)) / 3;
+} 
+
+function get2DGaussian(mean, deviation) {
+    var point = new Point();
+    point.x = (gauss_random() + 1) / 2 * deviation + mean.x;
+    point.y = (gauss_random() + 1) / 2 * deviation + mean.y;
+    return point;
+}
+
+function sign(x) {
+    // http://stackoverflow.com/q/7624920/21047
+    return typeof x === 'number' ? x ? x < 0 ? -1 : 1 : x === x ? 0 : NaN : NaN;
+}
+
+function create2DArray(rows) {
+  var arr = [];
+
+  for (var i=0;i<rows;i++) {
+     arr[i] = [];
+  }
+
+  return arr;
+}
+
+function copy2DArray(src, dest){
+    var elem;
+    for(elem in src){
+	dest.push(src[elem].slice());
+    }
 }

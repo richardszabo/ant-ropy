@@ -56,3 +56,4 @@ in the code to have an example off screen drawing.
 
 - Fixing line end marker. CR/LF is saved for line end under windows. (Previous saves were OK.)
 git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encoding change)
+- Some pheromone functions have been started.
