@@ -49,4 +49,10 @@ repositioning: almost 2x faster - 25 msec - for 1000 ants and 100 foods.
 in the code to have an example off screen drawing.
 
 2014. 10. 02.
+
 - Starting Pheromone class. Repast.Diffuse2D's API is here: https://supportweb.cs.bham.ac.uk/documentation/java/repast/api/uchicago/src/sim/space/Diffuse2D.html
+
+2014. 10. 05.
+
+- Fixing line end marker. CR/LF is saved for line end under windows. (Previous saves were OK.)
+git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encoding change)
