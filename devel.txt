@@ -64,3 +64,4 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 - Moving auxiliary functions to aux.js.
 - Moving Pheromone functions to pheromone.js.
 - Moving Ant, Ants functions to ant.js.
+- Moving Food, Foods functions to food.js.

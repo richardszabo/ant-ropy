@@ -1,5 +1,11 @@
 // -----------------------------------------------------------------------------------------------------
 // auxiliary functions
+
+function Point () {
+    var x;
+    var y;
+}
+
 //
 // quasi-normal distribution [-1,1) 
 function gauss_random() {
