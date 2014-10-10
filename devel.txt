@@ -61,3 +61,4 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 2014. 10. 10.
 
 - Pheromone write/read matrices with random colors are used on 1/4 of the screen for test.
+- Moving auxiliary functions to aux.js.
