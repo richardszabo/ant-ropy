@@ -171,10 +171,10 @@ Ant.prototype.randomWalkMode = function() {
 }
 
 function Pheromone() {   
-    this.read_matrix = create2DArray(10); //spaceWidth);
-    this.write_matrix = create2DArray(10); //spaceWidth);
+    this.read_matrix = create2DArray(spaceWidth/10);
+    this.write_matrix = create2DArray(spaceWidth/10);
     for(var i = 0; i < this.write_matrix.length; ++i ) {
-	for(var j = 0; j < 10 /* spaceHeight */; ++j ) {
+	for(var j = 0; j < spaceHeight/10; ++j ) {
 	    this.write_matrix[i][j] = Math.round(Math.random()*256) + Math.round(Math.random()*65536) + Math.round(Math.random()*256*65536);
 	}
     }
@@ -189,11 +189,8 @@ Pheromone.prototype.draw = function(ctx) {
     for(var i = 0; i < this.read_matrix.length; ++i ) {
 	for(var j = 0; j < this.read_matrix[i].length; ++j ) {
 	    if( this.read_matrix[i][j] !== undefined ) {
-		if( i === 2 && j === 2 ) {
-		    //alert("read:" + this.read_matrix[i][j] + ":" + this.read_matrix[i][j].toString(16) + ":");
-		} 
-		ctx.fillStyle = this.read_matrix[i][j].toString(16);
-		ctx.fillRect(i,j,1,1);
+		ctx.fillStyle = '#' + this.read_matrix[i][j].toString(16);
+		ctx.fillRect(5*i,5*j,5,5);
 	    }
 	}
     }
