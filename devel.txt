@@ -70,3 +70,4 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 
 - aux.js has been renamed to helper.js as Windows does not allow filenames with any extension and named as aux.
 - Using AntSpace with abstract space size. Conversion between space and canvas coordinates.
+- AntSpace.center and AntSpace.crop2Space to hide all canvas specific measure. 

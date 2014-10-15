@@ -4,12 +4,13 @@ function Foods () {
     this.foodDeviation = 50;
     this.food = [];    
 
-    var foodSource = new Point(Math.floor((gauss_random() + 1 ) / 2 * antSpace.spaceWidth),Math.floor((gauss_random() + 1 ) / 2 * antSpace.spaceHeight));
+    var foodSource = new Point(Math.floor((gauss_random() + 1 ) / 2 * antSpace.spaceSize),Math.floor((gauss_random() + 1 ) / 2 * antSpace.spaceSize));
     for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(foodSource,this.foodDeviation);
 	this.food[i] = new Food();
-	this.food[i].x = (Math.floor(point.x) + antSpace.spaceWidth) % antSpace.spaceWidth; 
-	this.food[i].y = (Math.floor(point.y) + antSpace.spaceHeight) % antSpace.spaceHeight; 
+	var cpoint = antSpace.crop2Space(new Point(Math.floor(point.x),Math.floor(point.y)));
+	this.food[i].x = cpoint.x; 
+	this.food[i].y = cpoint.y;
    } 
 }
 

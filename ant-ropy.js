@@ -58,7 +58,7 @@ function Hive () {
 Hive.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.beginPath();
-    var canvaspoint = antSpace.point2Canvas(new Point(antSpace.spaceWidth/2,antSpace.spaceHeight/2));
+    var canvaspoint = antSpace.point2Canvas(antSpace.center());
     ctx.arc(canvaspoint.x,canvaspoint.y,antSpace.num2Canvas(this.hiveSize),0,2*Math.PI);
     ctx.fill();
 }

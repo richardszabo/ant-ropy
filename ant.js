@@ -33,8 +33,8 @@ function Ant() {
     var prevX;
     var prevY;
 
-    this.x = Math.random() * antSpace.spaceWidth;
-    this.y = Math.random() * antSpace.spaceHeight;
+    this.x = Math.random() * antSpace.spaceSize;
+    this.y = Math.random() * antSpace.spaceSize;
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
 }
 
@@ -52,8 +52,9 @@ Ant.prototype.draw = function(ctx) {
 
 Ant.prototype.step = function() {
     this.randomWalkMode();
-    this.x = (this.x + antSpace.spaceWidth) % antSpace.spaceWidth; 
-    this.y = (this.y + antSpace.spaceHeight) % antSpace.spaceHeight; 
+    var cpoint = antSpace.crop2Space(new Point(this.x,this.y));
+    this.x = cpoint.x;
+    this.y = cpoint.y;
 }
 
 Ant.prototype.randomWalkMode = function() {

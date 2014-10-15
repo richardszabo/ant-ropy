@@ -1,8 +1,8 @@
 function Pheromone() {   
-    this.read_matrix = create2DArray(antSpace.spaceWidth/10);
-    this.write_matrix = create2DArray(antSpace.spaceWidth/10);
+    this.read_matrix = create2DArray(antSpace.spaceSize/10);
+    this.write_matrix = create2DArray(antSpace.spaceSize/10);
     for(var i = 0; i < this.write_matrix.length; ++i ) {
-	for(var j = 0; j < antSpace.spaceHeight/10; ++j ) {
+	for(var j = 0; j < antSpace.spaceSize/10; ++j ) {
 	    this.write_matrix[i][j] = Math.round(Math.random()*256) + Math.round(Math.random()*65536) + Math.round(Math.random()*256*65536);
 	}
     }
