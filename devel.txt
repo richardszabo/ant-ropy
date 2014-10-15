@@ -65,3 +65,7 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 - Moving Pheromone functions to pheromone.js.
 - Moving Ant, Ants functions to ant.js.
 - Moving Food, Foods functions to food.js.
+
+2014. 10. 15.
+
+- aux.js has been renamed to helper.js as Windows does not allow filenames with any extension and named as aux.
