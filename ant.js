@@ -1,5 +1,5 @@
 function Ants () {
-    this.antSize = 2;
+    this.antSize = 1;
     this.antNumber = 100;
     this.ant = [];
     for(var i = 0; i < this.antNumber; ++i ) {
@@ -33,26 +33,27 @@ function Ant() {
     var prevX;
     var prevY;
 
-    this.x = Math.random() * spaceWidth;
-    this.y = Math.random() * spaceHeight;
+    this.x = Math.random() * antSpace.spaceWidth;
+    this.y = Math.random() * antSpace.spaceHeight;
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
 }
 
 Ant.prototype.draw = function(ctx) {
     ctx.beginPath();
-    ctx.arc(this.x,this.y,ants.antSize,0,2*Math.PI);
+    var canvaspoint = antSpace.point2Canvas(new Point(this.x,this.y));
+    ctx.arc(canvaspoint.x,canvaspoint.y,antSpace.num2Canvas(ants.antSize),0,2*Math.PI);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(this.x,this.y);
-    ctx.lineTo(this.x+5*Ants.neighbours[this.heading][0],
-	       this.y+5*Ants.neighbours[this.heading][1]);
+    ctx.moveTo(canvaspoint.x,canvaspoint.y);
+    ctx.lineTo(canvaspoint.x+antSpace.num2Canvas(2)*Ants.neighbours[this.heading][0],
+	       canvaspoint.y+antSpace.num2Canvas(2)*Ants.neighbours[this.heading][1]);
     ctx.stroke();
 }
 
 Ant.prototype.step = function() {
     this.randomWalkMode();
-    this.x = (this.x + spaceWidth) % spaceWidth; 
-    this.y = (this.y + spaceHeight) % spaceHeight; 
+    this.x = (this.x + antSpace.spaceWidth) % antSpace.spaceWidth; 
+    this.y = (this.y + antSpace.spaceHeight) % antSpace.spaceHeight; 
 }
 
 Ant.prototype.randomWalkMode = function() {

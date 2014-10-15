@@ -1,9 +1,9 @@
 // -----------------------------------------------------------------------------------------------------
 // auxiliary functions
 
-function Point () {
-    var x;
-    var y;
+function Point (xx,yy) {
+    this.x = xx;
+    this.y = yy;
 }
 
 //
@@ -14,10 +14,7 @@ function gauss_random() {
 } 
 
 function get2DGaussian(mean, deviation) {
-    var point = new Point();
-    point.x = (gauss_random() + 1) / 2 * deviation + mean.x;
-    point.y = (gauss_random() + 1) / 2 * deviation + mean.y;
-    return point;
+    return new Point((gauss_random() + 1) / 2 * deviation + mean.x,(gauss_random() + 1) / 2 * deviation + mean.y);
 }
 
 function sign(x) {

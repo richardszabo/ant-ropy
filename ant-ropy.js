@@ -2,11 +2,12 @@
 
 var canvas;
 var realctx;
-var spaceWidth;
-var spaceHeight;
+var canvasWidth;
+var canvasHeight;
 var offCanvas;
 var offctx;
 
+var antSpace;
 var hive;
 var foods;
 var ants;
@@ -16,12 +17,13 @@ function init(canvasid) {
     //Canvas stuff
     canvas = $(canvasid)[0];
     realctx = canvas.getContext("2d");
-    spaceWidth = $(canvasid).width();
-    spaceHeight = $(canvasid).height();
+    canvasWidth = $(canvasid).width();
+    canvasHeight = $(canvasid).height();
     offCanvas = document.createElement('canvas');
-    offCanvas.width = spaceWidth;
-    offCanvas.height = spaceHeight;
+    offCanvas.width = canvasWidth;
+    offCanvas.height = canvasHeight;
     offctx = offCanvas.getContext("2d");
+    antSpace = new AntSpace(canvasWidth,canvasHeight);
     hive = new Hive();
     hive.draw(offctx);
     foods = new Foods();
@@ -33,8 +35,8 @@ function init(canvasid) {
 
 function step() {
     var start = +new Date(); // log start timestamp
-    realctx.clearRect(0, 0, spaceWidth, spaceHeight);
-    offctx.clearRect(0, 0, spaceWidth, spaceHeight);
+    realctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    offctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     hive.draw(offctx);
     foods.draw(offctx);
@@ -50,13 +52,14 @@ function step() {
 }
 
 function Hive () {
-    this.hiveSize = 5;
+    this.hiveSize = 2;
 }
 
 Hive.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.arc(spaceWidth/2,spaceHeight/2,this.hiveSize,0,2*Math.PI);
+    var canvaspoint = antSpace.point2Canvas(new Point(antSpace.spaceWidth/2,antSpace.spaceHeight/2));
+    ctx.arc(canvaspoint.x,canvaspoint.y,antSpace.num2Canvas(this.hiveSize),0,2*Math.PI);
     ctx.fill();
 }
 
