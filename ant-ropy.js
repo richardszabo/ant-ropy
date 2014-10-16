@@ -31,6 +31,7 @@ function init(canvasid) {
     ants = new Ants();
     ants.draw(offctx);
     pheromone = new Pheromone();
+    pheromone.draw(offctx);
 }
 
 function step() {

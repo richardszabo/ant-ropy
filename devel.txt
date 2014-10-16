@@ -8,39 +8,32 @@ Ant-ropy with html5/css/javascript/jquery
   - Creating a start.sh script to strt the program. 
 
 2014. 09. 14.
-
 - Starting Food class.
 - Random placement of one food.
 - Gaussian random. (http://stackoverflow.com/a/20161247/21047)
 - Several food around a food source.
 
 2014. 09. 17.
-
 - Foods class for static methods of java Food.
 
 2014. 09. 20.
-
 - Food is filled circle instead of rectangle.
 - Hive is filled circle instead of rectangle.
 - use strict
 - Ants and Ant "classes".
 
 2014. 09. 23.
-
 - Ants heading. Calculated with random. Using neighbours array to draw.
 
 2014. 09. 24.
-
 - First timing attempt.
 - Ants move, screen is redrawn.
 
 2014. 09. 27.
-
 - Fixing ant step and draw.
 - Random walk with bias to the current direction.
 
 2014. 10. 01.
-
 - Object-level init functions are eliminated.
 - Measuring running speed of step.
 - Optimizing execution with stroke and stroke/fillStyle
@@ -49,17 +42,14 @@ repositioning: almost 2x faster - 25 msec - for 1000 ants and 100 foods.
 in the code to have an example off screen drawing.
 
 2014. 10. 02.
-
 - Starting Pheromone class. Repast.Diffuse2D's API is here: https://supportweb.cs.bham.ac.uk/documentation/java/repast/api/uchicago/src/sim/space/Diffuse2D.html
 
 2014. 10. 05.
-
 - Fixing line end marker. CR/LF is saved for line end under windows. (Previous saves were OK.)
 git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encoding change)
 - Some pheromone functions have been started.
 
 2014. 10. 10.
-
 - Pheromone write/read matrices with random colors are used on 1/4 of the screen for test.
 - Moving auxiliary functions to aux.js.
 - Moving Pheromone functions to pheromone.js.
@@ -67,7 +57,10 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 - Moving Food, Foods functions to food.js.
 
 2014. 10. 15.
-
 - aux.js has been renamed to helper.js as Windows does not allow filenames with any extension and named as aux.
 - Using AntSpace with abstract space size. Conversion between space and canvas coordinates.
 - AntSpace.center and AntSpace.crop2Space to hide all canvas specific measure. 
+
+2014. 10. 16.
+- Ants emit pheromone (just a constant).
+- Emitted pheromone is drawn.

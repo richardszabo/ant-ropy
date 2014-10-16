@@ -1,12 +1,12 @@
 function Ants () {
     this.antSize = 1;
-    this.antNumber = 100;
     this.ant = [];
-    for(var i = 0; i < this.antNumber; ++i ) {
+    for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i] = new Ant();
     } 
 }
 
+Ants.antNumber = 100;
 // neighbours (order is important!)
 Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
 Ants.NO_HEADINGS = Ants.neighbours.length;
@@ -15,26 +15,20 @@ Ants.STEPS_AHEAD = 3;
 
 Ants.prototype.draw = function(ctx) {
     ctx.strokeStyle = "blue";
-    for(var i = 0; i < this.antNumber; ++i ) {
+    for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i].draw(ctx);
     } 
 }
 
 Ants.prototype.step = function() {
-    for(var i = 0; i < this.antNumber; ++i ) {
+    for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i].step();
     } 
 }
 
 function Ant() {
-    var x;
-    var y;
-    var heading;
-    var prevX;
-    var prevY;
-
-    this.x = Math.random() * antSpace.spaceSize;
-    this.y = Math.random() * antSpace.spaceSize;
+    this.x = Math.floor(Math.random() * antSpace.spaceSize);
+    this.y = Math.floor(Math.random() * antSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
 }
 
@@ -68,5 +62,9 @@ Ant.prototype.randomWalkMode = function() {
     //alert('heading:' + this.heading + ':');
     this.x += Ants.neighbours[this.heading][0];
     this.y += Ants.neighbours[this.heading][1];
+}
+
+Ant.prototype.getEmittedPheromone = function() {
+    return 1;
 }
 
