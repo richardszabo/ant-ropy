@@ -1,5 +1,5 @@
 function Ants () {
-    this.antSize = 1;
+    this.antSize = 3;
     this.ant = [];
     for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i] = new Ant();
@@ -35,12 +35,12 @@ function Ant() {
 Ant.prototype.draw = function(ctx) {
     ctx.beginPath();
     var canvaspoint = antSpace.point2Canvas(new Point(this.x,this.y));
-    ctx.arc(canvaspoint.x,canvaspoint.y,antSpace.num2Canvas(ants.antSize),0,2*Math.PI);
+    ctx.arc(canvaspoint.x,canvaspoint.y,ants.antSize,0,2*Math.PI);
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(canvaspoint.x,canvaspoint.y);
-    ctx.lineTo(canvaspoint.x+antSpace.num2Canvas(2)*Ants.neighbours[this.heading][0],
-	       canvaspoint.y+antSpace.num2Canvas(2)*Ants.neighbours[this.heading][1]);
+    ctx.lineTo(canvaspoint.x+5*Ants.neighbours[this.heading][0],
+	       canvaspoint.y+5*Ants.neighbours[this.heading][1]);
     ctx.stroke();
 }
 

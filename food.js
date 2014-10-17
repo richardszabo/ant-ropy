@@ -1,5 +1,5 @@
 function Foods () {
-    this.foodSize = 1;
+    this.foodSize = 2;
     this.foodNumber = 100;
     this.foodDeviation = 50;
     this.food = [];    
@@ -29,6 +29,6 @@ function Food () {
 Food.prototype.draw = function(ctx) {
     ctx.beginPath();
     var canvaspoint = antSpace.point2Canvas(new Point(this.x,this.y));
-    ctx.arc(canvaspoint.x,canvaspoint.y,antSpace.num2Canvas(foods.foodSize),0,2*Math.PI);
+    ctx.arc(canvaspoint.x,canvaspoint.y,foods.foodSize,0,2*Math.PI);
     ctx.fill();
 }

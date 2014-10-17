@@ -53,14 +53,14 @@ function step() {
 }
 
 function Hive () {
-    this.hiveSize = 2;
+    this.hiveSize = 10;
 }
 
 Hive.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.beginPath();
     var canvaspoint = antSpace.point2Canvas(antSpace.center());
-    ctx.arc(canvaspoint.x,canvaspoint.y,antSpace.num2Canvas(this.hiveSize),0,2*Math.PI);
+    ctx.arc(canvaspoint.x,canvaspoint.y,this.hiveSize,0,2*Math.PI);
     ctx.fill();
 }
 
