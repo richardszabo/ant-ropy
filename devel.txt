@@ -68,3 +68,5 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 2014. 10. 17.
 - Deleting AntSpace.num2Canvas: drawn objects are more sprite-like
 they size does not necessarily match space cell size.
+- Better color number conversion with helper.decimalToHexString.
+- Better color calculation. TODO fix

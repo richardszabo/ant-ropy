@@ -38,3 +38,12 @@ function copy2DArray(src, dest){
 	dest.push(src[elem].slice());
     }
 }
+
+function decimalToHexString(number) {
+    // http://stackoverflow.com/a/697841/21047
+    if (number < 0) {
+    	number = 0xFFFFFFFF + number + 1;
+    }
+
+    return number.toString(16).toUpperCase();
+}

@@ -65,6 +65,6 @@ Ant.prototype.randomWalkMode = function() {
 }
 
 Ant.prototype.getEmittedPheromone = function() {
-    return 1;
+    return 200;
 }
 
