@@ -7,13 +7,18 @@ var canvasHeight;
 var offCanvas;
 var offctx;
 
+var pheromone_canvas;
+var pheromone_realctx;
+var pheromone_offCanvas;
+var pheromone_offctx;
+
 var antSpace;
 var hive;
 var foods;
 var ants;
 var pheromone;
 
-function init(canvasid) {
+function init(canvasid,pheromone_canvasid) {
     //Canvas stuff
     canvas = $(canvasid)[0];
     realctx = canvas.getContext("2d");
@@ -23,6 +28,14 @@ function init(canvasid) {
     offCanvas.width = canvasWidth;
     offCanvas.height = canvasHeight;
     offctx = offCanvas.getContext("2d");
+
+    pheromone_canvas = $(pheromone_canvasid)[0];
+    pheromone_realctx = pheromone_canvas.getContext("2d");
+    pheromone_offCanvas = document.createElement('canvas');
+    pheromone_offCanvas.width = canvasWidth;
+    pheromone_offCanvas.height = canvasHeight;
+    pheromone_offctx = pheromone_offCanvas.getContext("2d");
+
     antSpace = new AntSpace(canvasWidth,canvasHeight);
     hive = new Hive();
     hive.draw(offctx);
@@ -31,22 +44,25 @@ function init(canvasid) {
     ants = new Ants();
     ants.draw(offctx);
     pheromone = new Pheromone();
-    pheromone.draw(offctx);
+    pheromone.draw(pheromone_offctx);
 }
 
 function step() {
     var start = +new Date(); // log start timestamp
     realctx.clearRect(0, 0, canvasWidth, canvasHeight);
     offctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    pheromone_realctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    pheromone_offctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     hive.draw(offctx);
     foods.draw(offctx);
     ants.step();
     ants.draw(offctx);
     pheromone.step();
-    pheromone.draw(offctx);
+    pheromone.draw(pheromone_offctx);
     
     realctx.drawImage(offCanvas,0,0);
+    pheromone_realctx.drawImage(pheromone_offCanvas,0,0);
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
     document.getElementById("demo").innerHTML = "step cycle: " + diff;
@@ -62,13 +78,6 @@ Hive.prototype.draw = function(ctx) {
     var canvaspoint = antSpace.point2Canvas(antSpace.center());
     ctx.arc(canvaspoint.x,canvaspoint.y,this.hiveSize,0,2*Math.PI);
     ctx.fill();
-    ctx.fillStyle = "green";
-    ctx.fillRect(canvaspoint.x,canvaspoint.y,10*antSpace.cellSize,10*antSpace.cellSize);
-    ctx.moveTo(0,0);
-    ctx.lineTo(canvasWidth,canvasHeight);
-    ctx.moveTo(canvasWidth,0);
-    ctx.lineTo(0,canvasHeight);
-    ctx.stroke();
 }
 
 

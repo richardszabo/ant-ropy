@@ -13,14 +13,17 @@
 <script src="helper.js" type="text/javascript"></script>
 <script>
 $( document ).ready(function() {
-init("#canvas");
+init("#canvas","#pheromone_canvas");
 setInterval(function() {step();},10);
 });
 </script>
   </head>
   <body>
     <h1>Playground for ants</h1>
-    <canvas id="canvas" width="400" height="400"></canvas>
-    <p id="demo"></p>
+    <div id="canvases" style="position:relative; width:400px; height:400px">
+      <canvas id="canvas" width="400px" height="400px" style="position: absolute; z-index: 1"></canvas>
+      <canvas id="pheromone_canvas" width="400px" height="400px" style="position: absolute; z-index: 0"></canvas>
+    </div>
+    <p id="demo">aaa</p>
   </body>
 </html>

@@ -16,7 +16,7 @@ Pheromone.prototype.draw = function(ctx) {
 	    if( this.read_matrix[i][j] ) {
 		if( lastFillValue != this.read_matrix[i][j]/10 ) {
 		    lastFillValue = this.read_matrix[i][j]/10;		    
-		    ctx.fillStyle = '#' + decimalToHexString(lastFillValue) + '0000'; 
+		    ctx.fillStyle = '#00' + decimalToHexString(lastFillValue) + '00'; 
 		}
 		//alert(":" + decimalToHexString(lastFillValue) + ":" + ctx.fillStyle);
 		var canvaspoint = antSpace.point2Canvas(new Point(i,j));
