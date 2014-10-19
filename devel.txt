@@ -73,4 +73,5 @@ they size does not necessarily match space cell size.
 
 2014. 10. 19.
 - Color calculation fixed.
+
 - Pheromone is cellsize drawn and correctly positioned on the grid crossing.
