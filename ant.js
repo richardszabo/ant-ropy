@@ -6,7 +6,7 @@ function Ants () {
     } 
 }
 
-Ants.antNumber = 100;
+Ants.antNumber = 1;
 // neighbours (order is important!)
 Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
 Ants.NO_HEADINGS = Ants.neighbours.length;

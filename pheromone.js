@@ -16,11 +16,11 @@ Pheromone.prototype.draw = function(ctx) {
 	    if( this.read_matrix[i][j] ) {
 		if( lastFillValue != this.read_matrix[i][j]/10 ) {
 		    lastFillValue = this.read_matrix[i][j]/10;		    
-		    ctx.fillStyle = '#0' + decimalToHexString(lastFillValue) + '0000'; 
+		    ctx.fillStyle = '#' + decimalToHexString(lastFillValue) + '0000'; 
 		}
-		//alert(ctx.fillStyle);
+		//alert(":" + decimalToHexString(lastFillValue) + ":" + ctx.fillStyle);
 		var canvaspoint = antSpace.point2Canvas(new Point(i,j));
-		ctx.fillRect(canvaspoint.x,canvaspoint.y,1,1);
+		ctx.fillRect(canvaspoint.x-antSpace.cellSize/2,canvaspoint.y-antSpace.cellSize/2,antSpace.cellSize,antSpace.cellSize);
 	    }
 	}
     }

@@ -62,6 +62,13 @@ Hive.prototype.draw = function(ctx) {
     var canvaspoint = antSpace.point2Canvas(antSpace.center());
     ctx.arc(canvaspoint.x,canvaspoint.y,this.hiveSize,0,2*Math.PI);
     ctx.fill();
+    ctx.fillStyle = "green";
+    ctx.fillRect(canvaspoint.x,canvaspoint.y,10*antSpace.cellSize,10*antSpace.cellSize);
+    ctx.moveTo(0,0);
+    ctx.lineTo(canvasWidth,canvasHeight);
+    ctx.moveTo(canvasWidth,0);
+    ctx.lineTo(0,canvasHeight);
+    ctx.stroke();
 }
 
 
