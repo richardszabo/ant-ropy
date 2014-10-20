@@ -1,11 +1,13 @@
 function Pheromone() {   
     this.read_matrix = create2DArray(antSpace.spaceSize);
-    this.write_matrix = create2DArray(antSpace.spaceSize);
+    this.write_matrix = create2DArray(antSpace.spaceSize);    
+    this.evap_rate = 0.99;
+    this.diffusion_constant = 0.01;
 }
 
 Pheromone.prototype.step = function() {
-    this.calculate();
     this.diffuse();
+    this.calculate();
     this.update();
 }
 
@@ -35,7 +37,18 @@ Pheromone.prototype.calculate = function() {
 
 Pheromone.prototype.diffuse = function() {
     // modifying write matrix according to https://supportweb.cs.bham.ac.uk/documentation/java/repast/api/uchicago/src/sim/space/Diffuse2D.html#diffuse%28%29
-    // newValue = evap(ownValue + diffusionConstant * (nghAvg - ownValue)) where nghAvg is the weighted average of a cells eight neighbors, and ownValue is the current value for the current cell.
+    //newValue = evap(ownValue + diffusionConstant * (nghAvg - ownValue)) where nghAvg is the weighted average of a cells eight neighbors, and ownValue is the current value for the current cell.
+    for(var i = 0; i < this.write_matrix.length; ++i ) {
+	for(var j = 0; j < this.write_matrix[i].length; ++j ) {
+	    var avg = 0;
+	    for( var k = 0; k < 8; ++k ) {
+		avg += this.read_matrix[(i + Ants.neighbours[k][0] + antSpace.spaceSize)%antSpace.spaceSize]
+		                       [(j + Ants.neighbours[k][1] + antSpace.spaceSize)%antSpace.spaceSize] || 0;
+	    }
+	    this.write_matrix[i][j] = 
+		this.evap_rate * (this.read_matrix[i][j] || 0 + this.diffusion_constant * ( avg/8 - this.read_matrix[i][j] || 0) );
+	}
+    }
 }
 
 Pheromone.prototype.update = function() {
