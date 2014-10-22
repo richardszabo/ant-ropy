@@ -80,3 +80,12 @@ they size does not necessarily match space cell size.
 - Maybe Ants class is unnecessary and everything can be solved with
 static tags of Ant?
 - Diffusion: nothing visible (TODO check), slows down to 120 ms.
+
+2014. 10. 22.
+- Diffusion constant was 0.86 and evaporation rate was 0.01 during
+Repast simulations.
+- Diffusion calculation was based on Diffuse2D, a class in
+Repast. However the code of computeVal was rewritten and resides in
+the own source trunk.
+- Pheromone.step = { diffuse();, calculate(); /*(ant pheromone)*/, update(); } is
+the correct order, it was used in Repast as well. 
