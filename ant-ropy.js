@@ -41,10 +41,10 @@ function init(canvasid,pheromone_canvasid) {
     hive.draw(offctx);
     foods = new Foods();
     foods.draw(offctx);
-    ants = new Ants();
-    ants.draw(offctx);
     pheromone = new Pheromone();
     pheromone.draw(pheromone_offctx);
+    ants = new Ants();
+    ants.draw(offctx);
 }
 
 function step() {

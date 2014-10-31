@@ -22,14 +22,15 @@ function sign(x) {
     return typeof x === 'number' ? x ? x < 0 ? -1 : 1 : x === x ? 0 : NaN : NaN;
 }
 
-function create2DArray(rows) {
+function create2DArray(rows,cols) {
   var arr = [];
 
-  for (var i=0;i<rows;i++) {
-     arr[i] = [];
-  }
+    cols = cols || rows;
+    for (var i=0;i<rows;i++) {
+	arr[i] = new Array(cols);
+    }
 
-  return arr;
+    return arr;
 }
 
 function copy2DArray(src, dest){
@@ -41,6 +42,7 @@ function copy2DArray(src, dest){
 
 function decimalToHexString(number) {
     // http://stackoverflow.com/a/697841/21047
+    number = number || 0;
     if (number < 0) {
     	number = 0xFFFFFFFF + number + 1;
     }
