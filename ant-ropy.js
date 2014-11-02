@@ -80,10 +80,10 @@ Hive.prototype.draw = function(ctx) {
     ctx.fill();
 }
 
-Hive.prototype.isIn = function(x,y) {
+Hive.prototype.isIn = function(pos) {
     var hive = antSpace.center();
-    return (x - hive.x) * (x - hive.x) +
-	(y - hive.y) * (y - hive.y) <
+    return (pos.x - hive.x) * (pos.x - hive.x) +
+	(pos.y - hive.y) * (pos.y - hive.y) <
 	this.hiveDrawSize / antSpace.cellSize * this.hiveDrawSize / antSpace.cellSize;
 }
 

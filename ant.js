@@ -36,9 +36,19 @@ function Ant() {
     this.pheromoneHive = 0;
 }
 
+Ant.prototype = {
+    get pos2D() {
+	return new Point(this.x,this.y);
+    },
+    set pos2D(pos) {
+	this.x = pos.x;
+	this.y = pos.y;
+    }
+};
+
 Ant.prototype.draw = function(ctx) {
     ctx.beginPath();
-    var canvaspoint = antSpace.point2Canvas(new Point(this.x,this.y));
+    var canvaspoint = antSpace.point2Canvas(this.pos2D);
     ctx.arc(canvaspoint.x,canvaspoint.y,ants.antSize,0,2*Math.PI);
     ctx.stroke();
     ctx.beginPath();
@@ -50,7 +60,7 @@ Ant.prototype.draw = function(ctx) {
 
 Ant.prototype.step = function() {
     this.randomWalkMode();
-    var cpoint = antSpace.crop2Space(new Point(this.x,this.y));
+    var cpoint = antSpace.crop2Space(this.pos2D);
     this.x = cpoint.x;
     this.y = cpoint.y;
 }
@@ -63,7 +73,7 @@ Ant.prototype.randomWalkMode = function() {
     //alert('heading:' + this.heading + ':');
     this.x += Ants.neighbours[this.heading][0];
     this.y += Ants.neighbours[this.heading][1];
-    if( hive.isIn(this.x,this.y) ) {
+    if( hive.isIn(this.pos2D) ) {
 	this.pheromoneHive = Ants.STARTING_PHEROMONE;
     }
 }
