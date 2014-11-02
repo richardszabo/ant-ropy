@@ -12,6 +12,8 @@ Ants.neighbours = [[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1]];
 Ants.NO_HEADINGS = Ants.neighbours.length;
 // number of possible directions to move
 Ants.STEPS_AHEAD = 3;
+Ants.STARTING_PHEROMONE = 100;
+Ants.PHEROMONE_DECREASE = 2;
 
 Ants.prototype.draw = function(ctx) {
     ctx.strokeStyle = "blue";
@@ -31,6 +33,7 @@ function Ant() {
     this.y = Math.floor(Math.random() * antSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
     this.firststep = 1;
+    this.pheromoneHive = Ants.STARTING_PHEROMONE;
 }
 
 Ant.prototype.draw = function(ctx) {
@@ -62,7 +65,9 @@ Ant.prototype.randomWalkMode = function() {
     this.y += Ants.neighbours[this.heading][1];
 }
 
-Ant.prototype.getEmittedPheromone = function() {
-    return 100;
+Ant.prototype.getEmittedPheromoneHive = function() {
+    var ph = this.pheromoneHive;
+    this.pheromoneHive = Math.max(0,this.pheromoneHive - Ants.PHEROMONE_DECREASE);
+    return ph;
 }
 

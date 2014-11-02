@@ -28,7 +28,7 @@ Pheromone.prototype.draw = function(ctx) {
 Pheromone.prototype.calculate = function() {
     for( var i = 0; i < Ants.antNumber; ++i ) {
 	this.write_matrix[ants.ant[i].x][ants.ant[i].y] = 
-	    (this.write_matrix[ants.ant[i].x][ants.ant[i].y] || 0) + ants.ant[i].getEmittedPheromone();
+	    (this.write_matrix[ants.ant[i].x][ants.ant[i].y] || 0) + ants.ant[i].getEmittedPheromoneHive();
     }
 }
 

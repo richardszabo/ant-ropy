@@ -94,3 +94,7 @@ the correct order, it was used in Repast as well.
 - Using correct diff and evap constants.
 - Calculation is based on own Diffuse2D.
 - Fix: using rgb for fillstyle instead of '#' prefixed hexadecimal numbers.
+
+2014. 11. 02.
+- getEmittedPheromone -> getEmittedPheromoneHive
+- getEmittedPheromoneHive is a decreasing function.
