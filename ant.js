@@ -32,7 +32,6 @@ function Ant() {
     this.x = Math.floor(Math.random() * antSpace.spaceSize);
     this.y = Math.floor(Math.random() * antSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
-    this.firststep = 1;
     this.pheromoneHive = 0;
 }
 
@@ -60,9 +59,7 @@ Ant.prototype.draw = function(ctx) {
 
 Ant.prototype.step = function() {
     this.randomWalkMode();
-    var cpoint = antSpace.crop2Space(this.pos2D);
-    this.x = cpoint.x;
-    this.y = cpoint.y;
+    this.pos2D = antSpace.crop2Space(this.pos2D);
 }
 
 Ant.prototype.randomWalkMode = function() {

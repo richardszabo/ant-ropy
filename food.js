@@ -8,9 +8,7 @@ function Foods () {
     for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(foodSource,this.foodDeviation);
 	this.food[i] = new Food();
-	var cpoint = antSpace.crop2Space(new Point(Math.floor(point.x),Math.floor(point.y)));
-	this.food[i].x = cpoint.x; 
-	this.food[i].y = cpoint.y;
+	this.food[i].pos2D = antSpace.crop2Space(new Point(Math.floor(point.x),Math.floor(point.y)));
    } 
 }
 
@@ -22,13 +20,24 @@ Foods.prototype.draw = function(ctx) {
 }
 
 function Food () {
-    var x;
-    var y;
+    this.x = 0;
+    this.y = 0;
 }
+
+Food.prototype = {
+    get pos2D() {
+	return new Point(this.x,this.y);
+    },
+    set pos2D(pos) {
+	this.x = pos.x;
+	this.y = pos.y;
+    }
+};
+
 
 Food.prototype.draw = function(ctx) {
     ctx.beginPath();
-    var canvaspoint = antSpace.point2Canvas(new Point(this.x,this.y));
+    var canvaspoint = antSpace.point2Canvas(this.pos2D);
     ctx.arc(canvaspoint.x,canvaspoint.y,foods.foodSize,0,2*Math.PI);
     ctx.fill();
 }
