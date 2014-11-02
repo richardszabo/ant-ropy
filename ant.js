@@ -33,7 +33,7 @@ function Ant() {
     this.y = Math.floor(Math.random() * antSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.neighbours.length);
     this.firststep = 1;
-    this.pheromoneHive = Ants.STARTING_PHEROMONE;
+    this.pheromoneHive = 0;
 }
 
 Ant.prototype.draw = function(ctx) {
@@ -63,6 +63,9 @@ Ant.prototype.randomWalkMode = function() {
     //alert('heading:' + this.heading + ':');
     this.x += Ants.neighbours[this.heading][0];
     this.y += Ants.neighbours[this.heading][1];
+    if( hive.isIn(this.x,this.y) ) {
+	this.pheromoneHive = Ants.STARTING_PHEROMONE;
+    }
 }
 
 Ant.prototype.getEmittedPheromoneHive = function() {

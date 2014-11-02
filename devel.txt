@@ -97,4 +97,4 @@ the correct order, it was used in Repast as well.
 
 2014. 11. 02.
 - getEmittedPheromone -> getEmittedPheromoneHive
-- getEmittedPheromoneHive is a decreasing function.
+- getEmittedPheromoneHive is a decreasing function and takes Hive into account.

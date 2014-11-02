@@ -69,15 +69,21 @@ function step() {
 }
 
 function Hive () {
-    this.hiveSize = 10;
+    this.hiveDrawSize = 10;
 }
 
 Hive.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.beginPath();
     var canvaspoint = antSpace.point2Canvas(antSpace.center());
-    ctx.arc(canvaspoint.x,canvaspoint.y,this.hiveSize,0,2*Math.PI);
+    ctx.arc(canvaspoint.x,canvaspoint.y,this.hiveDrawSize,0,2*Math.PI);
     ctx.fill();
 }
 
+Hive.prototype.isIn = function(x,y) {
+    var hive = antSpace.center();
+    return (x - hive.x) * (x - hive.x) +
+	(y - hive.y) * (y - hive.y) <
+	this.hiveDrawSize / antSpace.cellSize * this.hiveDrawSize / antSpace.cellSize;
+}
 
