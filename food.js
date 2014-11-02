@@ -12,6 +12,16 @@ function Foods () {
    } 
 }
 
+Foods.prototype.getFoodAt = function(pos) {
+    var found = false;
+    for(var i = 0; i < this.foodNumber && !found; ++i ) {
+	if( this.food[i].x === pos.x && this.food[i].y === pos.y ) {
+	    found = true;
+	}
+    }
+    return found;
+}
+
 Foods.prototype.draw = function(ctx) {
     ctx.fillStyle = "yellow";
     for(var i = 0; i < this.foodNumber; ++i ) {

@@ -99,3 +99,5 @@ the correct order, it was used in Repast as well.
 - getEmittedPheromone -> getEmittedPheromoneHive
 - getEmittedPheromoneHive is a decreasing function and takes Hive into account.
 - Using get/set in Ant and Food for position.
+- Code cleanup.
+- Introduction of pheromoneFood (unfortunate code duplication in pheromone.js).
