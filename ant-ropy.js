@@ -18,7 +18,10 @@ var foods;
 var ants;
 var pheromone;
 
-function init(canvasid,pheromone_canvasid) {
+function Antropy () {
+}
+
+Antropy.prototype.init = function(canvasid,pheromone_canvasid) {
     //Canvas stuff
     canvas = $(canvasid)[0];
     realctx = canvas.getContext("2d");
@@ -47,7 +50,7 @@ function init(canvasid,pheromone_canvasid) {
     ants.draw(offctx);
 }
 
-function step() {
+Antropy.prototype.step = function() {
     var start = +new Date(); // log start timestamp
     realctx.clearRect(0, 0, canvasWidth, canvasHeight);
     offctx.clearRect(0, 0, canvasWidth, canvasHeight);

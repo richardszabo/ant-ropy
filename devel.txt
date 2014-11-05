@@ -105,3 +105,4 @@ the correct order, it was used in Repast as well.
 2014. 11. 05.
 - Hive in a separate hive.js.
 - Every js script has use strict at the beginning.
+- Main init and step are embedded in a new Antropy object.

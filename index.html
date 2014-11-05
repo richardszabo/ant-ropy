@@ -14,8 +14,9 @@
 <script src="helper.js" type="text/javascript"></script>
 <script>
 $( document ).ready(function() {
-init("#canvas","#pheromone_canvas");
-setInterval(function() {step();},10);
+var antropy = new Antropy();
+antropy.init("#canvas","#pheromone_canvas");
+setInterval(function() {antropy.step();},10);
 });
 </script>
   </head>
