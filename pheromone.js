@@ -1,3 +1,5 @@
+"use strict";
+
 function Pheromone() {   
     this.hive_read_matrix = create2DArray(antSpace.spaceSize);
     this.hive_write_matrix = create2DArray(antSpace.spaceSize);    

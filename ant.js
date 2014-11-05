@@ -1,3 +1,5 @@
+"use strict";
+
 function Ants () {
     this.ant = [];
     for(var i = 0; i < Ants.antNumber; ++i ) {

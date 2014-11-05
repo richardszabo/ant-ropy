@@ -1,3 +1,5 @@
+"use strict";
+
 function AntSpace (canvasWidth,canvasHeight) {
     this.spaceSize = 100;
     this.cellSize = Math.floor(Math.min(canvasWidth,canvasHeight) / this.spaceSize);

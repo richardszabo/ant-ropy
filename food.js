@@ -1,3 +1,5 @@
+"use strict";
+
 function Foods () {
     this.foodSize = 2;
     this.foodNumber = 100;

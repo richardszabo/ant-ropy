@@ -101,3 +101,7 @@ the correct order, it was used in Repast as well.
 - Using get/set in Ant and Food for position.
 - Code cleanup.
 - Introduction of pheromoneFood (unfortunate code duplication in pheromone.js).
+
+2014. 11. 05.
+- Hive in a separate hive.js.
+- Every js script has use strict at the beginning.
