@@ -1,18 +1,20 @@
 "use strict";
 
 function AntSpace (canvasWidth,canvasHeight) {
-    this.spaceSize = 100;
-    this.cellSize = Math.floor(Math.min(canvasWidth,canvasHeight) / this.spaceSize);
+    AntSpace.cellSize = Math.floor(Math.min(canvasWidth,canvasHeight) / AntSpace.spaceSize);
 }
 
-AntSpace.prototype.point2Canvas = function(spacepoint) {
-    return new Point(spacepoint.x*this.cellSize,spacepoint.y*this.cellSize);
+AntSpace.cellSize;
+AntSpace.spaceSize = 100;
+
+AntSpace.point2Canvas = function(spacepoint) {
+    return new Point(spacepoint.x*AntSpace.cellSize,spacepoint.y*AntSpace.cellSize);
 }
 
-AntSpace.prototype.center = function() {
-    return new Point(this.spaceSize/2,this.spaceSize/2);
+AntSpace.center = function() {
+    return new Point(AntSpace.spaceSize/2,AntSpace.spaceSize/2);
 }
 
-AntSpace.prototype.crop2Space = function(point) {
-    return new Point((point.x + this.spaceSize) % this.spaceSize,(point.y + this.spaceSize) % this.spaceSize);
+AntSpace.crop2Space = function(point) {
+    return new Point((point.x + AntSpace.spaceSize) % AntSpace.spaceSize,(point.y + AntSpace.spaceSize) % AntSpace.spaceSize);
 }

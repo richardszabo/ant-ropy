@@ -12,13 +12,12 @@ var pheromone_realctx;
 var pheromone_offCanvas;
 var pheromone_offctx;
 
-var antSpace;
-var hive;
-var foods;
-var ants;
-var pheromone;
-
 function Antropy () {
+    this.antSpace;
+    this.hive = new Hive();
+    this.foods = new Foods();
+    this.pheromone = new Pheromone(this);
+    this.ants = new Ants(this);
 }
 
 Antropy.prototype.init = function(canvasid,pheromone_canvasid) {
@@ -39,15 +38,11 @@ Antropy.prototype.init = function(canvasid,pheromone_canvasid) {
     pheromone_offCanvas.height = canvasHeight;
     pheromone_offctx = pheromone_offCanvas.getContext("2d");
 
-    antSpace = new AntSpace(canvasWidth,canvasHeight);
-    hive = new Hive();
-    hive.draw(offctx);
-    foods = new Foods();
-    foods.draw(offctx);
-    pheromone = new Pheromone();
-    pheromone.draw(pheromone_offctx);
-    ants = new Ants();
-    ants.draw(offctx);
+    this.antSpace = new AntSpace(canvasWidth,canvasHeight);
+    this.hive.draw(offctx);
+    this.foods.draw(offctx);
+    this.pheromone.draw(pheromone_offctx);
+    this.ants.draw(offctx);
 }
 
 Antropy.prototype.step = function() {
@@ -57,12 +52,12 @@ Antropy.prototype.step = function() {
     pheromone_realctx.clearRect(0, 0, canvasWidth, canvasHeight);
     pheromone_offctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    hive.draw(offctx);
-    foods.draw(offctx);
-    ants.step();
-    ants.draw(offctx);
-    pheromone.step();
-    pheromone.draw(pheromone_offctx);
+    this.hive.draw(offctx);
+    this.foods.draw(offctx);
+    this.ants.step();
+    this.ants.draw(offctx);
+    this.pheromone.step();
+    this.pheromone.draw(pheromone_offctx);
     
     realctx.drawImage(offCanvas,0,0);
     pheromone_realctx.drawImage(pheromone_offCanvas,0,0);

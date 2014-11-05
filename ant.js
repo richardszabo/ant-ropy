@@ -1,9 +1,10 @@
 "use strict";
 
-function Ants () {
+function Ants (antropy) {
+    this.antropy = antropy;
     this.ant = [];
     for(var i = 0; i < Ants.antNumber; ++i ) {
-	this.ant[i] = new Ant();
+	this.ant[i] = new Ant(this.antropy);
     } 
 }
 
@@ -31,9 +32,10 @@ Ants.prototype.step = function() {
     } 
 }
 
-function Ant() {
-    this.x = Math.floor(Math.random() * antSpace.spaceSize);
-    this.y = Math.floor(Math.random() * antSpace.spaceSize);
+function Ant(antropy) {
+    this.antropy = antropy;
+    this.x = Math.floor(Math.random() * AntSpace.spaceSize);
+    this.y = Math.floor(Math.random() * AntSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.NEIGHBOURS.length);
     this.pheromoneHive = 0;
     this.hasFood = false;
@@ -52,7 +54,7 @@ Ant.prototype = {
 
 Ant.prototype.draw = function(ctx) {
     ctx.beginPath();
-    var canvaspoint = antSpace.point2Canvas(this.pos2D);
+    var canvaspoint = AntSpace.point2Canvas(this.pos2D);
     ctx.arc(canvaspoint.x,canvaspoint.y,Ants.ANT_SIZE,0,2*Math.PI);
     ctx.stroke();
     ctx.beginPath();
@@ -64,7 +66,7 @@ Ant.prototype.draw = function(ctx) {
 
 Ant.prototype.step = function() {
     this.randomWalkMode();
-    this.pos2D = antSpace.crop2Space(this.pos2D);
+    this.pos2D = AntSpace.crop2Space(this.pos2D);
 }
 
 Ant.prototype.randomWalkMode = function() {
@@ -76,7 +78,7 @@ Ant.prototype.randomWalkMode = function() {
     this.x += Ants.NEIGHBOURS[this.heading][0];
     this.y += Ants.NEIGHBOURS[this.heading][1];
     this.foodCheck();
-    if( hive.isIn(this.pos2D) ) {
+    if( this.antropy.hive.isIn(this.pos2D) ) {
 	this.pheromoneHive = Ants.STARTING_PHEROMONE;
     }
 }
@@ -85,7 +87,7 @@ Ant.prototype.foodCheck = function() {
     if( this.hasFood ) {
 	return false;
     }
-    if( foods.getFoodAt(this.pos2D) ) {
+    if( this.antropy.foods.getFoodAt(this.pos2D) ) {
 	this.hasFood = true;
 	this.pheromoneFood = Ants.STARTING_PHEROMONE;
 	return true;
