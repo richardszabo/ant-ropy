@@ -1,9 +1,5 @@
 "use strict";
 
-var canvas;
-var realctx;
-var canvasWidth;
-var canvasHeight;
 var offCanvas;
 var offctx;
 
@@ -18,27 +14,26 @@ function Antropy () {
     this.foods = new Foods();
     this.pheromone = new Pheromone(this);
     this.ants = new Ants(this);
+    this.canvas; 
 }
 
 Antropy.prototype.init = function(canvasid,pheromone_canvasid) {
     //Canvas stuff
-    canvas = $(canvasid)[0];
-    realctx = canvas.getContext("2d");
-    canvasWidth = $(canvasid).width();
-    canvasHeight = $(canvasid).height();
+    this.canvas = new CanvasData(canvasid);
+
     offCanvas = document.createElement('canvas');
-    offCanvas.width = canvasWidth;
-    offCanvas.height = canvasHeight;
+    offCanvas.width = this.canvas.width;
+    offCanvas.height = this.canvas.height;
     offctx = offCanvas.getContext("2d");
 
     pheromone_canvas = $(pheromone_canvasid)[0];
     pheromone_realctx = pheromone_canvas.getContext("2d");
     pheromone_offCanvas = document.createElement('canvas');
-    pheromone_offCanvas.width = canvasWidth;
-    pheromone_offCanvas.height = canvasHeight;
+    pheromone_offCanvas.width = this.canvas.width;
+    pheromone_offCanvas.height = this.canvas.height;
     pheromone_offctx = pheromone_offCanvas.getContext("2d");
 
-    this.antSpace = new AntSpace(canvasWidth,canvasHeight);
+    this.antSpace = new AntSpace(this.canvas.width,this.canvas.height);
     this.hive.draw(offctx);
     this.foods.draw(offctx);
     this.pheromone.draw(pheromone_offctx);
@@ -47,10 +42,10 @@ Antropy.prototype.init = function(canvasid,pheromone_canvasid) {
 
 Antropy.prototype.step = function() {
     var start = +new Date(); // log start timestamp
-    realctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    offctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    pheromone_realctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    pheromone_offctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    this.canvas.clear();
+    offctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    pheromone_realctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    pheromone_offctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.hive.draw(offctx);
     this.foods.draw(offctx);
@@ -59,7 +54,7 @@ Antropy.prototype.step = function() {
     this.pheromone.step();
     this.pheromone.draw(pheromone_offctx);
     
-    realctx.drawImage(offCanvas,0,0);
+    this.canvas.ctx.drawImage(offCanvas,0,0);
     pheromone_realctx.drawImage(pheromone_offCanvas,0,0);
     var end =  +new Date();  // log end timestamp
     var diff = end - start;

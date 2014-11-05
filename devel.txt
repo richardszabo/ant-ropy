@@ -108,3 +108,4 @@ the correct order, it was used in Repast as well.
 - Main init and step are embedded in a new Antropy object.
 - Antropy-related global variables became the member of Antropy object.
 - All AntSpace functions became static. 
+- CanvasData object collects canvas, ctx, width, height information. It is used for main canvas.
