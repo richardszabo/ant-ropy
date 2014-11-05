@@ -113,4 +113,4 @@ It is used for main canvas.
 - CanvasData object for pheromone canvas. TODO: Somehow document.getElementById does not work inside canvasdata.js.
 - TODO: Position of food using get2DGaussian is not correct.
 - CanvasData contains offcanvas variables.
-- Food and Hive pheromone layers. TODO: make it work. 
+- Food and Hive pheromone appears on the same canvas context as green and blue components.  

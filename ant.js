@@ -20,7 +20,7 @@ Ants.PHEROMONE_DECREASE = 2;
 Ants.antNumber = 100;
 
 Ants.prototype.draw = function(ctx) {
-    ctx.strokeStyle = "blue";
+    ctx.strokeStyle = "red";
     for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i].draw(ctx);
     } 

@@ -16,32 +16,13 @@ Pheromone.prototype.step = function() {
     this.update();
 }
 
-Pheromone.prototype.draw = function(food_ctx,hive_ctx) {
-    this.drawMatrix(food_ctx,this.food_read_matrix);
-    this.drawMatrix(hive_ctx,this.hive_read_matrix);
-}
-
-Pheromone.prototype.drawMatrix = function(ctx) {
-    // hive
+Pheromone.prototype.draw = function(ctx) {
     // http://stackoverflow.com/a/13916313/21047
-    var lastFillValue = 0;
     for(var i = 0; i < this.hive_read_matrix.length; ++i ) {
 	for(var j = 0; j < this.hive_read_matrix[i].length; ++j ) {
-	    var fillValue = Math.min(Math.round(this.hive_read_matrix[i][j] || 0),255); // for overflow
-		    lastFillValue = fillValue;
-		    ctx.fillStyle = "rgb(0," + fillValue + ",0)"; 
-		var canvaspoint = AntSpace.point2Canvas(new Point(i,j));
-		ctx.fillRect(canvaspoint.x-AntSpace.cellSize/2,canvaspoint.y-AntSpace.cellSize/2,AntSpace.cellSize,AntSpace.cellSize);
-	}
-    }
-    // food
-    // http://stackoverflow.com/a/13916313/21047
-    var lastFillValue = 0;
-    for(var i = 0; i < this.food_read_matrix.length; ++i ) {
-	for(var j = 0; j < this.food_read_matrix[i].length; ++j ) {
-	    var fillValue = Math.min(Math.round(this.food_read_matrix[i][j] || 0),255); // for overflow
-		    lastFillValue = fillValue;
-		    ctx.fillStyle = "rgb(0," + fillValue + ",0)"; 
+	    var hivefillValue = Math.min(Math.round(this.hive_read_matrix[i][j] || 0),255); // for overflow
+	    var foodfillValue = Math.min(Math.round(this.food_read_matrix[i][j] || 0),255); // for overflow
+		    ctx.fillStyle = "rgb(0," + foodfillValue + "," + hivefillValue + ")"; 
 		var canvaspoint = AntSpace.point2Canvas(new Point(i,j));
 		ctx.fillRect(canvaspoint.x-AntSpace.cellSize/2,canvaspoint.y-AntSpace.cellSize/2,AntSpace.cellSize,AntSpace.cellSize);
 	}

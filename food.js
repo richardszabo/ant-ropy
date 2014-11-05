@@ -25,7 +25,7 @@ Foods.prototype.getFoodAt = function(pos) {
 }
 
 Foods.prototype.draw = function(ctx) {
-    ctx.fillStyle = "yellow";
+    ctx.fillStyle = "green";
     for(var i = 0; i < this.foodNumber; ++i ) {
 	this.food[i].draw(ctx);
     }
