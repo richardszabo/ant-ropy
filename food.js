@@ -5,7 +5,6 @@ function Foods () {
     this.foodDeviation = 50;
     this.food = [];    
     this.foodSource = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
-    alert(this.foodSource.x + ":" + this.foodSource.y);
     for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(this.foodSource,this.foodDeviation);
 	this.food[i] = new Food();

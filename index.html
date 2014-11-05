@@ -16,7 +16,7 @@
 <script>
 $( document ).ready(function() {
 var antropy = new Antropy();
-antropy.init("canvas","pheromone_canvas");
+antropy.init("canvas","pheromone_food_canvas","pheromone_hive_canvas");
 setInterval(function() {antropy.step();},10);
 });
 </script>
@@ -24,8 +24,9 @@ setInterval(function() {antropy.step();},10);
   <body>
     <h1>Playground for ants</h1>
     <div id="canvases" style="position:relative; width:400px; height:400px">
-      <canvas id="canvas" width="400px" height="400px" style="position: absolute; z-index: 1"></canvas>
-      <canvas id="pheromone_canvas" width="400px" height="400px" style="position: absolute; z-index: 0"></canvas>
+      <canvas id="canvas" width="400px" height="400px" style="position: absolute; z-index: 2"></canvas>
+      <canvas id="pheromone_food_canvas" width="400px" height="400px" style="position: absolute; z-index: 0"></canvas>
+      <canvas id="pheromone_hive_canvas" width="400px" height="400px" style="position: absolute; z-index: 1"></canvas>
     </div>
     <p id="demo">aaa</p>
   </body>

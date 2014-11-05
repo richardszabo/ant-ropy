@@ -16,9 +16,9 @@ Pheromone.prototype.step = function() {
     this.update();
 }
 
-Pheromone.prototype.draw = function(ctx) {
-    //this.drawMatrix(ctx,this.hive_read_matrix);
-    this.drawMatrix(ctx,this.food_read_matrix);
+Pheromone.prototype.draw = function(food_ctx,hive_ctx) {
+    this.drawMatrix(food_ctx,this.food_read_matrix);
+    this.drawMatrix(hive_ctx,this.hive_read_matrix);
 }
 
 Pheromone.prototype.drawMatrix = function(ctx) {

@@ -112,3 +112,5 @@ the correct order, it was used in Repast as well.
 It is used for main canvas.
 - CanvasData object for pheromone canvas. TODO: Somehow document.getElementById does not work inside canvasdata.js.
 - TODO: Position of food using get2DGaussian is not correct.
+- CanvasData contains offcanvas variables.
+- Food and Hive pheromone layers. TODO: make it work. 
