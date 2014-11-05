@@ -107,3 +107,4 @@ the correct order, it was used in Repast as well.
 - Every js script has use strict at the beginning.
 - Main init and step are embedded in a new Antropy object.
 - Antropy-related global variables became the member of Antropy object.
+- All AntSpace functions became static. 
