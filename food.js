@@ -4,10 +4,10 @@ function Foods () {
     this.foodNumber = 100;
     this.foodDeviation = 50;
     this.food = [];    
-
-    var foodSource = new Point(Math.floor((gauss_random() + 1 ) / 2 * AntSpace.spaceSize),Math.floor((gauss_random() + 1 ) / 2 * AntSpace.spaceSize));
+    this.foodSource = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
+    alert(this.foodSource.x + ":" + this.foodSource.y);
     for(var i = 0; i < this.foodNumber; ++i ) {
-	var point = get2DGaussian(foodSource,this.foodDeviation);
+	var point = get2DGaussian(this.foodSource,this.foodDeviation);
 	this.food[i] = new Food();
 	this.food[i].pos2D = AntSpace.crop2Space(new Point(Math.floor(point.x),Math.floor(point.y)));
    } 
@@ -30,6 +30,11 @@ Foods.prototype.draw = function(ctx) {
     for(var i = 0; i < this.foodNumber; ++i ) {
 	this.food[i].draw(ctx);
     }
+    ctx.fillStyle = "brown";
+    ctx.beginPath();
+    var canvaspoint = AntSpace.point2Canvas(this.foodSource);
+    ctx.arc(canvaspoint.x,canvaspoint.y,Foods.foodSize+1,0,2*Math.PI);
+    ctx.fill();    
 }
 
 function Food () {

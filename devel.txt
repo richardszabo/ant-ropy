@@ -108,4 +108,7 @@ the correct order, it was used in Repast as well.
 - Main init and step are embedded in a new Antropy object.
 - Antropy-related global variables became the member of Antropy object.
 - All AntSpace functions became static. 
-- CanvasData object collects canvas, ctx, width, height information. It is used for main canvas.
+- CanvasData object collects canvas, ctx information. (width, height are deleted and calculated.) 
+It is used for main canvas.
+- CanvasData object for pheromone canvas. TODO: Somehow document.getElementById does not work inside canvasdata.js.
+- TODO: Position of food using get2DGaussian is not correct.
