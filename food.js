@@ -2,7 +2,7 @@
 
 function Foods () {
     this.foodNumber = 100;
-    this.foodDeviation = 50;
+    this.foodDeviation = 20;
     this.food = [];    
     this.foodSource = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
     for(var i = 0; i < this.foodNumber; ++i ) {
