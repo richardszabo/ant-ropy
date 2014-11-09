@@ -12,38 +12,31 @@ function Antropy () {
 
 Antropy.prototype.init = function(canvasid, pheromone_canvasid) {
     //Canvas stuff
-    this.canvas = document.getElementById(canvasid);
-    this.canvas_c = new CanvasData(this.canvas);
+    this.canvas = new CanvasData(canvasid);
 
-    this.pheromone_canvas = document.getElementById(pheromone_canvasid);
-    this.pheromone_canvas_c = new CanvasData(this.pheromone_canvas);
-    //alert("pheromone_canvasid:" + pheromone_canvasid +":");
-    //this.pheromone_canvas = document.getElementById(pheromone_canvasid); // $(pheromone_canvasid)[0]; 
-    //this.pheromone_ctx = pheromone_canvas.getContext("2d");
+    this.pheromone_canvas = new CanvasData(pheromone_canvasid);
 
     this.antSpace = new AntSpace(this.canvas.width,this.canvas.height);
-    this.hive.draw(this.canvas_c.context);
-    this.foods.draw(this.canvas_c.context);
-    this.pheromone.draw(this.pheromone_canvas_c.context);
-    this.ants.draw(this.canvas_c.context);
+    this.hive.draw(this.canvas.context);
+    this.foods.draw(this.canvas.context);
+    this.pheromone.draw(this.pheromone_canvas.context);
+    this.ants.draw(this.canvas.context);
 }
 
 Antropy.prototype.step = function() {
     var start = +new Date(); // log start timestamp
-    this.canvas_c.clear();
-    this.pheromone_canvas_c.clear();
-    //this.pheromone_ctx.clearRect(0, 0, this.pheromone_canvas.width, this.pheromone_canvas.height);
+    this.canvas.clear();
+    this.pheromone_canvas.clear();
 
-    this.hive.draw(this.canvas_c.context);
-    this.foods.draw(this.canvas_c.context);
+    this.hive.draw(this.canvas.context);
+    this.foods.draw(this.canvas.context);
     this.pheromone.step();
-    this.pheromone.draw(this.pheromone_canvas_c.context);
+    this.pheromone.draw(this.pheromone_canvas.context);
     this.ants.step();
-    this.ants.draw(this.canvas_c.context);
+    this.ants.draw(this.canvas.context);
     
-    this.canvas_c.draw();
-    this.pheromone_canvas_c.draw();
-    //this.pheromone_ctx.drawImage(pheromone_offCanvas,0,0);
+    this.canvas.draw();
+    this.pheromone_canvas.draw();
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
     document.getElementById("demo").innerHTML = "step cycle: " + diff;

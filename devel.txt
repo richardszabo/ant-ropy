@@ -110,10 +110,11 @@ the correct order, it was used in Repast as well.
 - All AntSpace functions became static. 
 - CanvasData object collects canvas, ctx information. (width, height are deleted and calculated.) 
 It is used for main canvas.
-- CanvasData object for pheromone canvas. TODO: Somehow document.getElementById does not work inside canvasdata.js.
+- CanvasData object for pheromone canvas. Somehow document.getElementById does not work inside canvasdata.js.
 - Position of food using get2DGaussian is not correct.
 - CanvasData contains offcanvas variables.
 - Food and Hive pheromone appears on the same canvas context as green and blue components.  
 
 2014. 11. 09.
 - Position of food using get2DGaussian has been corrected.
+- Fixing getElementById working inside canvasdata.js. One this was missing before canvas and naked canvas had a default value.
