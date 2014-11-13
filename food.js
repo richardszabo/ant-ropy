@@ -1,12 +1,16 @@
 "use strict";
 
+Foods.prototype = Object.create(Particle.prototype);
+Foods.prototype.constructor = Foods;
+
 function Foods () {
     this.foodNumber = 100;
     this.foodDeviation = 20;
     this.food = [];    
-    this.foodSource = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
+    this.pos2D = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
+    
     for(var i = 0; i < this.foodNumber; ++i ) {
-	var point = get2DGaussian(this.foodSource,this.foodDeviation);
+	var point = get2DGaussian(this.pos2D,this.foodDeviation);
 	this.food[i] = new Food();
 	this.food[i].pos2D = new Point(Math.floor(point.x),Math.floor(point.y));
    } 
@@ -31,8 +35,7 @@ Foods.prototype.draw = function(ctx) {
     }
     ctx.fillStyle = "brown";
     ctx.beginPath();
-    var canvaspoint = AntSpace.point2Canvas(this.foodSource);
-    ctx.arc(canvaspoint.x,canvaspoint.y,Foods.foodSize+1,0,2*Math.PI);
+    ctx.arc(this.canvasPos2D.x,this.canvasPos2D.y,Foods.foodSize+1,0,2*Math.PI);
     ctx.fill();    
 }
 
