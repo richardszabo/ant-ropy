@@ -20,6 +20,7 @@ Ants.PHEROMONE_DECREASE = 2;
 Ants.antNumber = 100;
 
 Ants.prototype.draw = function(ctx) {
+    ctx.fillStyle = "red";
     ctx.strokeStyle = "red";
     for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i].draw(ctx);
@@ -46,10 +47,8 @@ function Ant(antropy) {
 }
 
 Ant.prototype.draw = function(ctx) {
-    ctx.beginPath();
+    Particle.prototype.draw.call(this,ctx,Ants.ANT_SIZE);
     var canvaspoint = this.canvasPos2D;
-    ctx.arc(canvaspoint.x,canvaspoint.y,Ants.ANT_SIZE,0,2*Math.PI);
-    ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(canvaspoint.x,canvaspoint.y);
     ctx.lineTo(canvaspoint.x+5*Ants.NEIGHBOURS[this.heading][0],

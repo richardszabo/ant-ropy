@@ -32,3 +32,10 @@ Particle.prototype = {
 	return AntSpace.point2Canvas(this.pos2D);
     }
 };
+
+Particle.prototype.draw = function(ctx,drawSize) {
+    ctx.beginPath();
+    ctx.arc(this.canvasPos2D.x,this.canvasPos2D.y,drawSize,0,2*Math.PI);
+    ctx.fill();
+}
+

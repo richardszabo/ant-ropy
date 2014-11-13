@@ -31,12 +31,8 @@ Foods.prototype.getFoodAt = function(pos) {
 Foods.prototype.draw = function(ctx) {
     ctx.fillStyle = "green";
     for(var i = 0; i < this.foodNumber; ++i ) {
-	this.food[i].draw(ctx);
+	this.food[i].draw(ctx,Foods.foodSize);
     }
-    ctx.fillStyle = "brown";
-    ctx.beginPath();
-    ctx.arc(this.canvasPos2D.x,this.canvasPos2D.y,Foods.foodSize+1,0,2*Math.PI);
-    ctx.fill();    
 }
 
 Food.prototype = Object.create(Particle.prototype);
@@ -45,10 +41,4 @@ Food.prototype.constructor = Food;
 function Food () {
     this.x = 0;
     this.y = 0;
-}
-
-Food.prototype.draw = function(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.canvasPos2D.x,this.canvasPos2D.y,Foods.foodSize,0,2*Math.PI);
-    ctx.fill();
 }

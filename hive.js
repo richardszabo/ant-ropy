@@ -10,9 +10,7 @@ function Hive () {
 
 Hive.prototype.draw = function(ctx) {
     ctx.fillStyle = "blue";
-    ctx.beginPath();
-    ctx.arc(this.canvasPos2D.x,this.canvasPos2D.y,this.hiveDrawSize,0,2*Math.PI);
-    ctx.fill();
+    Particle.prototype.draw.call(this,ctx,this.hiveDrawSize);
 }
 
 Hive.prototype.isIn = function(pos) {
