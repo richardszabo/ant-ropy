@@ -8,7 +8,7 @@ function Foods () {
     for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(this.foodSource,this.foodDeviation);
 	this.food[i] = new Food();
-	this.food[i].pos2D = AntSpace.crop2Space(new Point(Math.floor(point.x),Math.floor(point.y)));
+	this.food[i].pos2D = new Point(Math.floor(point.x),Math.floor(point.y));
    } 
 }
 

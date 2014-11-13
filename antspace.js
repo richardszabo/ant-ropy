@@ -15,6 +15,10 @@ AntSpace.center = function() {
     return new Point(AntSpace.spaceSize/2,AntSpace.spaceSize/2);
 }
 
-AntSpace.crop2Space = function(point) {
-    return new Point((point.x + AntSpace.spaceSize) % AntSpace.spaceSize,(point.y + AntSpace.spaceSize) % AntSpace.spaceSize);
+AntSpace.crop2Space = function(x) {
+    return (x + AntSpace.spaceSize) % AntSpace.spaceSize;
 }
+
+/*AntSpace.crop2Space = function(point) {
+    return new Point((point.x + AntSpace.spaceSize) % AntSpace.spaceSize,(point.y + AntSpace.spaceSize) % AntSpace.spaceSize);
+}*/

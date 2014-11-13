@@ -4,16 +4,28 @@
 // auxiliary functions
 
 function Particle (xx,yy) {
-    this.x = xx;
-    this.y = yy;
+    this.xpos = xx;
+    this.ypos = yy;
 }
 
 Particle.prototype = {
     get pos2D() {
-	return new Point(this.x,this.y);
+	return new Point(this.xpos,this.ypos);
     },
     set pos2D(pos) {
-	this.x = pos.x;
-	this.y = pos.y;
-    }
+	this.xpos = pos.x;
+	this.ypos = pos.y;
+    },
+    get x() {
+	return AntSpace.crop2Space(this.xpos);
+    },
+    set x(xx) {
+	this.xpos = AntSpace.crop2Space(xx);
+    },
+    get y() {
+	return AntSpace.crop2Space(this.ypos);
+    },
+    set y(yy) {
+	this.ypos = AntSpace.crop2Space(yy);
+    },
 };

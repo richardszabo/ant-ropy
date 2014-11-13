@@ -59,7 +59,6 @@ Ant.prototype.draw = function(ctx) {
 
 Ant.prototype.step = function() {
     this.randomWalkMode();
-    this.pos2D = AntSpace.crop2Space(this.pos2D);
 }
 
 Ant.prototype.randomWalkMode = function() {
@@ -67,7 +66,6 @@ Ant.prototype.randomWalkMode = function() {
     this.heading = Math.floor(this.heading +
 		   sign(dir)*Math.min(Math.abs(Math.round(dir)),Ants.STEPS_AHEAD/2) +
                    Ants.NO_HEADINGS) % Ants.NO_HEADINGS;
-    //alert('heading:' + this.heading + ':');
     this.x += Ants.NEIGHBOURS[this.heading][0];
     this.y += Ants.NEIGHBOURS[this.heading][1];
     this.foodCheck();
