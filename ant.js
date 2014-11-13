@@ -32,6 +32,9 @@ Ants.prototype.step = function() {
     } 
 }
 
+Ant.prototype = Object.create(Particle.prototype);
+Ant.prototype.constructor = Ant;
+
 function Ant(antropy) {
     this.antropy = antropy;
     this.x = Math.floor(Math.random() * AntSpace.spaceSize);
@@ -41,16 +44,6 @@ function Ant(antropy) {
     this.hasFood = false;
     this.pheromoneFood = 0;
 }
-
-Ant.prototype = {
-    get pos2D() {
-	return new Point(this.x,this.y);
-    },
-    set pos2D(pos) {
-	this.x = pos.x;
-	this.y = pos.y;
-    }
-};
 
 Ant.prototype.draw = function(ctx) {
     ctx.beginPath();

@@ -118,3 +118,6 @@ It is used for main canvas.
 2014. 11. 09.
 - Position of food using get2DGaussian has been corrected.
 - Fixing getElementById working inside canvasdata.js. One this was missing before canvas and naked canvas had a default value.
+
+2014. 11. 13.
+- Particle object as parent of Ant and Food.

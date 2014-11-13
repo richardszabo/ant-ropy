@@ -36,21 +36,13 @@ Foods.prototype.draw = function(ctx) {
     ctx.fill();    
 }
 
+Food.prototype = Object.create(Particle.prototype);
+Food.prototype.constructor = Food;
+
 function Food () {
     this.x = 0;
     this.y = 0;
 }
-
-Food.prototype = {
-    get pos2D() {
-	return new Point(this.x,this.y);
-    },
-    set pos2D(pos) {
-	this.x = pos.x;
-	this.y = pos.y;
-    }
-};
-
 
 Food.prototype.draw = function(ctx) {
     ctx.beginPath();
