@@ -130,3 +130,4 @@ It is used for main canvas.
 - Pheromone refactored to avoid duplication of pheromone calculation.
 - Food is carried by the ants.
 - Stocked food is counted.
+- Start/Stop link.
