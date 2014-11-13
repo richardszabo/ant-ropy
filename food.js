@@ -21,8 +21,9 @@ Foods.foodSize = 2;
 Foods.prototype.getFoodAt = function(pos) {
     var found = 0;
     for(var i = 0; i < this.foodNumber && !found; ++i ) {
-	if( this.food[i].x === pos.x && this.food[i].y === pos.y ) {
+	if( !this.food[i].consumed && this.food[i].x === pos.x && this.food[i].y === pos.y ) {
 	    found = i + 1;
+	    this.food[i].consumed = true;
 	}
     }
     return found;
@@ -47,4 +48,6 @@ Food.prototype.constructor = Food;
 function Food () {
     this.x = 0;
     this.y = 0;
+    this.consumed = false;
 }
+

@@ -39,6 +39,6 @@ Antropy.prototype.step = function() {
     this.pheromone_canvas.draw();
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
-    document.getElementById("demo").innerHTML = "step cycle: " + diff;
+    document.getElementById("demo").innerHTML = "step cycle: " + diff + " food collected:" + this.hive.getFood();
 }
 

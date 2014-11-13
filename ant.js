@@ -98,7 +98,7 @@ Ant.prototype.hiveCheck = function() {
    if( this.antropy.hive.isIn(this.pos2D) ) {
        this.pheromoneHive = Ants.STARTING_PHEROMONE;
        if( this.carriedFood ) {
-	   //hive.stock();
+	   this.antropy.hive.stock();
 	   this.carriedFood = null;
 	   this.mode = Ants.MODE_SEARCH;
 	   return true;
