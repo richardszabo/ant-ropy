@@ -47,7 +47,7 @@ function Ant(antropy) {
 
 Ant.prototype.draw = function(ctx) {
     ctx.beginPath();
-    var canvaspoint = AntSpace.point2Canvas(this.pos2D);
+    var canvaspoint = this.canvasPos2D;
     ctx.arc(canvaspoint.x,canvaspoint.y,Ants.ANT_SIZE,0,2*Math.PI);
     ctx.stroke();
     ctx.beginPath();

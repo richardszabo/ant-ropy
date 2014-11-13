@@ -28,4 +28,7 @@ Particle.prototype = {
     set y(yy) {
 	this.ypos = AntSpace.crop2Space(yy);
     },
+    get canvasPos2D() {
+	return AntSpace.point2Canvas(this.pos2D);
+    }
 };

@@ -46,7 +46,6 @@ function Food () {
 
 Food.prototype.draw = function(ctx) {
     ctx.beginPath();
-    var canvaspoint = AntSpace.point2Canvas(this.pos2D);
-    ctx.arc(canvaspoint.x,canvaspoint.y,Foods.foodSize,0,2*Math.PI);
+    ctx.arc(this.canvasPos2D.x,this.canvasPos2D.y,Foods.foodSize,0,2*Math.PI);
     ctx.fill();
 }

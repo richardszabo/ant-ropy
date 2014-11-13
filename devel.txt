@@ -123,4 +123,5 @@ It is used for main canvas.
 - Particle object is parent of Ant and Food.
 - Particle object is parent of Hive as well.
 - AntSpace.crop2Space works in one dimension.
-- Hiding AntSpace.crop2Space inside Particle.  
+- Hiding AntSpace.crop2Space inside Particle.
+- Particle has canvasPos2D calling AntSpace.point2Canvas. Ant, Food, Hive use canvasPos2D.  
