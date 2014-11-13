@@ -120,4 +120,5 @@ It is used for main canvas.
 - Fixing getElementById working inside canvasdata.js. One this was missing before canvas and naked canvas had a default value.
 
 2014. 11. 13.
-- Particle object as parent of Ant and Food.
+- Particle object is parent of Ant and Food.
+- Particle object is parent of Hive as well. 
