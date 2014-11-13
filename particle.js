@@ -1,8 +1,5 @@
 "use strict";
 
-// -----------------------------------------------------------------------------------------------------
-// auxiliary functions
-
 function Particle (xx,yy) {
     this.xpos = xx;
     this.ypos = yy;
