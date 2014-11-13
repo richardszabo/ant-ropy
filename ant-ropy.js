@@ -29,11 +29,11 @@ Antropy.prototype.step = function() {
     this.pheromone_canvas.clear();
 
     this.hive.draw(this.canvas.context);
-    this.foods.draw(this.canvas.context);
     this.pheromone.step();
     this.pheromone.draw(this.pheromone_canvas.context);
     this.ants.step();
     this.ants.draw(this.canvas.context);
+    this.foods.draw(this.canvas.context);
     
     this.canvas.draw();
     this.pheromone_canvas.draw();

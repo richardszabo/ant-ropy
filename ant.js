@@ -17,6 +17,9 @@ Ants.STEPS_AHEAD = 3;
 Ants.STARTING_PHEROMONE = 100;
 Ants.PHEROMONE_DECREASE = 2;
 
+Ants.MODE_SEARCH = 1;
+Ants.MODE_HOME = 2;
+
 Ants.antNumber = 100;
 
 Ants.prototype.draw = function(ctx) {
@@ -42,8 +45,9 @@ function Ant(antropy) {
     this.y = Math.floor(Math.random() * AntSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.NEIGHBOURS.length);
     this.pheromoneHive = 0;
-    this.hasFood = false;
     this.pheromoneFood = 0;
+    this.carriedFood = null; // id of the food [1,foodNumber]
+    this.mode = Ants.MODE_SEARCH;
 }
 
 Ant.prototype.draw = function(ctx) {
@@ -57,7 +61,14 @@ Ant.prototype.draw = function(ctx) {
 }
 
 Ant.prototype.step = function() {
+    if( this.foodCheck() ) {
+	return;
+    }
+    this.hiveCheck();
     this.randomWalkMode();
+    if( this.carriedFood ) {
+	this.antropy.foods.setFoodPos(this.carriedFood,this.pos2D);
+    }
 }
 
 Ant.prototype.randomWalkMode = function() {
@@ -67,20 +78,31 @@ Ant.prototype.randomWalkMode = function() {
                    Ants.NO_HEADINGS) % Ants.NO_HEADINGS;
     this.x += Ants.NEIGHBOURS[this.heading][0];
     this.y += Ants.NEIGHBOURS[this.heading][1];
-    this.foodCheck();
-    if( this.antropy.hive.isIn(this.pos2D) ) {
-	this.pheromoneHive = Ants.STARTING_PHEROMONE;
-    }
-}
+ }
 
 Ant.prototype.foodCheck = function() {
-    if( this.hasFood ) {
+    if( this.carriedFood ) {
 	return false;
     }
-    if( this.antropy.foods.getFoodAt(this.pos2D) ) {
-	this.hasFood = true;
+    var food = this.antropy.foods.getFoodAt(this.pos2D);
+    if( food ) {
+	this.carriedFood = food;
+	this.mode = Ants.MODE_HOME;
 	this.pheromoneFood = Ants.STARTING_PHEROMONE;
 	return true;
+    }
+    return false;
+}
+
+Ant.prototype.hiveCheck = function() {
+   if( this.antropy.hive.isIn(this.pos2D) ) {
+       this.pheromoneHive = Ants.STARTING_PHEROMONE;
+       if( this.carriedFood ) {
+	   //hive.stock();
+	   this.carriedFood = null;
+	   this.mode = Ants.MODE_SEARCH;
+	   return true;
+       }
     }
     return false;
 }
@@ -92,7 +114,7 @@ Ant.prototype.getEmittedPheromoneHive = function() {
 }
 
 Ant.prototype.getEmittedPheromoneFood = function() {
-    if( this.hasFood ) {
+    if( this.carriedFood ) {
 	var pf = this.pheromoneFood;
 	this.pheromoneFood = Math.max(0,this.pheromoneFood - Ants.PHEROMONE_DECREASE);
 	return pf;
