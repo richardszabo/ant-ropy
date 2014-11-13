@@ -127,3 +127,4 @@ It is used for main canvas.
 - Particle has canvasPos2D calling AntSpace.point2Canvas. Ant, Food, Hive use canvasPos2D.  
 - Particle object is parent of Foods as well.
 - Particle object has draw function. All descendants are using it with extension.
+- Pheromone refactored to avoid duplication of pheromone calculation.
