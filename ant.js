@@ -20,6 +20,9 @@ Ants.PHEROMONE_DECREASE = 2;
 Ants.MODE_SEARCH = 1;
 Ants.MODE_HOME = 2;
 
+Ants.MOVE_RANDOM = 0.1; /* random moving probability */
+Ants.ATTRACTION_LEVEL = 1;    /* pheromone level to change to attracted mode */
+
 Ants.antNumber = 100;
 
 Ants.prototype.draw = function(ctx) {
@@ -65,10 +68,15 @@ Ant.prototype.step = function() {
 	return;
     }
     this.hiveCheck();
-    this.randomWalkMode();
+    if( Math.random() > Ants.MOVE_RANDOM ) {
+	this.maxMove();
+    } else {
+	this.randomWalkMode();
+    }
     if( this.carriedFood ) {
 	this.antropy.foods.setFoodPos(this.carriedFood,this.pos2D);
     }
+
 }
 
 Ant.prototype.randomWalkMode = function() {
@@ -78,7 +86,57 @@ Ant.prototype.randomWalkMode = function() {
                    Ants.NO_HEADINGS) % Ants.NO_HEADINGS;
     this.x += Ants.NEIGHBOURS[this.heading][0];
     this.y += Ants.NEIGHBOURS[this.heading][1];
- }
+}
+
+Ant.prototype.maxMove = function() {
+    var max = 0;
+    var maxX = this.x;
+    var maxY = this.y;
+    var ph = 0;
+    var pos;
+
+    pos = [];
+    for( var i = -Ants.STEPS_AHEAD/2; i <= Ants.STEPS_AHEAD/2; ++i ) {
+        var px = this.x+Ants.NEIGHBOURS[Math.floor((this.heading + i + Ants.NO_HEADINGS) % Ants.NO_HEADINGS)][0];
+	px = AntSpace.crop2Space(px);
+        var py = this.y+Ants.NEIGHBOURS[Math.floor((this.heading + i + Ants.NO_HEADINGS) % Ants.NO_HEADINGS)][1];
+	py = AntSpace.crop2Space(py);
+	if( this.mode === Ants.MODE_SEARCH ) {
+	    ph = this.antropy.pheromone.getFoodAt(px,py);
+	} else if ( this.mode === Ants.MODE_HOME ) {
+	    ph = this.antropy.pheromone.getHiveAt(px,py);
+	}
+	// the pheromone concentration is high enough?
+	if( ph > max ) {
+	    max = ph;
+	    maxX = px;
+	    maxY = py;
+	    pos = [];
+	}	
+	// collecting info of the maximal values
+	if( ph >= max ) {
+	    pos[pos.length] = i;
+	    pos[pos.length] = px;
+	    pos[pos.length] = py;
+	    if( i === 0 ) {
+		// doubling ahead probability
+		pos[pos.length] = i;
+		pos[pos.length] = px;
+		pos[pos.length] = py;
+	    }
+	}
+    }
+
+    if( max > Ants.ATTRACTION_LEVEL ) {
+	var dir = Math.floor(Math.random() * pos.length / 3);  
+	this.x = pos[dir+1];
+	this.y = pos[dir+2];
+	this.heading = Math.floor((this.heading + pos[dir] + Ants.NO_HEADINGS) % Ants.NO_HEADINGS);
+    } else {
+	// sometimes no pheromone found, so only random walk is possible
+	this.randomWalkMode();
+    }
+}
 
 Ant.prototype.foodCheck = function() {
     if( this.carriedFood ) {

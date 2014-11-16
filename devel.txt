@@ -131,3 +131,6 @@ It is used for main canvas.
 - Food is carried by the ants.
 - Stocked food is counted.
 - Start/Stop link.
+
+2014. 11. 16.
+- Maxmove for ants.

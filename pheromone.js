@@ -1,3 +1,4 @@
+
 "use strict";
 
 function PheromoneMatrix() {
@@ -74,3 +75,10 @@ Pheromone.prototype.update = function() {
     this.food_matrix.update();
 }
 
+Pheromone.prototype.getFoodAt = function(i,j) {
+    return this.food_matrix.read_matrix[i][j];
+}
+
+Pheromone.prototype.getHiveAt = function(i,j) {
+    return this.hive_matrix.read_matrix[i][j];
+}
