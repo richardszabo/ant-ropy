@@ -11,6 +11,10 @@ AntSpace.point2Canvas = function(spacepoint) {
     return new Point(spacepoint.x*AntSpace.cellSize,spacepoint.y*AntSpace.cellSize);
 }
 
+AntSpace.canvas2Point = function(point) {
+    return new Point(Math.floor(point.x/AntSpace.cellSize),Math.floor(point.y/AntSpace.cellSize));
+}
+
 AntSpace.center = function() {
     return new Point(AntSpace.spaceSize/2,AntSpace.spaceSize/2);
 }

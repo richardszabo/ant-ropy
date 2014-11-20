@@ -13,6 +13,8 @@ function Antropy () {
 Antropy.prototype.init = function(canvasid, pheromone_canvasid) {
     //Canvas stuff
     this.canvas = new CanvasData(canvasid);
+    this.canvas.realcanvas.addEventListener("mousedown", this.showCellData, false);
+    this.canvas.realcanvas.ownParam = this;
 
     this.pheromone_canvas = new CanvasData(pheromone_canvasid);
 
@@ -43,3 +45,10 @@ Antropy.prototype.step = function() {
     document.getElementById("food").innerHTML = " food collected:" + this.hive.getFood();
 }
 
+Antropy.prototype.showCellData = function(event) {
+    var point = AntSpace.canvas2Point(new Point(event.clientX - canvas.offsetLeft,event.clientY - canvas.offsetTop));
+    var antropy = event.target.ownParam;
+    var food = Math.round(antropy.pheromone.getFoodAt(point.x,point.y)*100)/100;
+    var hive = Math.round(antropy.pheromone.getHiveAt(point.x,point.y)*100)/100;
+    alert("x: " + point.x + "\ny: " + point.y + "\nfood: " + food + "\nhive: " + hive);
+}

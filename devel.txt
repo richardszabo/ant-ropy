@@ -134,3 +134,6 @@ It is used for main canvas.
 
 2014. 11. 16.
 - Maxmove for ants.
+
+2014. 11. 20.
+- Alert window after mouse click with coordinates on the canvas and food/hive pheromone data.
