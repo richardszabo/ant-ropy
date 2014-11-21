@@ -137,3 +137,7 @@ It is used for main canvas.
 
 2014. 11. 20.
 - Alert window after mouse click with coordinates on the canvas and food/hive pheromone data.
+
+2014. 11. 21.
+- Using david bau's seedrandom: https://github.com/davidbau/seedrandom/blob/master/seedrandom.js
+

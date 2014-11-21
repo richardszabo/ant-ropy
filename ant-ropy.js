@@ -1,6 +1,7 @@
 "use strict";
 
 function Antropy () {
+    Math.seedrandom('alma');
     this.antSpace;
     this.hive = new Hive();
     this.foods = new Foods();
