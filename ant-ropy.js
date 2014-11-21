@@ -1,7 +1,8 @@
 "use strict";
 
 function Antropy () {
-    Math.seedrandom('alma');
+    var seed = 1; //document.getElementById("seed").value;
+    Math.seedrandom(seed);
     this.antSpace;
     this.hive = new Hive();
     this.foods = new Foods();
@@ -52,4 +53,5 @@ Antropy.prototype.showCellData = function(event) {
     var food = Math.round(antropy.pheromone.getFoodAt(point.x,point.y)*100)/100;
     var hive = Math.round(antropy.pheromone.getHiveAt(point.x,point.y)*100)/100;
     alert("x: " + point.x + "\ny: " + point.y + "\nfood: " + food + "\nhive: " + hive);
+    alert(seed);
 }

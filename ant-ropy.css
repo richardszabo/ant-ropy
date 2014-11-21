@@ -17,6 +17,9 @@ a {
 a:active {
     background-color: black;
 }
+form {
+    margin-top: 2em;
+}
 p {
     margin-top: 2em;
 }
