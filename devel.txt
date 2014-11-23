@@ -146,3 +146,4 @@ It is used for main canvas.
 - Textfield seed is correctly used.
 - Reset button.
 - Design updates.
+- Showing number of ants by working mode.

@@ -3,6 +3,7 @@
 function Ants (antropy) {
     this.antropy = antropy;
     this.ant = [];
+    this.carryingFood = 0;
     for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i] = new Ant(this.antropy);
     } 
@@ -34,6 +35,7 @@ Ants.prototype.draw = function(ctx) {
 }
 
 Ants.prototype.step = function() {
+    this.carryingFood = 0;
     for(var i = 0; i < Ants.antNumber; ++i ) {
 	this.ant[i].step();
     } 
@@ -75,8 +77,8 @@ Ant.prototype.step = function() {
     }
     if( this.carriedFood ) {
 	this.antropy.foods.setFoodPos(this.carriedFood,this.pos2D);
-    }
-
+	++this.antropy.ants.carryingFood;
+   }
 }
 
 Ant.prototype.randomWalkMode = function() {

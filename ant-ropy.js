@@ -47,6 +47,8 @@ Antropy.prototype.step = function(seed) {
     var diff = end - start;
     document.getElementById("speed").innerHTML = diff;
     document.getElementById("food").innerHTML = this.hive.getFood();
+    document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
+    document.getElementById("ant_search").innerHTML = Ants.antNumber - this.ants.carryingFood;
 }
 
 Antropy.prototype.draw = function() {
