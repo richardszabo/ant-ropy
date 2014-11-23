@@ -18,18 +18,22 @@
 <script>
 var antropy = new Antropy();
 $( document ).ready(function() {
-antropy.init("canvas","pheromone_canvas");
+antropy.setCanvases("canvas","pheromone_canvas");
 $("#toggle").click(function toggle(){
     if (this.interval){
         clearInterval(this.interval);
         this.interval = null;
         this.innerHTML='Start';
     } else {
-        this.interval=setInterval(function(){ antropy.step(); },10);
+        this.interval=setInterval(function(){ antropy.step(document.getElementById("seed").value); },10);
         this.innerHTML='Stop';
     }
 });
-$("#toggle").click();
+$("#reset").click(function reset(){
+    var seed = document.getElementById("seed").value;
+    antropy.reset(seed);
+});
+$("#reset").click();
 });
 
 </script>
@@ -40,11 +44,17 @@ $("#toggle").click();
       <canvas id="canvas" width="400px" height="400px" style="position: absolute; z-index: 2"></canvas>
       <canvas id="pheromone_canvas" width="400px" height="400px" style="position: absolute; z-index: 1"></canvas>
     </div>
-    <a id="toggle">Start</a> 
-    <form>
+    <form id="configuration">
+      <h2>Configuration</h2>
+      <label for="seed">Seed:</label>
       <input type="text" id="seed" name="seed" value="1">
+      <a id="toggle">Start</a> 
+      <a id="reset">Reset</a> 
     </form>
-    <p id="speed"></p>
-    <p id="food"></p>
+    <div id="result">
+      <h2>Results</h2>
+      <div>Food collected:<div id="food">0</div></div>
+      <div>Step cycle:<div id="speed">0</div></div>
+    </div>
   </body>
 </html>

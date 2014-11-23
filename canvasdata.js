@@ -27,6 +27,6 @@ CanvasData.prototype.clear = function() {
     this.offctx.clearRect(0, 0, this.realcanvas.width, this.realcanvas.height);
 }
 
-CanvasData.prototype.draw = function() {
+CanvasData.prototype.paint = function() {
     this.ctx.drawImage(this.offCanvas,0,0);
 }

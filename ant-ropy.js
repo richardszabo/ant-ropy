@@ -1,50 +1,65 @@
 "use strict";
 
 function Antropy () {
-    var seed = 1; //document.getElementById("seed").value;
+    this.inited = false;
+}
+
+Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
+    this.canvasid = p_canvasid;
+    this.pheromone_canvasid = p_pheromone_canvasid; 
+}
+
+Antropy.prototype.reset = function(seed) {
     Math.seedrandom(seed);
-    this.antSpace;
+    this.inited = false;
+    this.init();
+}
+
+Antropy.prototype.init = function() {
+    //Canvas stuff
+    this.canvas = new CanvasData(this.canvasid);
+    this.canvas.realcanvas.addEventListener("mousedown", this.showCellData, false);
+    this.canvas.realcanvas.ownParam = this;
+
+    this.pheromone_canvas = new CanvasData(this.pheromone_canvasid);
+
+    this.antSpace = new AntSpace(this.canvas.width,this.canvas.height);
+
     this.hive = new Hive();
     this.foods = new Foods();
     this.pheromone = new Pheromone(this);
     this.ants = new Ants(this);
-    this.canvas; 
-    this.pheromone_canvas; 
+    
+    this.inited = true;
+    this.draw();
 }
 
-Antropy.prototype.init = function(canvasid, pheromone_canvasid) {
-    //Canvas stuff
-    this.canvas = new CanvasData(canvasid);
-    this.canvas.realcanvas.addEventListener("mousedown", this.showCellData, false);
-    this.canvas.realcanvas.ownParam = this;
-
-    this.pheromone_canvas = new CanvasData(pheromone_canvasid);
-
-    this.antSpace = new AntSpace(this.canvas.width,this.canvas.height);
-    this.hive.draw(this.canvas.context);
-    this.foods.draw(this.canvas.context);
-    this.pheromone.draw(this.pheromone_canvas.context);
-    this.ants.draw(this.canvas.context);
-}
-
-Antropy.prototype.step = function() {
+Antropy.prototype.step = function(seed) {
     var start = +new Date(); // log start timestamp
+    if( !this.inited ) {
+	this.reset(seed);
+    }
+    this.pheromone.step();
+    this.ants.step();
+    
+    this.draw();
+    var end =  +new Date();  // log end timestamp
+    var diff = end - start;
+    document.getElementById("speed").innerHTML = diff;
+    document.getElementById("food").innerHTML = this.hive.getFood();
+}
+
+Antropy.prototype.draw = function() {
     this.canvas.clear();
     this.pheromone_canvas.clear();
 
     this.hive.draw(this.canvas.context);
-    this.pheromone.step();
-    this.pheromone.draw(this.pheromone_canvas.context);
-    this.ants.step();
-    this.ants.draw(this.canvas.context);
     this.foods.draw(this.canvas.context);
-    
-    this.canvas.draw();
-    this.pheromone_canvas.draw();
-    var end =  +new Date();  // log end timestamp
-    var diff = end - start;
-    document.getElementById("speed").innerHTML = "step cycle: " + diff;
-    document.getElementById("food").innerHTML = " food collected:" + this.hive.getFood();
+    this.pheromone.draw(this.pheromone_canvas.context);
+    this.ants.draw(this.canvas.context);
+
+    this.canvas.paint();
+    this.pheromone_canvas.paint();
 }
 
 Antropy.prototype.showCellData = function(event) {
