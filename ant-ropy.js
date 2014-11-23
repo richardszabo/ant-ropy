@@ -2,6 +2,7 @@
 
 function Antropy () {
     this.inited = false;
+    this.antNumber;
 }
 
 Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
@@ -9,8 +10,9 @@ Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
     this.pheromone_canvasid = p_pheromone_canvasid; 
 }
 
-Antropy.prototype.reset = function(seed) {
+Antropy.prototype.reset = function(seed,antnum) {
     Math.seedrandom(seed);
+    this.antNumber = antnum;
     this.inited = false;
     this.init();
 }
@@ -34,10 +36,10 @@ Antropy.prototype.init = function() {
     this.draw();
 }
 
-Antropy.prototype.step = function(seed) {
+Antropy.prototype.step = function(seed,antnum) {
     var start = +new Date(); // log start timestamp
     if( !this.inited ) {
-	this.reset(seed);
+	this.reset(seed,antnum);
     }
     this.pheromone.step();
     this.ants.step();
@@ -48,7 +50,7 @@ Antropy.prototype.step = function(seed) {
     document.getElementById("speed").innerHTML = diff;
     document.getElementById("food").innerHTML = this.hive.getFood();
     document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
-    document.getElementById("ant_search").innerHTML = Ants.antNumber - this.ants.carryingFood;
+    document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;
 }
 
 Antropy.prototype.draw = function() {

@@ -41,7 +41,7 @@ Pheromone.prototype.draw = function(ctx) {
 }
 
 Pheromone.prototype.calculate = function(matrix,isHive) {
-    for( var i = 0; i < Ants.antNumber; ++i ) {
+    for( var i = 0; i < this.antropy.ants.antNumber; ++i ) {
 	matrix.write_matrix[this.antropy.ants.ant[i].x][this.antropy.ants.ant[i].y] = 
 	    (matrix.write_matrix[this.antropy.ants.ant[i].x][this.antropy.ants.ant[i].y] || 0) + 
 	    (isHive ? this.antropy.ants.ant[i].getEmittedPheromoneHive() : this.antropy.ants.ant[i].getEmittedPheromoneFood());

@@ -4,7 +4,8 @@ function Ants (antropy) {
     this.antropy = antropy;
     this.ant = [];
     this.carryingFood = 0;
-    for(var i = 0; i < Ants.antNumber; ++i ) {
+    this.antNumber = this.antropy.antNumber;
+    for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i] = new Ant(this.antropy);
     } 
 }
@@ -24,19 +25,17 @@ Ants.MODE_HOME = 2;
 Ants.MOVE_RANDOM = 0.1; /* random moving probability */
 Ants.ATTRACTION_LEVEL = 1;    /* pheromone level to change to attracted mode */
 
-Ants.antNumber = 100;
-
 Ants.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.strokeStyle = "red";
-    for(var i = 0; i < Ants.antNumber; ++i ) {
+    for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i].draw(ctx);
     } 
 }
 
 Ants.prototype.step = function() {
     this.carryingFood = 0;
-    for(var i = 0; i < Ants.antNumber; ++i ) {
+    for(var i = 0; i < this.antNumber; ++i ) {
 	this.ant[i].step();
     } 
 }

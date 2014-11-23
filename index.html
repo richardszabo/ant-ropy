@@ -25,13 +25,16 @@ $("#toggle").click(function toggle(){
         this.interval = null;
         this.innerHTML='Start';
     } else {
-        this.interval=setInterval(function(){ antropy.step(document.getElementById("seed").value); },10);
+        var seed = document.getElementById("seed").value;
+        var antnum = document.getElementById("antnum").value;
+        this.interval=setInterval(function(){ antropy.step(seed,antnum); },10);
         this.innerHTML='Stop';
     }
 });
 $("#reset").click(function reset(){
     var seed = document.getElementById("seed").value;
-    antropy.reset(seed);
+    var antnum = document.getElementById("antnum").value;
+    antropy.reset(seed,antnum);
 });
 $("#reset").click();
 });
@@ -47,7 +50,9 @@ $("#reset").click();
     <form id="configuration">
       <h2>Configuration</h2>
       <label for="seed">Seed:</label>
-      <input type="text" id="seed" name="seed" value="1">
+      <input type="text" id="seed" name="seed" value="1"><br />
+      <label for="antnum">Ants:</label>
+      <input type="text" id="antnum" name="antnum" value="100">
       <a id="toggle">Start</a> 
       <a id="reset">Reset</a> 
     </form>

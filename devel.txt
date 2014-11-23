@@ -140,10 +140,11 @@ It is used for main canvas.
 
 2014. 11. 21.
 - Using david bau's seedrandom: https://github.com/davidbau/seedrandom/blob/master/seedrandom.js
-- Textfield for seed. TODO fix
+- Textfield for seed.
 
 2014. 11. 23.
 - Textfield seed is correctly used.
 - Reset button.
 - Design updates.
 - Showing number of ants by working mode.
+- Ant number is a configuration parameter.
