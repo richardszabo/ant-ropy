@@ -31,6 +31,11 @@ $("#toggle").click(function toggle(){
         this.innerHTML='Stop';
     }
 });
+$("#step").click(function reset(){
+    var seed = document.getElementById("seed").value;
+    var antnum = document.getElementById("antnum").value;
+    antropy.step(seed,antnum);
+});
 $("#reset").click(function reset(){
     var seed = document.getElementById("seed").value;
     var antnum = document.getElementById("antnum").value;
@@ -54,6 +59,7 @@ $("#reset").click();
       <label for="antnum">Ants:</label>
       <input type="text" id="antnum" name="antnum" value="100">
       <a id="toggle">Start</a> 
+      <a id="step">Step</a> 
       <a id="reset">Reset</a> 
     </form>
     <div id="result">

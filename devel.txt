@@ -151,3 +151,4 @@ It is used for main canvas.
 
 2014. 12. 19.
 - Better debug: 3*3 food and hive pheromone matrix after canvas click.
+- Step button.
