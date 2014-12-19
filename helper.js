@@ -54,3 +54,28 @@ function decimalToHexString(number) {
 
     return number.toString(16).toUpperCase();
 }
+
+function lpad(str, padString, length) {
+    while (str.length < length)
+        str = padString + str;
+    return str;
+}
+
+// http://stackoverflow.com/a/5024108/21047
+// decimal_pad(number[, length of padding[, padding character]])
+// if padding parameter is null, zeros are used to pad
+// if length parameter is null, no padding is applied.
+function decimal_pad(dec,len,chr){
+  chr = chr || '0';
+  dec = dec.toString();
+
+  if (!len) return dec;
+
+  var p = dec.indexOf('.');
+  p = (p!==-1?(dec.length-p-1):-1);
+
+  for (var m = p; m < len; m++)
+    dec += chr;
+
+  return dec;
+}

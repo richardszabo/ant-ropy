@@ -12,6 +12,7 @@ Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
 
 Antropy.prototype.reset = function(seed,antnum) {
     Math.seedrandom(seed);
+    this.seed = seed;
     this.antNumber = antnum;
     this.inited = false;
     this.init();
@@ -69,8 +70,17 @@ Antropy.prototype.draw = function() {
 Antropy.prototype.showCellData = function(event) {
     var point = AntSpace.canvas2Point(new Point(event.clientX - canvas.offsetLeft,event.clientY - canvas.offsetTop));
     var antropy = event.target.ownParam;
-    var food = Math.round(antropy.pheromone.getFoodAt(point.x,point.y)*100)/100;
-    var hive = Math.round(antropy.pheromone.getHiveAt(point.x,point.y)*100)/100;
-    alert("x: " + point.x + "\ny: " + point.y + "\nfood: " + food + "\nhive: " + hive);
-    alert(seed);
+    var foodStr = "";
+    var hiveStr = "";
+    for( var i = -1; i <= 1; ++i ) {
+	for( var j = -1; j <= 1; ++j ) {
+	    var food = Math.round(antropy.pheromone.getFoodAt(point.x+i,point.y+j)*100)/100;
+	    foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
+	    var hive = Math.round(antropy.pheromone.getHiveAt(point.x+i,point.y+j)*100)/100;
+	    hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
+	}
+	foodStr += "\n";
+	hiveStr += "\n";
+    }
+    alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
 }
