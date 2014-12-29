@@ -1,6 +1,15 @@
 #canvases {
     margin-left: 20em;
 }
+canvas {
+    position: absolute;
+}
+#canvas {
+    z-index: 2;
+}
+#pheromone_canvas {
+    z-index: 1;
+}
 h1 {
     text-align: center;
 }
@@ -28,11 +37,16 @@ form#configuration input {
 p {
     margin-top: 2em;
 }
-#result, form {
+.data_block {
+    float: left;
     padding: 1em;
     border-style: solid;
     border-width: 1px;
     border-color: black;
     width: 12.5em;
     margin: 1em;
+    height: 15em;
+}
+#result {
+    margin-left: 31em;
 }

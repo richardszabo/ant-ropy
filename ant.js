@@ -6,9 +6,10 @@ function Ants (antropy) {
     this.carryingFood = 0;
     this.antNumber = this.antropy.antNumber;
     for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i] = new Ant(this.antropy);
+	this.ant[i] = new Ant(this.antropy,i);
     } 
-}
+    this.selected_ant = null;
+ }
 
 Ants.ANT_SIZE = 3;
 // neighbours (order is important!)
@@ -29,6 +30,12 @@ Ants.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.strokeStyle = "red";
     for(var i = 0; i < this.antNumber; ++i ) {
+	if( this.selected_ant === i + 1 ) {
+	    ctx.fillStyle = "yellow";
+	} 
+	if( this.selected_ant === i ) {
+	    ctx.fillStyle = "red";
+	} 
 	this.ant[i].draw(ctx);
     } 
 }
@@ -40,10 +47,25 @@ Ants.prototype.step = function() {
     } 
 }
 
+Ants.prototype.getAntAt = function(pos) {
+    var found = 0;
+    for(var i = 0; i < this.antNumber && !found; ++i ) {
+	if( this.ant[i].x === pos.x && this.ant[i].y === pos.y ) {
+	    found = i + 1;
+	}
+    }
+    return found;
+}
+
+Ants.prototype.selectAnt = function(point) {
+    this.selected_ant = antropy.ants.getAntAt(point);
+} 
+
 Ant.prototype = Object.create(Particle.prototype);
 Ant.prototype.constructor = Ant;
 
-function Ant(antropy) {
+function Ant(antropy,id) {
+    this.id = id;
     this.antropy = antropy;
     this.x = Math.floor(Math.random() * AntSpace.spaceSize);
     this.y = Math.floor(Math.random() * AntSpace.spaceSize);

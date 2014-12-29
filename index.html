@@ -49,10 +49,10 @@ $("#reset").click();
   <body>
     <h1>Playground for ants</h1>
     <div id="canvases">
-      <canvas id="canvas" width="400px" height="400px" style="position: absolute; z-index: 2"></canvas>
-      <canvas id="pheromone_canvas" width="400px" height="400px" style="position: absolute; z-index: 1"></canvas>
+      <canvas id="canvas" width="400px" height="400px"></canvas>
+      <canvas id="pheromone_canvas" width="400px" height="400px"></canvas>
     </div>
-    <form id="configuration">
+    <form class="data_block" id="configuration">
       <h2>Configuration</h2>
       <label for="seed">Seed:</label>
       <input type="text" id="seed" name="seed" value="1"><br />
@@ -62,12 +62,17 @@ $("#reset").click();
       <a id="step">Step</a> 
       <a id="reset">Reset</a> 
     </form>
-    <div id="result">
+    <div class="data_block" id="result">
       <h2>Results</h2>
       <div>Ants carrying:<div id="ant_food">0</div></div>
       <div>Ants searching:<div id="ant_search">0</div></div>
       <div>Food collected:<div id="food">0</div></div>
       <div>Step cycle:<div id="speed">0</div></div>
+    </div>
+    <div class="data_block" id="ant">
+      <h2>Selected ant</h2>
+      <div>Id:<div id="ant_id">0</div></div>
+      <div>Pos:<div id="ant_x">0</div><div id="ant_y">0</div></div>
     </div>
   </body>
 </html>

@@ -52,6 +52,11 @@ Antropy.prototype.step = function(seed,antnum) {
     document.getElementById("food").innerHTML = this.hive.getFood();
     document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
     document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;
+    if( this.ants.selected_ant ) {
+	document.getElementById("ant_id").innerHTML = this.ants.selected_ant;	
+	document.getElementById("ant_x").innerHTML = this.ants.ant[this.ants.selected_ant-1].x;	
+	document.getElementById("ant_y").innerHTML = this.ants.ant[this.ants.selected_ant-1].y;	
+    } 
 }
 
 Antropy.prototype.draw = function() {
@@ -82,5 +87,6 @@ Antropy.prototype.showCellData = function(event) {
 	foodStr += "\n";
 	hiveStr += "\n";
     }
+    antropy.ants.selectAnt(point);
     alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
 }
