@@ -6,9 +6,9 @@ function Ants (antropy) {
     this.carryingFood = 0;
     this.antNumber = this.antropy.antNumber;
     for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i] = new Ant(this.antropy,i);
-    } 
-    this.selected_ant = null;
+	     this.ant[i] = new Ant(this.antropy,i);
+    }
+    this.selected_ant_id = null;
  }
 
 Ants.ANT_SIZE = 3;
@@ -30,27 +30,27 @@ Ants.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.strokeStyle = "red";
     for(var i = 0; i < this.antNumber; ++i ) {
-	if( this.selected_ant === i + 1 ) {
+	if( this.selected_ant_id === i + 1 ) {
 	    ctx.fillStyle = "yellow";
-	} 
-	if( this.selected_ant === i ) {
+	}
+	if( this.selected_ant_id === i ) {
 	    ctx.fillStyle = "red";
-	} 
+	}
 	this.ant[i].draw(ctx);
-    } 
+    }
 }
 
 Ants.prototype.step = function() {
     this.carryingFood = 0;
     for(var i = 0; i < this.antNumber; ++i ) {
-	this.ant[i].step();
-    } 
+	     this.ant[i].step();
+    }
 }
 
 Ants.prototype.getAntAt = function(pos) {
     var found = 0;
     for(var i = 0; i < this.antNumber && !found; ++i ) {
-	if( this.ant[i].x === pos.x && this.ant[i].y === pos.y ) {
+    if( this.ant[i].x === pos.x && this.ant[i].y === pos.y ) {
 	    found = i + 1;
 	}
     }
@@ -58,8 +58,8 @@ Ants.prototype.getAntAt = function(pos) {
 }
 
 Ants.prototype.selectAnt = function(point) {
-    this.selected_ant = antropy.ants.getAntAt(point);
-} 
+    this.selected_ant_id = antropy.ants.getAntAt(point);
+}
 
 Ant.prototype = Object.create(Particle.prototype);
 Ant.prototype.constructor = Ant;
@@ -135,7 +135,7 @@ Ant.prototype.maxMove = function() {
 	    maxX = px;
 	    maxY = py;
 	    pos = [];
-	}	
+	}
 	// collecting info of the maximal values
 	if( ph >= max ) {
 	    pos[pos.length] = i;
@@ -151,7 +151,7 @@ Ant.prototype.maxMove = function() {
     }
 
     if( max > Ants.ATTRACTION_LEVEL ) {
-	var dir = Math.floor(Math.random() * pos.length / 3);  
+	var dir = Math.floor(Math.random() * pos.length / 3);
 	this.x = pos[dir+1];
 	this.y = pos[dir+2];
 	this.heading = Math.floor((this.heading + pos[dir] + Ants.NO_HEADINGS) % Ants.NO_HEADINGS);
@@ -202,4 +202,3 @@ Ant.prototype.getEmittedPheromoneFood = function() {
     }
     return 0;
 }
-

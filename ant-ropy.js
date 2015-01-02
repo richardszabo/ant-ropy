@@ -7,7 +7,7 @@ function Antropy () {
 
 Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
     this.canvasid = p_canvasid;
-    this.pheromone_canvasid = p_pheromone_canvasid; 
+    this.pheromone_canvasid = p_pheromone_canvasid;
 }
 
 Antropy.prototype.reset = function(seed,antnum) {
@@ -32,7 +32,7 @@ Antropy.prototype.init = function() {
     this.foods = new Foods();
     this.pheromone = new Pheromone(this);
     this.ants = new Ants(this);
-    
+
     this.inited = true;
     this.draw();
 }
@@ -40,11 +40,11 @@ Antropy.prototype.init = function() {
 Antropy.prototype.step = function(seed,antnum) {
     var start = +new Date(); // log start timestamp
     if( !this.inited ) {
-	this.reset(seed,antnum);
+        this.reset(seed,antnum);
     }
     this.pheromone.step();
     this.ants.step();
-    
+
     this.draw();
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
@@ -52,11 +52,26 @@ Antropy.prototype.step = function(seed,antnum) {
     document.getElementById("food").innerHTML = this.hive.getFood();
     document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
     document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;
-    if( this.ants.selected_ant ) {
-	document.getElementById("ant_id").innerHTML = this.ants.selected_ant;	
-	document.getElementById("ant_x").innerHTML = this.ants.ant[this.ants.selected_ant-1].x;	
-	document.getElementById("ant_y").innerHTML = this.ants.ant[this.ants.selected_ant-1].y;	
-    } 
+    if( this.ants.selected_ant_id ) {
+        document.getElementById("ant_id").innerHTML = this.ants.selected_ant_id;
+        var selected_ant = this.ants.ant[this.ants.selected_ant_id-1];
+        document.getElementById("ant_x").innerHTML = selected_ant.x;
+        document.getElementById("ant_y").innerHTML = selected_ant.y;
+        var foodStr = "";
+        var hiveStr = "";
+        for( var i = -1; i <= 1; ++i ) {
+            for( var j = -1; j <= 1; ++j ) {
+                var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+i,selected_ant.y+j)*100)/100;
+                foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
+                var hive = Math.round(antropy.pheromone.getHiveAt(selected_ant.x+i,selected_ant.y+j)*100)/100;
+                hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
+            }
+            foodStr += "<br />";
+            hiveStr += "<br />";
+        }
+        document.getElementById("food_pheromone").innerHTML = foodStr;
+        document.getElementById("hive_pheromone").innerHTML = hiveStr;
+    }
 }
 
 Antropy.prototype.draw = function() {

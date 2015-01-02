@@ -28,9 +28,6 @@ a {
 a:active {
     background-color: black;
 }
-form#configuration {
-    margin-top: 2em;
-}
 form#configuration input {
     width: 5em;
 }
@@ -45,7 +42,7 @@ p {
     border-color: black;
     width: 12.5em;
     margin: 1em;
-    height: 15em;
+    height: 20em;
 }
 #result {
     margin-left: 31em;

@@ -5,7 +5,7 @@ Ant-ropy with html5/css/javascript/jquery
 - Separate js file with some dummy function.
 - Making ant-ropy19 work:
   - Downloading repast3.0
-  - Creating a start.sh script to strt the program. 
+  - Creating a start.sh script to strt the program.
 
 2014. 09. 14.
 - Starting Food class.
@@ -59,7 +59,7 @@ git shows changes for all lines. emacs CR/LF -> LF : C-x RET f unix (file encodi
 2014. 10. 15.
 - aux.js has been renamed to helper.js as Windows does not allow filenames with any extension and named as aux.
 - Using AntSpace with abstract space size. Conversion between space and canvas coordinates.
-- AntSpace.center and AntSpace.crop2Space to hide all canvas specific measure. 
+- AntSpace.center and AntSpace.crop2Space to hide all canvas specific measure.
 
 2014. 10. 16.
 - Ants emit pheromone (just a constant).
@@ -88,7 +88,7 @@ Repast simulations.
 Repast. However the code of computeVal was rewritten and resides in
 the own source trunk.
 - Pheromone.step = { diffuse();, calculate(); /*(ant pheromone)*/, update(); } is
-the correct order, it was used in Repast as well. 
+the correct order, it was used in Repast as well.
 
 2014. 10. 31.
 - Using correct diff and evap constants.
@@ -107,13 +107,13 @@ the correct order, it was used in Repast as well.
 - Every js script has use strict at the beginning.
 - Main init and step are embedded in a new Antropy object.
 - Antropy-related global variables became the member of Antropy object.
-- All AntSpace functions became static. 
-- CanvasData object collects canvas, ctx information. (width, height are deleted and calculated.) 
+- All AntSpace functions became static.
+- CanvasData object collects canvas, ctx information. (width, height are deleted and calculated.)
 It is used for main canvas.
 - CanvasData object for pheromone canvas. Somehow document.getElementById does not work inside canvasdata.js.
 - Position of food using get2DGaussian is not correct.
 - CanvasData contains offcanvas variables.
-- Food and Hive pheromone appears on the same canvas context as green and blue components.  
+- Food and Hive pheromone appears on the same canvas context as green and blue components.
 
 2014. 11. 09.
 - Position of food using get2DGaussian has been corrected.
@@ -124,7 +124,7 @@ It is used for main canvas.
 - Particle object is parent of Hive as well.
 - AntSpace.crop2Space works in one dimension.
 - Hiding AntSpace.crop2Space inside Particle.
-- Particle has canvasPos2D calling AntSpace.point2Canvas. Ant, Food, Hive use canvasPos2D.  
+- Particle has canvasPos2D calling AntSpace.point2Canvas. Ant, Food, Hive use canvasPos2D.
 - Particle object is parent of Foods as well.
 - Particle object has draw function. All descendants are using it with extension.
 - Pheromone refactored to avoid duplication of pheromone calculation.
@@ -155,4 +155,7 @@ It is used for main canvas.
 
 2014. 12. 29.
 - Ant selection.
-- Basic data for selected ant. 
+- Basic data for selected ant.
+
+2015. 01. 02.
+- Pheromone data around selected ant.
