@@ -159,3 +159,8 @@ It is used for main canvas.
 
 2015. 01. 02.
 - Pheromone data around selected ant.
+
+2015. 01. 12.
+- Some styling.
+- Selected ant id is clarified.
+- Selected ant is drawn at the end.

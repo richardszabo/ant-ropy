@@ -52,15 +52,16 @@ Antropy.prototype.step = function(seed,antnum) {
     document.getElementById("food").innerHTML = this.hive.getFood();
     document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
     document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;
-    if( this.ants.selected_ant_id ) {
+    if( this.ants.selected_ant_id !== null ) {
         document.getElementById("ant_id").innerHTML = this.ants.selected_ant_id;
-        var selected_ant = this.ants.ant[this.ants.selected_ant_id-1];
+        var selected_ant = this.ants.ant[this.ants.selected_ant_id];
         document.getElementById("ant_x").innerHTML = selected_ant.x;
         document.getElementById("ant_y").innerHTML = selected_ant.y;
+        document.getElementById("ant_mode").innerHTML = selected_ant.mode;
         var foodStr = "";
         var hiveStr = "";
-        for( var i = -1; i <= 1; ++i ) {
-            for( var j = -1; j <= 1; ++j ) {
+        for( var i = -2; i <= 2; ++i ) {
+            for( var j = -2; j <= 2; ++j ) {
                 var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+i,selected_ant.y+j)*100)/100;
                 foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
                 var hive = Math.round(antropy.pheromone.getHiveAt(selected_ant.x+i,selected_ant.y+j)*100)/100;
@@ -103,5 +104,5 @@ Antropy.prototype.showCellData = function(event) {
 	hiveStr += "\n";
     }
     antropy.ants.selectAnt(point);
-    alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
+    //alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
 }

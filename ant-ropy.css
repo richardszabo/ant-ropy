@@ -1,5 +1,5 @@
 #canvases {
-    margin-left: 20em;
+    margin-left: 30em;
 }
 canvas {
     position: absolute;
@@ -40,10 +40,13 @@ p {
     border-style: solid;
     border-width: 1px;
     border-color: black;
-    width: 12.5em;
+    width: 22.5em;
     margin: 1em;
     height: 20em;
 }
 #result {
     margin-left: 31em;
+}
+.data_block span {
+    margin-left: 10px;
 }

@@ -30,13 +30,13 @@ Ants.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.strokeStyle = "red";
     for(var i = 0; i < this.antNumber; ++i ) {
-	if( this.selected_ant_id === i + 1 ) {
-	    ctx.fillStyle = "yellow";
-	}
-	if( this.selected_ant_id === i ) {
-	    ctx.fillStyle = "red";
-	}
-	this.ant[i].draw(ctx);
+        if( this.selected_ant_id !== i ) {
+            this.ant[i].draw(ctx);
+        }
+    }
+    if( this.selected_ant_id !== null ) {
+        ctx.fillStyle = "yellow";
+        this.ant[this.selected_ant_id].draw(ctx);
     }
 }
 
@@ -48,11 +48,11 @@ Ants.prototype.step = function() {
 }
 
 Ants.prototype.getAntAt = function(pos) {
-    var found = 0;
+    var found = null;
     for(var i = 0; i < this.antNumber && !found; ++i ) {
-    if( this.ant[i].x === pos.x && this.ant[i].y === pos.y ) {
-	    found = i + 1;
-	}
+        if( this.ant[i].x === pos.x && this.ant[i].y === pos.y ) {
+	       found = i;
+	    }
     }
     return found;
 }
