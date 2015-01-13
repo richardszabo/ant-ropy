@@ -165,5 +165,8 @@ It is used for main canvas.
 - Selected ant id is clarified.
 - Selected ant is drawn at the end.
 - Fix: food distribution correctly behaves when logical canvas size is changed.
-- TODO: Pheromone debug matrix is centered, something is wrong.
-- Temporarily: full debug matrix. 
+- Pheromone debug matrix is drawn after matrix transposition.
+- Full debug matrix is created and commented out.
+- First (0th) ant is selected by default.
+- Changing helper.js/gauss_random to a more standard distribution.
+- Fixing ant move functions.

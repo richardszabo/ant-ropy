@@ -9,15 +9,18 @@ function Point (xx,yy) {
 }
 
 //
-// quasi-normal distribution standard form: [-1,1) 
+// quasi-normal distribution standard form: [-1,1)
 function gauss_random() {
+    // http://www.protonfish.com/random.shtml    
+    return (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1);
+    // formerly it was the function below but that was not close to standard, there was no value above 1, below -1
     // http://stackoverflow.com/a/20161247/21047 and http://jsfiddle.net/Guffa/tvt5K/
-    return ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()-3)) / 3;
-} 
+    //return ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()-3)) / 3;
+}
 
 //
-// quasi-normal distribution in 2D 
-// deviation is just an extension size scaling factor not a real deviation. 
+// quasi-normal distribution in 2D
+// deviation is just an extension size scaling factor not a real deviation.
 function get2DGaussian(mean, deviation) {
     return new Point(gauss_random() * deviation + mean.x,gauss_random() * deviation + mean.y);
 }

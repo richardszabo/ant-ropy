@@ -5,7 +5,7 @@ Foods.prototype.constructor = Foods;
 
 function Foods () {
     this.foodNumber = 100;
-    this.foodDeviation = 20;
+    this.foodDeviation = 5;
     this.food = [];
     this.pos2D = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
 

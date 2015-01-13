@@ -8,7 +8,7 @@ function Ants (antropy) {
     for(var i = 0; i < this.antNumber; ++i ) {
 	     this.ant[i] = new Ant(this.antropy,i);
     }
-    this.selected_ant_id = null;
+    this.selected_ant_id = 0;
  }
 
 Ants.ANT_SIZE = 3;
@@ -88,25 +88,24 @@ Ant.prototype.draw = function(ctx) {
 
 Ant.prototype.step = function() {
     if( this.foodCheck() ) {
-	return;
+	       return;
     }
     this.hiveCheck();
     if( Math.random() > Ants.MOVE_RANDOM ) {
-	this.maxMove();
+	       this.maxMove();
     } else {
-	this.randomWalkMode();
+	       this.randomWalkMode();
     }
     if( this.carriedFood ) {
-	this.antropy.foods.setFoodPos(this.carriedFood,this.pos2D);
-	++this.antropy.ants.carryingFood;
-   }
+	       this.antropy.foods.setFoodPos(this.carriedFood,this.pos2D);
+	          ++this.antropy.ants.carryingFood;
+    }
 }
 
 Ant.prototype.randomWalkMode = function() {
     var dir = gauss_random();
-    this.heading = Math.floor(this.heading +
-		   sign(dir)*Math.min(Math.abs(Math.round(dir)),Ants.STEPS_AHEAD/2) +
-                   Ants.NO_HEADINGS) % Ants.NO_HEADINGS;
+    var change = sign(dir)*Math.min(Math.floor(Math.abs(dir)),Math.floor(Ants.STEPS_AHEAD/2));
+    this.heading = Math.floor(this.heading + change + Ants.NO_HEADINGS) % Ants.NO_HEADINGS;
     this.x += Ants.NEIGHBOURS[this.heading][0];
     this.y += Ants.NEIGHBOURS[this.heading][1];
 }
@@ -119,11 +118,11 @@ Ant.prototype.maxMove = function() {
     var pos;
 
     pos = [];
-    for( var i = -Ants.STEPS_AHEAD/2; i <= Ants.STEPS_AHEAD/2; ++i ) {
+    for( var i = -Math.floor(Ants.STEPS_AHEAD/2); i <= Math.floor(Ants.STEPS_AHEAD/2); ++i ) {
         var px = this.x+Ants.NEIGHBOURS[Math.floor((this.heading + i + Ants.NO_HEADINGS) % Ants.NO_HEADINGS)][0];
-	px = AntSpace.crop2Space(px);
+	    px = AntSpace.crop2Space(px);
         var py = this.y+Ants.NEIGHBOURS[Math.floor((this.heading + i + Ants.NO_HEADINGS) % Ants.NO_HEADINGS)][1];
-	py = AntSpace.crop2Space(py);
+	    py = AntSpace.crop2Space(py);
 	if( this.mode === Ants.MODE_SEARCH ) {
 	    ph = this.antropy.pheromone.getFoodAt(px,py);
 	} else if ( this.mode === Ants.MODE_HOME ) {
@@ -151,13 +150,13 @@ Ant.prototype.maxMove = function() {
     }
 
     if( max > Ants.ATTRACTION_LEVEL ) {
-	var dir = Math.floor(Math.random() * pos.length / 3);
-	this.x = pos[dir+1];
-	this.y = pos[dir+2];
-	this.heading = Math.floor((this.heading + pos[dir] + Ants.NO_HEADINGS) % Ants.NO_HEADINGS);
+        var dir = Math.floor(Math.random() * pos.length / 3);
+        this.x = pos[3*dir+1];
+	    this.y = pos[3*dir+2];
+        this.heading = Math.floor((this.heading + pos[dir] + Ants.NO_HEADINGS) % Ants.NO_HEADINGS);
     } else {
-	// sometimes no pheromone found, so only random walk is possible
-	this.randomWalkMode();
+	    // sometimes no pheromone found, so only random walk is possible
+	    this.randomWalkMode();
     }
 }
 

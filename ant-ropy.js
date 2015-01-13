@@ -60,26 +60,28 @@ Antropy.prototype.step = function(seed,antnum) {
         document.getElementById("ant_mode").innerHTML = selected_ant.mode;
         var foodStr = "";
         var hiveStr = "";
+        /*
+        // complete debug matrix
         for( var i = 0; i < AntSpace.spaceSize; ++i ) {
             for( var j = 0; j < AntSpace.spaceSize; ++j ) {
-                var food = Math.round(antropy.pheromone.getFoodAt(i,j)*100)/100;
+                var food = Math.round(antropy.pheromone.getFoodAt(j,i)*100)/100;
                 foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
-                var hive = Math.round(antropy.pheromone.getHiveAt(i,j)*100)/100;
-                hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
-            }
-            foodStr += "<br />";
-            hiveStr += "<br />";
-        }
-        /*for( var i = -2; i <= 2; ++i ) {
-            for( var j = -2; j <= 2; ++j ) {
-                var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+i,selected_ant.y+j)*100)/100;
-                foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
-                var hive = Math.round(antropy.pheromone.getHiveAt(selected_ant.x+i,selected_ant.y+j)*100)/100;
+                var hive = Math.round(antropy.pheromone.getHiveAt(j,i)*100)/100;
                 hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
             }
             foodStr += "<br />";
             hiveStr += "<br />";
         }*/
+        for( var i = -1; i <= 1; ++i ) {
+            for( var j = -1; j <= 1; ++j ) {
+                var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
+                foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
+                var hive = Math.round(antropy.pheromone.getHiveAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
+                hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
+            }
+            foodStr += "<br />";
+            hiveStr += "<br />";
+        }
         document.getElementById("food_pheromone").innerHTML = foodStr;
         document.getElementById("hive_pheromone").innerHTML = hiveStr;
     }
@@ -104,15 +106,15 @@ Antropy.prototype.showCellData = function(event) {
     var foodStr = "";
     var hiveStr = "";
     for( var i = -1; i <= 1; ++i ) {
-	for( var j = -1; j <= 1; ++j ) {
-	    var food = Math.round(antropy.pheromone.getFoodAt(point.x+i,point.y+j)*100)/100;
-	    foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
-	    var hive = Math.round(antropy.pheromone.getHiveAt(point.x+i,point.y+j)*100)/100;
-	    hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
-	}
-	foodStr += "\n";
-	hiveStr += "\n";
+	    for( var j = -1; j <= 1; ++j ) {
+	        var food = Math.round(antropy.pheromone.getFoodAt(point.x+j,point.y+i)*100)/100;
+	        foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
+	        var hive = Math.round(antropy.pheromone.getHiveAt(point.x+i,point.y+i)*100)/100;
+	        hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
+	    }
+	    foodStr += "\n";
+	    hiveStr += "\n";
     }
     antropy.ants.selectAnt(point);
-    //alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
+    alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
 }

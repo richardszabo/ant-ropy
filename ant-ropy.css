@@ -50,3 +50,6 @@ p {
 .data_block span {
     margin-left: 10px;
 }
+.data_block#ant {
+    width: 35em;
+}
