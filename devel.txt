@@ -164,4 +164,6 @@ It is used for main canvas.
 - Some styling.
 - Selected ant id is clarified.
 - Selected ant is drawn at the end.
-- Fix: food distribution correctly behaves when logical canvas size is changed. 
+- Fix: food distribution correctly behaves when logical canvas size is changed.
+- TODO: Pheromone debug matrix is centered, something is wrong.
+- Temporarily: full debug matrix. 
