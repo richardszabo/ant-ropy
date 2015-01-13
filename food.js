@@ -6,14 +6,14 @@ Foods.prototype.constructor = Foods;
 function Foods () {
     this.foodNumber = 100;
     this.foodDeviation = 20;
-    this.food = [];    
+    this.food = [];
     this.pos2D = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
-    
+
     for(var i = 0; i < this.foodNumber; ++i ) {
 	var point = get2DGaussian(this.pos2D,this.foodDeviation);
 	this.food[i] = new Food();
-	this.food[i].pos2D = new Point(Math.floor(point.x),Math.floor(point.y));
-   } 
+	this.food[i].pos2D = new Point(AntSpace.crop2Space(Math.floor(point.x)),AntSpace.crop2Space(Math.floor(point.y)));
+   }
 }
 
 Foods.foodSize = 2;
@@ -50,4 +50,3 @@ function Food () {
     this.y = 0;
     this.consumed = false;
 }
-

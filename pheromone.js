@@ -3,7 +3,7 @@
 
 function PheromoneMatrix() {
     this.read_matrix = create2DArray(AntSpace.spaceSize);
-    this.write_matrix = create2DArray(AntSpace.spaceSize);    
+    this.write_matrix = create2DArray(AntSpace.spaceSize);
 }
 
 PheromoneMatrix.prototype.update = function() {
@@ -33,7 +33,7 @@ Pheromone.prototype.draw = function(ctx) {
 	for(var j = 0; j < this.hive_matrix.read_matrix[i].length; ++j ) {
 	    var hivefillValue = Math.min(Math.round(this.hive_matrix.read_matrix[i][j] || 0),255); // for overflow
 	    var foodfillValue = Math.min(Math.round(this.food_matrix.read_matrix[i][j] || 0),255); // for overflow
-		    ctx.fillStyle = "rgb(0," + foodfillValue + "," + hivefillValue + ")"; 
+		    ctx.fillStyle = "rgb(0," + foodfillValue + "," + hivefillValue + ")";
 		var canvaspoint = AntSpace.point2Canvas(new Point(i,j));
 		ctx.fillRect(canvaspoint.x-AntSpace.cellSize/2,canvaspoint.y-AntSpace.cellSize/2,AntSpace.cellSize,AntSpace.cellSize);
 	}
@@ -42,8 +42,8 @@ Pheromone.prototype.draw = function(ctx) {
 
 Pheromone.prototype.calculate = function(matrix,isHive) {
     for( var i = 0; i < this.antropy.ants.antNumber; ++i ) {
-	matrix.write_matrix[this.antropy.ants.ant[i].x][this.antropy.ants.ant[i].y] = 
-	    (matrix.write_matrix[this.antropy.ants.ant[i].x][this.antropy.ants.ant[i].y] || 0) + 
+	matrix.write_matrix[this.antropy.ants.ant[i].x][this.antropy.ants.ant[i].y] =
+	    (matrix.write_matrix[this.antropy.ants.ant[i].x][this.antropy.ants.ant[i].y] || 0) +
 	    (isHive ? this.antropy.ants.ant[i].getEmittedPheromoneHive() : this.antropy.ants.ant[i].getEmittedPheromoneFood());
     }
 }
@@ -76,9 +76,9 @@ Pheromone.prototype.update = function() {
 }
 
 Pheromone.prototype.getFoodAt = function(i,j) {
-    return this.food_matrix.read_matrix[i][j];
+    return this.food_matrix.read_matrix[AntSpace.crop2Space(i)][AntSpace.crop2Space(j)];
 }
 
 Pheromone.prototype.getHiveAt = function(i,j) {
-    return this.hive_matrix.read_matrix[i][j];
+    return this.hive_matrix.read_matrix[AntSpace.crop2Space(i)][AntSpace.crop2Space(j)];
 }
