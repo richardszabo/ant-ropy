@@ -29,11 +29,23 @@ Ants.ATTRACTION_LEVEL = 1;    /* pheromone level to change to attracted mode */
 Ants.prototype.draw = function(ctx) {
     ctx.fillStyle = "red";
     ctx.strokeStyle = "red";
+    // wondering ants with red border
     for(var i = 0; i < this.antNumber; ++i ) {
-        if( this.selected_ant_id !== i ) {
+        if( this.selected_ant_id !== i && this.ant[i].carriedFood === null ) {
             this.ant[i].draw(ctx);
         }
     }
+    ctx.strokeStyle = "green";
+    // carrying ants with green border
+    for(var i = 0; i < this.antNumber; ++i ) {
+        if( this.selected_ant_id !== i && this.ant[i].carriedFood !== null ) {
+            this.ant[i].draw(ctx);
+        }
+    }
+    if( this.ant[this.selected_ant_id].carriedFood === null ) {
+        ctx.strokeStyle = "red";
+    }
+    // selected ant in yellow
     if( this.selected_ant_id !== null ) {
         ctx.fillStyle = "yellow";
         this.ant[this.selected_ant_id].draw(ctx);
@@ -84,6 +96,11 @@ Ant.prototype.draw = function(ctx) {
     ctx.lineTo(canvaspoint.x+5*Ants.NEIGHBOURS[this.heading][0],
 	       canvaspoint.y+5*Ants.NEIGHBOURS[this.heading][1]);
     ctx.stroke();
+    if( this.carriedFood ) {
+        ctx.beginPath();
+        ctx.arc(canvaspoint.x,canvaspoint.y,Ants.ANT_SIZE,0,2*Math.PI);
+        ctx.stroke();
+    }
 }
 
 Ant.prototype.step = function() {
