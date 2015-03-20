@@ -176,3 +176,4 @@ It is used for main canvas.
 - Number of steps is displayed.
 - Selected ant's heading is displayed.
 - helper.js's decimal_pad is padding correctly for integral numbers.
+- Fixing heading setting bug.

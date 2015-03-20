@@ -61,7 +61,7 @@ Antropy.prototype.step = function(seed,antnum) {
         document.getElementById("ant_x").innerHTML = selected_ant.x;
         document.getElementById("ant_y").innerHTML = selected_ant.y;
         document.getElementById("ant_heading").innerHTML = selected_ant.heading;
-        document.getElementById("ant_mode").innerHTML = selected_ant.mode;
+        document.getElementById("ant_mode").innerHTML = selected_ant.mode === Ants.MODE_SEARCH ? "SEARCH" : "HOME";
         var foodStr = "";
         var hiveStr = "";
         /*

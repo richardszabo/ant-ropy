@@ -170,7 +170,7 @@ Ant.prototype.maxMove = function() {
         var dir = Math.floor(Math.random() * pos.length / 3);
         this.x = pos[3*dir+1];
 	    this.y = pos[3*dir+2];
-        this.heading = Math.floor((this.heading + pos[dir] + Ants.NO_HEADINGS) % Ants.NO_HEADINGS);
+        this.heading = Math.floor((this.heading + pos[3*dir] + Ants.NO_HEADINGS) % Ants.NO_HEADINGS);
     } else {
 	    // sometimes no pheromone found, so only random walk is possible
 	    this.randomWalkMode();
