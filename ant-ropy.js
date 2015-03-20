@@ -60,6 +60,7 @@ Antropy.prototype.step = function(seed,antnum) {
         var selected_ant = this.ants.ant[this.ants.selected_ant_id];
         document.getElementById("ant_x").innerHTML = selected_ant.x;
         document.getElementById("ant_y").innerHTML = selected_ant.y;
+        document.getElementById("ant_heading").innerHTML = selected_ant.heading;
         document.getElementById("ant_mode").innerHTML = selected_ant.mode;
         var foodStr = "";
         var hiveStr = "";
@@ -78,9 +79,9 @@ Antropy.prototype.step = function(seed,antnum) {
         for( var i = -1; i <= 1; ++i ) {
             for( var j = -1; j <= 1; ++j ) {
                 var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
-                foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
+                foodStr += lpad(decimal_pad(food,2,"0"),"0",6) + ", ";
                 var hive = Math.round(antropy.pheromone.getHiveAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
-                hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
+                hiveStr += lpad(decimal_pad(hive,2,"0"),"0",6) + ", ";
             }
             foodStr += "<br />";
             hiveStr += "<br />";

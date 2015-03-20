@@ -54,11 +54,11 @@ Pheromone.prototype.diffuse = function(matrix) {
 	for(var j = 0; j < matrix.write_matrix[i].length; ++j ) {
 	    var avg = 0;
 	    for( var k = 0; k < 8; ++k ) {
-		avg += matrix.read_matrix[AntSpace.crop2Space(i + Ants.NEIGHBOURS[k][0])]
+		     avg += matrix.read_matrix[AntSpace.crop2Space(i + Ants.NEIGHBOURS[k][0])]
 		                            [AntSpace.crop2Space(j + Ants.NEIGHBOURS[k][1])] || 0;
 	    }
 	    /* value diffusing from neighbours */
-            var d = avg/8 * (1 - this.diffusion_constant);
+        var d = avg/8 * (1 - this.diffusion_constant);
 	    /* cell value losing some parts by diffusion */
 	    var val = this.diffusion_constant * (matrix.read_matrix[i][j] || 0);
 	    /* cell value getting the value of the neigbours */

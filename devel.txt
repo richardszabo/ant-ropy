@@ -174,3 +174,5 @@ It is used for main canvas.
 2015. 03. 20.
 - Food carrying ants have green border.
 - Number of steps is displayed.
+- Selected ant's heading is displayed.
+- helper.js's decimal_pad is padding correctly for integral numbers.
