@@ -177,3 +177,4 @@ It is used for main canvas.
 - Selected ant's heading is displayed.
 - helper.js's decimal_pad is padding correctly for integral numbers.
 - Fixing heading setting bug.
+- Max food number is displayed.

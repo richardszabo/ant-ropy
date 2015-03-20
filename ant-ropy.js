@@ -51,7 +51,7 @@ Antropy.prototype.step = function(seed,antnum) {
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
     document.getElementById("speed").innerHTML = diff;
-    document.getElementById("food").innerHTML = this.hive.getFood();
+    document.getElementById("food").innerHTML = this.hive.getFood() + "/" + this.foods.maxFood; // + (if (this.hive.getFood() === this.foods.foodNumber) { " ALL COLLECTED"});
     document.getElementById("stepnum").innerHTML = ++this.stepNumber;
     document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
     document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;

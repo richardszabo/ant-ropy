@@ -16,6 +16,15 @@ function Foods () {
    }
 }
 
+Foods.prototype = {
+    get maxFood() {
+        return this.foodNumber;
+    },
+    set maxFood(fn) {
+        this.foodNumber = fn;
+    }
+};
+
 Foods.foodSize = 2;
 
 Foods.prototype.getFoodAt = function(pos) {
