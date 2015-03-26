@@ -5,16 +5,24 @@ Foods.prototype.constructor = Foods;
 
 function Foods (antropy) {
     this.antropy = antropy;
+    this.foodSource = Math.max(this.antropy.foodSource,1);
     this.foodNumber = this.antropy.foodNumber;
     this.foodDeviation = 5;
     this.food = [];
-    this.pos2D = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
-
-    for(var i = 0; i < this.foodNumber; ++i ) {
-	var point = get2DGaussian(this.pos2D,this.foodDeviation);
-	this.food[i] = new Food();
-	this.food[i].pos2D = new Point(AntSpace.crop2Space(Math.floor(point.x)),AntSpace.crop2Space(Math.floor(point.y)));
-   }
+    this.pos2D = [];
+    for( var i = 0; i < this.foodSource; ++i ) {
+        this.pos2D[i] = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
+        for(var j = 0; j < this.foodNumber/this.foodSource; ++j ) {
+            var point = get2DGaussian(this.pos2D[i],this.foodDeviation);
+            this.food[i*Math.floor(this.foodNumber/this.foodSource) + j] = new Food();
+            this.food[i*Math.floor(this.foodNumber/this.foodSource) + j].pos2D = new Point(AntSpace.crop2Space(Math.floor(point.x)),AntSpace.crop2Space(Math.floor(point.y)));
+        }
+    }
+    for(var j = 0; j < this.foodNumber - this.foodSource * Math.floor(this.foodNumber/this.foodSource); ++j ) {
+        var point = get2DGaussian(this.pos2D[0],this.foodDeviation);
+        this.food[this.foodSource * Math.floor(this.foodNumber/this.foodSource) + j] = new Food();
+        this.food[this.foodSource * Math.floor(this.foodNumber/this.foodSource) + j].pos2D = new Point(AntSpace.crop2Space(Math.floor(point.x)),AntSpace.crop2Space(Math.floor(point.y)));
+    }
 }
 
 Foods.prototype = {

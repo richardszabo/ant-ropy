@@ -3,6 +3,7 @@
 function Antropy () {
     this.inited = false;
     this.antNumber;
+    this.foodSource;
     this.foodNumber;
     this.stepNumber;
 }
@@ -12,10 +13,11 @@ Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
     this.pheromone_canvasid = p_pheromone_canvasid;
 }
 
-Antropy.prototype.reset = function(seed,antnum,foodnum) {
+Antropy.prototype.reset = function(seed,antnum,foodsource,foodnum) {
     Math.seedrandom(seed);
     this.seed = seed;
     this.antNumber = antnum;
+    this.foodSource = foodsource;
     this.foodNumber = foodnum;
     this.inited = false;
     this.init();
@@ -41,10 +43,10 @@ Antropy.prototype.init = function() {
     this.draw();
 }
 
-Antropy.prototype.step = function(seed,antnum,foodnum) {
+Antropy.prototype.step = function(seed,antnum,foodsource,foodnum) {
     var start = +new Date(); // log start timestamp
     if( !this.inited ) {
-        this.reset(seed,antnum,foodnum);
+        this.reset(seed,antnum,foodsource,foodnum);
     }
     this.pheromone.step();
     this.ants.step();
