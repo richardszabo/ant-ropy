@@ -178,3 +178,6 @@ It is used for main canvas.
 - helper.js's decimal_pad is padding correctly for integral numbers.
 - Fixing heading setting bug.
 - Max food number is displayed.
+
+2015. 03. 26.
+- ALL COLLECTED is displayed when all food is collected.
