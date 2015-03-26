@@ -3,6 +3,7 @@
 function Antropy () {
     this.inited = false;
     this.antNumber;
+    this.foodNumber;
     this.stepNumber;
 }
 
@@ -11,10 +12,11 @@ Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
     this.pheromone_canvasid = p_pheromone_canvasid;
 }
 
-Antropy.prototype.reset = function(seed,antnum) {
+Antropy.prototype.reset = function(seed,antnum,foodnum) {
     Math.seedrandom(seed);
     this.seed = seed;
     this.antNumber = antnum;
+    this.foodNumber = foodnum;
     this.inited = false;
     this.init();
 }
@@ -30,7 +32,7 @@ Antropy.prototype.init = function() {
     this.antSpace = new AntSpace(this.canvas.width,this.canvas.height);
 
     this.hive = new Hive();
-    this.foods = new Foods();
+    this.foods = new Foods(this);
     this.pheromone = new Pheromone(this);
     this.ants = new Ants(this);
 
@@ -39,10 +41,10 @@ Antropy.prototype.init = function() {
     this.draw();
 }
 
-Antropy.prototype.step = function(seed,antnum) {
+Antropy.prototype.step = function(seed,antnum,foodnum) {
     var start = +new Date(); // log start timestamp
     if( !this.inited ) {
-        this.reset(seed,antnum);
+        this.reset(seed,antnum,foodnum);
     }
     this.pheromone.step();
     this.ants.step();
@@ -51,7 +53,7 @@ Antropy.prototype.step = function(seed,antnum) {
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
     document.getElementById("speed").innerHTML = diff;
-    document.getElementById("food").innerHTML = this.hive.getFood() + "/" + this.foods.maxFood + (this.hive.getFood() === this.foods.foodNumber ? " ALL COLLECTED" : "");
+    document.getElementById("food").innerHTML = this.hive.getFood() + "/" + this.foods.maxFood + (this.hive.getFood() === this.foods.maxFood ? " ALL COLLECTED" : "");
     document.getElementById("stepnum").innerHTML = ++this.stepNumber;
     document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
     document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;

@@ -181,3 +181,4 @@ It is used for main canvas.
 
 2015. 03. 26.
 - ALL COLLECTED is displayed when all food is collected.
+- Food number is a parameter.

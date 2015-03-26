@@ -27,19 +27,22 @@ $("#toggle").click(function toggle(){
     } else {
         var seed = document.getElementById("seed").value;
         var antnum = document.getElementById("antnum").value;
-        this.interval=setInterval(function(){ antropy.step(seed,antnum); },10);
+        var foodnum = document.getElementById("foodnum").value;
+        this.interval=setInterval(function(){ antropy.step(seed,antnum,foodnum); },10);
         this.innerHTML='Stop';
     }
 });
-$("#step").click(function reset(){
+$("#step").click(function step(){
     var seed = document.getElementById("seed").value;
     var antnum = document.getElementById("antnum").value;
-    antropy.step(seed,antnum);
+    var foodnum = document.getElementById("foodnum").value;
+    antropy.step(seed,antnum,foodnum);
 });
 $("#reset").click(function reset(){
     var seed = document.getElementById("seed").value;
     var antnum = document.getElementById("antnum").value;
-    antropy.reset(seed,antnum);
+    var foodnum = document.getElementById("foodnum").value;
+    antropy.reset(seed,antnum,foodnum);
 });
 $("#reset").click();
 });
@@ -56,6 +59,8 @@ $("#reset").click();
       <h2>Configuration</h2>
       <label for="seed">Seed:</label>
       <input type="text" id="seed" name="seed" value="1"><br />
+      <label for="foodnum">Food:</label>
+      <input type="text" id="foodnum" name="foodnum" value="100"><br />
       <label for="antnum">Ants:</label>
       <input type="text" id="antnum" name="antnum" value="100">
       <a id="toggle">Start</a>

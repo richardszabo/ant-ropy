@@ -3,8 +3,9 @@
 Foods.prototype = Object.create(Particle.prototype);
 Foods.prototype.constructor = Foods;
 
-function Foods () {
-    this.foodNumber = 100;
+function Foods (antropy) {
+    this.antropy = antropy;
+    this.foodNumber = this.antropy.foodNumber;
     this.foodDeviation = 5;
     this.food = [];
     this.pos2D = new Point(Math.floor(Math.random() * AntSpace.spaceSize),Math.floor(Math.random() * AntSpace.spaceSize));
