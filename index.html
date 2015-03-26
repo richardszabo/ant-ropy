@@ -25,27 +25,15 @@ $("#toggle").click(function toggle(){
         this.interval = null;
         this.innerHTML='Start';
     } else {
-        var seed = document.getElementById("seed").value;
-        var antnum = document.getElementById("antnum").value;
-        var foodsource = document.getElementById("foodsource").value;
-        var foodnum = document.getElementById("foodnum").value;
-        this.interval=setInterval(function(){ antropy.step(seed,antnum,foodsource,foodnum); },10);
+        this.interval=setInterval(function(){ antropy.step(); },10);
         this.innerHTML='Stop';
     }
 });
 $("#step").click(function step(){
-    var seed = document.getElementById("seed").value;
-    var antnum = document.getElementById("antnum").value;
-    var foodsource = document.getElementById("foodsource").value;
-    var foodnum = document.getElementById("foodnum").value;
-    antropy.step(seed,antnum,foodnum);
+    antropy.step();
 });
 $("#reset").click(function reset(){
-    var seed = document.getElementById("seed").value;
-    var antnum = document.getElementById("antnum").value;
-    var foodsource = document.getElementById("foodsource").value;
-    var foodnum = document.getElementById("foodnum").value;
-    antropy.reset(seed,antnum,foodsource,foodnum);
+    antropy.reset();
 });
 $("#reset").click();
 });

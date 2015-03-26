@@ -183,3 +183,4 @@ It is used for main canvas.
 - ALL COLLECTED is displayed when all food is collected.
 - Food number is a parameter.
 - More than one possible food source (parameter).
+- Configuration variables are directly read from index.html instead of cascading down as function parameters.
