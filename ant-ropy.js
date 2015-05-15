@@ -54,18 +54,18 @@ Antropy.prototype.step = function() {
     this.draw();
     var end =  +new Date();  // log end timestamp
     var diff = end - start;
-    document.getElementById("speed").innerHTML = diff;
-    document.getElementById("food").innerHTML = this.hive.getFood() + "/" + this.foods.maxFood + (this.hive.getFood() === this.foods.maxFood ? " ALL COLLECTED" : "");
-    document.getElementById("stepnum").innerHTML = ++this.stepNumber;
-    document.getElementById("ant_food").innerHTML = this.ants.carryingFood;
-    document.getElementById("ant_search").innerHTML = this.ants.antNumber - this.ants.carryingFood;
+    document.getElementById("speed").value = diff;
+    document.getElementById("food").value = this.hive.getFood() + "/" + this.foods.maxFood + (this.hive.getFood() === this.foods.maxFood ? " ALL COLLECTED" : "");
+    document.getElementById("stepnum").value = ++this.stepNumber;
+    document.getElementById("ant_food").value = this.ants.carryingFood;
+    document.getElementById("ant_search").value = this.ants.antNumber - this.ants.carryingFood;
     if( this.ants.selected_ant_id !== null ) {
-        document.getElementById("ant_id").innerHTML = this.ants.selected_ant_id;
+        document.getElementById("ant_id").value = this.ants.selected_ant_id;
         var selected_ant = this.ants.ant[this.ants.selected_ant_id];
-        document.getElementById("ant_x").innerHTML = selected_ant.x;
-        document.getElementById("ant_y").innerHTML = selected_ant.y;
-        document.getElementById("ant_heading").innerHTML = selected_ant.heading;
-        document.getElementById("ant_mode").innerHTML = selected_ant.mode === Ants.MODE_SEARCH ? "SEARCH" : "HOME";
+        document.getElementById("ant_x").value = selected_ant.x;
+        document.getElementById("ant_y").value = selected_ant.y;
+        document.getElementById("ant_heading").value = selected_ant.heading;
+        document.getElementById("ant_mode").value = selected_ant.mode === Ants.MODE_SEARCH ? "SEARCH" : "HOME";
         var foodStr = "";
         var hiveStr = "";
         /*

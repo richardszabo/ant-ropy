@@ -42,12 +42,15 @@ $("#reset").click();
   </head>
   <body>
     <h1>Playground for ants</h1>
+    <div id="page">
+    <a id="toggle">Start</a>
+    <a id="step">Step</a>
     <div id="canvases">
-      <canvas id="canvas" width="400px" height="400px"></canvas>
-      <canvas id="pheromone_canvas" width="400px" height="400px"></canvas>
+      <canvas id="canvas" width="600px" height="600px"></canvas>
+      <canvas id="pheromone_canvas" width="600px" height="600px"></canvas>
     </div>
-    <form class="data_block" id="configuration">
-      <h2>Configuration</h2>
+    <fieldset class="data_block" id="configuration">
+      <legend>Configuration</legend>
       <label for="seed">Seed:</label>
       <input type="text" id="seed" name="seed" value="1"><br />
       <label for="foodsource">Food sources:</label>
@@ -56,26 +59,25 @@ $("#reset").click();
       <input type="text" id="foodnum" name="foodnum" value="100"><br />
       <label for="antnum">Ants:</label>
       <input type="text" id="antnum" name="antnum" value="100">
-      <a id="toggle">Start</a>
-      <a id="step">Step</a>
       <a id="reset">Reset</a>
-    </form>
-    <div class="data_block" id="result">
-      <h2>Results</h2>
-      <div>Step:<span id="stepnum">0</span></div>
-      <div>Ants carrying:<span id="ant_food">0</span></div>
-      <div>Ants searching:<span id="ant_search">0</span></div>
-      <div>Food collected:<span id="food">0</span></div>
-      <div>Step cycle:<span id="speed">0</span></div>
-    </div>
-    <div class="data_block" id="ant">
-      <h2>Selected ant</h2>
-      <div>Id:<span id="ant_id">0</span></div>
-      <div>Pos:<span id="ant_x">0</span> <span id="ant_y">0</span></div>
-      <div>Heading:<span id="ant_heading"></span></div>
-      <div>Mode:<span id="ant_mode"></span></div>
+  </fieldset>
+    <fieldset class="data_block" id="result">
+          <legend>Results</legend>
+          <label for="stepnum">Step:</label><input type="text" id="stepnum" value="0" disabled /><br />
+          <label for="ant_food">Ants carrying:</label><input type="text" id="ant_food" value="0" disabled /><br />
+          <label for="ant_search">Ants searching:</label><input type="text" id="ant_search" value="0" disabled /><br />
+          <label for="food">Food collected:</label><input type="text" id="food" value="0" disabled /><br />
+          <label for="speed">Step cycle:</label><input type="text" id="speed" value="0" disabled /><br />
+    </fieldset>
+  <fieldset class="data_block" id="ant">
+      <legend>Selected ant</legend>
+      <label for="ant_id">Id:</label><input type="text" id="ant_id" value="0" disabled /><br />
+      <label for="ant_x">Pos:</label><input type="text" id="ant_x" value="0" disabled /><input type="text" id="ant_y" value="0" disabled /><br />
+      <label for="ant_heading">Heading:</label><input type="text" id="ant_heading" value="0" disabled /><br />
+      <label for="ant_mode">Mode:</label><input type="text" id="ant_mode" value="0" disabled /><br />
       <div>Food:<div id="food_pheromone">0</div></div>
       <div>Hive:<div id="hive_pheromone">0</div></div>
+  </fieldset>
   </div>
   </body>
 </html>

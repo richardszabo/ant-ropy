@@ -184,3 +184,6 @@ It is used for main canvas.
 - Food number is a parameter.
 - More than one possible food source (parameter).
 - Configuration variables are directly read from index.html instead of cascading down as function parameters.
+
+2015. 05. 15.
+- Design changes: fieldset for border label, disabled input fields for data, bigger canvas, canvas is on the left.

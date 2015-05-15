@@ -42,13 +42,13 @@ Ants.prototype.draw = function(ctx) {
             this.ant[i].draw(ctx);
         }
     }
-    if( this.ant[this.selected_ant_id].carriedFood === null ) {
-        ctx.strokeStyle = "red";
-    }
     // selected ant in yellow
     if( this.selected_ant_id !== null ) {
         ctx.fillStyle = "yellow";
         this.ant[this.selected_ant_id].draw(ctx);
+        if( this.ant[this.selected_ant_id].carriedFood === null ) {
+            ctx.strokeStyle = "red";
+        }
     }
 }
 

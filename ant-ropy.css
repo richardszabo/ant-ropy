@@ -1,8 +1,16 @@
+#page {
+    width: 1000px;
+    margin-left: auto ;
+    margin-right: auto ;
+}
 #canvases {
-    margin-left: 30em;
+    margin-left: 1em;
+    margin-top: 1em;
 }
 canvas {
     position: absolute;
+    width: 600px;
+    height: 600px;
 }
 #canvas {
     z-index: 2;
@@ -14,7 +22,6 @@ h1 {
     text-align: center;
 }
 a {
-    display: block;
     background-color: grey;
     color: white;
     border-color: blue;
@@ -24,32 +31,33 @@ a {
     padding: 0.25em 1.75em 0.25em 1.75em;
     margin: 0.5em;
 }
-
+a#reset {
+    display: block;
+}
+label {
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+}
 a:active {
     background-color: black;
 }
-form#configuration input {
+fieldset input {
     width: 5em;
 }
 p {
     margin-top: 2em;
 }
-.data_block {
-    float: left;
+fieldset {
     padding: 1em;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
     width: 22.5em;
-    margin: 1em;
-    height: 20em;
+    margin-top: 1em;
+    float: left;
+    margin-left: 40em;
 }
-#result {
-    margin-left: 31em;
+fieldset#configuration {
+    margin-top: 0;
 }
-.data_block span {
+fieldset span {
     margin-left: 10px;
-}
-.data_block#ant {
-    width: 35em;
 }
