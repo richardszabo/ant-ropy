@@ -1,3 +1,7 @@
+body {
+        background-color: #44aa66;
+/*    background-image: url("green.jpg");*/
+}
 #page {
     width: 1000px;
     margin-left: auto ;
@@ -20,6 +24,7 @@ canvas {
 }
 h1 {
     text-align: center;
+    color: #333333;
 }
 a {
     background-color: grey;
@@ -49,12 +54,18 @@ p {
     margin-top: 2em;
 }
 fieldset {
+    background-color: #dddddd;
     padding: 1em;
     width: 22.5em;
     margin-top: 1em;
     float: left;
     margin-left: 40em;
 }
+fieldset legend {
+    /*border: 1px solid black;
+    padding-top: 1em;*/
+}
+
 fieldset#configuration {
     margin-top: 0;
 }
