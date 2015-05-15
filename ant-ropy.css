@@ -1,6 +1,6 @@
 body {
         background-color: #44aa66;
-/*    background-image: url("green.jpg");*/
+    background-image: url("green_nature.jpg");
 }
 #page {
     width: 1000px;
@@ -62,8 +62,11 @@ fieldset {
     margin-left: 40em;
 }
 fieldset legend {
-    /*border: 1px solid black;
-    padding-top: 1em;*/
+    position: relative;
+    top: -10px;
+    background-color: #dddddd;
+    border: 1px solid grey;
+    /*padding-top: 1em;*/
 }
 
 fieldset#configuration {
@@ -71,4 +74,8 @@ fieldset#configuration {
 }
 fieldset span {
     margin-left: 10px;
+}
+
+img.ant {
+    float: right;
 }
