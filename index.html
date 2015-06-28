@@ -23,7 +23,7 @@ $("#toggle").click(function toggle(){
     if (this.interval){
         clearInterval(this.interval);
         this.interval = null;
-        this.innerHTML='Start';
+        this.innerHTML='Run';
     } else {
         this.interval=setInterval(function(){ antropy.step(); },10);
         this.innerHTML='Stop';
@@ -37,14 +37,14 @@ $("#reset").click(function reset(){
 });
 $("#reset").click();
 });
-
 </script>
   </head>
   <body>
     <h1>Playground for ants</h1>
     <div id="page">
-    <a id="toggle">Start</a>
+    <a id="toggle">Run</a>
     <a id="step">Step</a>
+    <a id="help" href="help.html" target="_blank">What is this?</a>
     <div id="canvases">
       <canvas id="canvas" width="600px" height="600px"></canvas>
       <canvas id="pheromone_canvas" width="600px" height="600px"></canvas>
@@ -78,8 +78,8 @@ $("#reset").click();
       <label for="ant_heading">Heading:</label><input type="text" id="ant_heading" value="0" disabled /><br />
       <label for="ant_mode">Mode:</label><input type="text" id="ant_mode" value="0" disabled /><br />
       <img class="ant" src="ant.gif" alt="ant" />
-      <div>Food:<div id="food_pheromone">0</div></div>
-      <div>Hive:<div id="hive_pheromone">0</div></div>
+      <!--<div>Food:<div id="food_pheromone">0</div></div>
+      <div>Hive:<div id="hive_pheromone">0</div></div>-->
   </fieldset>
   </div>
   </body>

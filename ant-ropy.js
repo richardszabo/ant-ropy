@@ -80,7 +80,7 @@ Antropy.prototype.step = function() {
             foodStr += "<br />";
             hiveStr += "<br />";
         }*/
-        for( var i = -1; i <= 1; ++i ) {
+        /*for( var i = -1; i <= 1; ++i ) {
             for( var j = -1; j <= 1; ++j ) {
                 var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
                 foodStr += lpad(decimal_pad(food,2,"0"),"0",6) + ", ";
@@ -91,7 +91,7 @@ Antropy.prototype.step = function() {
             hiveStr += "<br />";
         }
         document.getElementById("food_pheromone").innerHTML = foodStr;
-        document.getElementById("hive_pheromone").innerHTML = hiveStr;
+        document.getElementById("hive_pheromone").innerHTML = hiveStr;*/
     }
 }
 
@@ -124,5 +124,5 @@ Antropy.prototype.showCellData = function(event) {
 	    hiveStr += "\n";
     }
     antropy.ants.selectAnt(point);
-    alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
+    //alert("x: " + point.x + "\ny: " + point.y + "\nfood:\n" + foodStr + "\nhive:\n" + hiveStr);
 }

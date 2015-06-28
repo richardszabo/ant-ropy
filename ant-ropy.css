@@ -36,9 +36,23 @@ a {
     padding: 0.25em 1.75em 0.25em 1.75em;
     margin: 0.5em;
 }
+a:hover {
+    color: blue;
+}
 a#reset {
     display: block;
 }
+a#help {
+    border-style: none;
+    margin-left: 25px;
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+}
+a#help:hover {
+    color: blue;
+}
+
 label {
     float: left;
     width: 10em;

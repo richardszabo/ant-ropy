@@ -187,3 +187,7 @@ It is used for main canvas.
 
 2015. 05. 15.
 - Design changes: fieldset for border label, disabled input fields for data, bigger canvas, canvas is on the left.
+
+2015. 06. 28.
+- What is this? link with help.html page.
+- Pheromone debug data and selected ant alert window are commented out.  
