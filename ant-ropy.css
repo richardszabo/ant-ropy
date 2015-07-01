@@ -42,17 +42,18 @@ a:hover {
 a#reset {
     display: block;
 }
-a#help {
+a#help, a#paper {
     border-style: none;
-    margin-left: 25px;
     background-color: transparent;
     color: black;
     text-decoration: none;
 }
-a#help:hover {
+a#help:hover, a#paper:hover {
     color: blue;
 }
-
+a#help {
+    margin-left: 25px;
+}
 label {
     float: left;
     width: 10em;

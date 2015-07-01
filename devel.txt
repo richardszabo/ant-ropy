@@ -190,4 +190,8 @@ It is used for main canvas.
 
 2015. 06. 28.
 - What is this? link with help.html page.
-- Pheromone debug data and selected ant alert window are commented out.  
+- Pheromone debug data and selected ant alert window are commented out.
+
+2015. 07. 01.
+- Link to paper.
+- Deploy.
