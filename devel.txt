@@ -195,3 +195,6 @@ It is used for main canvas.
 2015. 07. 01.
 - Link to paper.
 - Deploy.
+
+2015. 07. 07.
+- Web statistics.

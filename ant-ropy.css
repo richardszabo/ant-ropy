@@ -91,6 +91,21 @@ fieldset span {
     margin-left: 10px;
 }
 
+fieldset#ant {
+    margin-bottom: 2em;
+}
+
 img.ant {
+    float: right;
+}
+
+#footer {
+     margin-left: auto ;
+    margin-right: auto ;
+  width: 1000px;
+  bottom: 0px;
+}
+
+.right {
     float: right;
 }
