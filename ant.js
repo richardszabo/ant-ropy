@@ -79,8 +79,8 @@ Ant.prototype.constructor = Ant;
 function Ant(antropy,id) {
     this.id = id;
     this.antropy = antropy;
-    this.x = Math.floor(Math.random() * AntSpace.spaceSize);
-    this.y = Math.floor(Math.random() * AntSpace.spaceSize);
+    this.x = AntSpace.center().x; //Math.floor(Math.random() * AntSpace.spaceSize);
+    this.y = AntSpace.center().y; //Math.floor(Math.random() * AntSpace.spaceSize);
     this.heading = Math.floor(Math.random() * Ants.NEIGHBOURS.length);
     this.pheromoneHive = 0;
     this.pheromoneFood = 0;
