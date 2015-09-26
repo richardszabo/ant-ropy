@@ -198,3 +198,7 @@ It is used for main canvas.
 
 2015. 07. 07.
 - Web statistics.
+
+2015. 09. 26.
+- Calculating entropy.
+- Showing ant entropy in a new textfield.

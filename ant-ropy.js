@@ -59,6 +59,7 @@ Antropy.prototype.step = function() {
     document.getElementById("stepnum").value = ++this.stepNumber;
     document.getElementById("ant_food").value = this.ants.carryingFood;
     document.getElementById("ant_search").value = this.ants.antNumber - this.ants.carryingFood;
+    document.getElementById("entropy").value = Math.round(getEntropy(this.ants.ant)*10000)/10000;
     if( this.ants.selected_ant_id !== null ) {
         document.getElementById("ant_id").value = this.ants.selected_ant_id;
         var selected_ant = this.ants.ant[this.ants.selected_ant_id];
