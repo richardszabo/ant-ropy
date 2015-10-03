@@ -206,3 +206,4 @@ It is used for main canvas.
 
 2015. 10. 03.
 - Showing food entropy in a new textfield.
+- Design cleanup.
