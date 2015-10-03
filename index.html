@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="ant-ropy.css">
+    <link rel="stylesheet" type="text/css" href="tab.css">
     <title>Ant-ropy</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.3.10/seedrandom.min.js" type="text/javascript"></script>
@@ -50,40 +51,59 @@ $("#reset").click();
       <canvas id="canvas" width="600px" height="600px"></canvas>
       <canvas id="pheromone_canvas" width="600px" height="600px"></canvas>
     </div>
-    <fieldset class="data_block" id="configuration">
-      <legend>Configuration</legend>
-      <label for="seed">Seed:</label>
-      <input type="text" id="seed" name="seed" value="1"><br />
-      <label for="foodsource">Food sources:</label>
-      <input type="text" id="foodsource" name="foodsource" value="1"><br />
-      <label for="foodnum">Food:</label>
-      <input type="text" id="foodnum" name="foodnum" value="100"><br />
-      <label for="antnum">Ants:</label>
-      <input type="text" id="antnum" name="antnum" value="100">
-      <img class="ant" src="ant.png" alt="ant" />
-      <a id="reset">Reset</a>
-  </fieldset>
-    <fieldset class="data_block" id="result">
-          <legend>Results</legend>
-          <label for="stepnum">Step:</label><input type="text" id="stepnum" value="0" disabled /><br />
-          <label for="ant_food">Ants carrying:</label><input type="text" id="ant_food" value="0" disabled /><br />
-          <label for="ant_search">Ants searching:</label><input type="text" id="ant_search" value="0" disabled /><br />
-          <label for="food">Food collected:</label><input type="text" id="food" value="0" disabled /><br />
-          <img class="ant" src="ant2.png" alt="ant" />
-          <label for="food_entropy">Food entropy:</label><input type="text" id="food_entropy" value="0" disabled /><br />
-          <label for="ant_entropy">Ant entropy:</label><input type="text" id="ant_entropy" value="0" disabled /><br />
-          <label for="speed">Step cycle:</label><input type="text" id="speed" value="0" disabled /><br />
-      </fieldset>
-  <fieldset class="data_block" id="ant">
-      <legend>Selected ant</legend>
-      <label for="ant_id">Id:</label><input type="text" id="ant_id" value="0" disabled /><br />
-      <label for="ant_x">Position (x/y):</label><input type="text" id="ant_x" value="0" disabled /><input type="text" id="ant_y" value="0" disabled /><br />
-      <label for="ant_heading">Heading:</label><input type="text" id="ant_heading" value="0" disabled /><br />
-      <img class="ant" src="ant.gif" alt="ant" />
-      <label for="ant_mode">Mode:</label><input type="text" id="ant_mode" value="0" disabled /><br />
-      <!--<div>Food:<div id="food_pheromone">0</div></div>
-      <div>Hive:<div id="hive_pheromone">0</div></div>-->
-  </fieldset>
+    <ul class="tabs">
+        <li>
+            <input type="radio" name="tabs" id="tab1" checked />
+            <label class="tabs-label" for="tab1">Configuration</label>
+            <div id="tab-content1" class="tab-content">
+                <p>
+                    <label for="seed">Seed:</label>
+                    <input type="text" id="seed" name="seed" value="1"><br />
+                    <label for="foodsource">Food sources:</label>
+                    <input type="text" id="foodsource" name="foodsource" value="1"><br />
+                    <label for="foodnum">Food:</label>
+                    <input type="text" id="foodnum" name="foodnum" value="100"><br />
+                    <label for="antnum">Ants:</label>
+                    <input type="text" id="antnum" name="antnum" value="100">
+                    <img class="ant" src="ant.png" alt="ant" />
+                    <a id="reset">Reset</a>
+                </p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" name="tabs" id="tab2" />
+            <label class="tabs-label" for="tab2">Results</label>
+            <div id="tab-content2" class="tab-content">
+                <p>
+                    <label for="stepnum">Step:</label><input type="text" id="stepnum" value="0" disabled /><br />
+                    <label for="ant_food">Ants carrying:</label><input type="text" id="ant_food" value="0" disabled /><br />
+                    <label for="ant_search">Ants searching:</label><input type="text" id="ant_search" value="0" disabled /><br />
+                    <label for="food">Food collected:</label><input type="text" id="food" value="0" disabled /><br />
+                    <label for="food_entropy">Food entropy:</label><input type="text" id="food_entropy" value="0" disabled /><br />
+                    <label for="ant_entropy">Ant entropy:</label><input type="text" id="ant_entropy" value="0" disabled /><br />
+                    <label for="speed">Step cycle:</label><input type="text" id="speed" value="0" disabled /><br />
+                    <img class="ant" src="ant2.png" alt="ant" />
+                </p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" name="tabs" id="tab3" />
+            <label class="tabs-label" for="tab3">Selected ant</label>
+            <div id="tab-content3" class="tab-content">
+                <p>
+                    <label for="ant_id">Id:</label><input type="text" id="ant_id" value="0" disabled /><br />
+                    <label for="ant_x">Position (x/y):</label><input type="text" id="ant_x" value="0" disabled /><input type="text" id="ant_y" value="0" disabled /><br />
+                    <label for="ant_heading">Heading:</label><input type="text" id="ant_heading" value="0" disabled /><br />
+                    <img class="ant" src="ant.gif" alt="ant" />
+                    <label for="ant_mode">Mode:</label><input type="text" id="ant_mode" value="0" disabled /><br />
+                    <!--<div>Food:<div id="food_pheromone">0</div></div>
+                    <div>Hive:<div id="hive_pheromone">0</div></div>-->
+                </p>
+            </div>
+        </li>
+    </ul>
+
+    <p class="filler"/>
 
     <!-- ##### Footer ##### -->
     <div id="footer">
@@ -91,7 +111,7 @@ $("#reset").click();
       <p>Copyright &copy; 2015, Richárd Szabó
 
       <span class="right">
-        Utolsó módosítás: 2015. szeptember 26.
+        Utolsó módosítás: 2015. október 03.
       </span>
       </p>
 
