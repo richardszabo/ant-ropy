@@ -50,7 +50,7 @@ h1 span {
 }
 .tabs input {
     /* added */
-    width: 5em;
+    width: 10em;
 }
 
 /* renamed from .tabs label */

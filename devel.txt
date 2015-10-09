@@ -211,3 +211,5 @@ It is used for main canvas.
 
 2015. 10. 09.
 - Adding entropy graph with Graph.js and GraphHandler.js.
+- Fixing ALL COLLECTED appearance.
+- Stopping run when finished. 

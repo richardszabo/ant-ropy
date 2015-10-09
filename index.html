@@ -22,17 +22,12 @@
 <script>
 var antropy = new Antropy();
 $( document ).ready(function() {
+antropy.setWindow(window);
+antropy.setButton(document.getElementById("toggle"));
 antropy.setCanvases("canvas","pheromone_canvas");
 antropy.setEntropyCanvases("entropy_canvas","plot_canvas");
 $("#toggle").click(function toggle(){
-    if (this.interval){
-        clearInterval(this.interval);
-        this.interval = null;
-        this.innerHTML='Run';
-    } else {
-        this.interval=setInterval(function(){ antropy.step(); },10);
-        this.innerHTML='Stop';
-    }
+    antropy.toggle();
 });
 $("#step").click(function step(){
     antropy.step();
