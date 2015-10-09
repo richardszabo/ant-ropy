@@ -13,6 +13,11 @@ Antropy.prototype.setCanvases = function(p_canvasid, p_pheromone_canvasid) {
     this.pheromone_canvasid = p_pheromone_canvasid;
 }
 
+Antropy.prototype.setEntropyCanvases = function(p_entropy_canvasid, p_plot_canvasid) {
+    this.entropy_canvasid = p_entropy_canvasid;
+    this.plot_canvasid = p_plot_canvasid;
+}
+
 Antropy.prototype.reset = function() {
     this.seed = document.getElementById("seed").value;
     this.antNumber = document.getElementById("antnum").value;
@@ -31,12 +36,18 @@ Antropy.prototype.init = function() {
 
     this.pheromone_canvas = new CanvasData(this.pheromone_canvasid);
 
+    this.entropy_canvas = new CanvasData(this.entropy_canvasid);
+    this.plot_canvas = new CanvasData(this.plot_canvasid);
+
     this.antSpace = new AntSpace(this.canvas.width,this.canvas.height);
 
     this.hive = new Hive();
     this.foods = new Foods(this);
     this.pheromone = new Pheromone(this);
     this.ants = new Ants(this);
+    this.antEntropy = 0;
+    this.foodEntropy = 0;
+    this.graphHandler = new GraphHandler(this);
 
     this.stepNumber = 0;
     this.inited = true;
@@ -59,8 +70,10 @@ Antropy.prototype.step = function() {
     document.getElementById("stepnum").value = ++this.stepNumber;
     document.getElementById("ant_food").value = this.ants.carryingFood;
     document.getElementById("ant_search").value = this.ants.antNumber - this.ants.carryingFood;
-    document.getElementById("ant_entropy").value = Math.round(getEntropy(this.ants.ant)*10000)/10000;
-    document.getElementById("food_entropy").value = Math.round(getEntropy(this.foods.food)*10000)/10000;
+    this.antEntropy = Math.round(getEntropy(this.ants.ant)*10000)/10000;
+    document.getElementById("ant_entropy").value = this.antEntropy;
+    this.foodEntropy = Math.round(getEntropy(this.foods.food)*10000)/10000;
+    document.getElementById("food_entropy").value = this.foodEntropy;
     if( this.ants.selected_ant_id !== null ) {
         document.getElementById("ant_id").value = this.ants.selected_ant_id;
         var selected_ant = this.ants.ant[this.ants.selected_ant_id];
@@ -70,30 +83,6 @@ Antropy.prototype.step = function() {
         document.getElementById("ant_mode").value = selected_ant.mode === Ants.MODE_SEARCH ? "SEARCH" : "HOME";
         var foodStr = "";
         var hiveStr = "";
-        /*
-        // complete debug matrix
-        for( var i = 0; i < AntSpace.spaceSize; ++i ) {
-            for( var j = 0; j < AntSpace.spaceSize; ++j ) {
-                var food = Math.round(antropy.pheromone.getFoodAt(j,i)*100)/100;
-                foodStr += lpad(decimal_pad(food,2,"0")," ",5) + ", ";
-                var hive = Math.round(antropy.pheromone.getHiveAt(j,i)*100)/100;
-                hiveStr += lpad(decimal_pad(hive,2,"0")," ",5) + ", ";
-            }
-            foodStr += "<br />";
-            hiveStr += "<br />";
-        }*/
-        /*for( var i = -1; i <= 1; ++i ) {
-            for( var j = -1; j <= 1; ++j ) {
-                var food = Math.round(antropy.pheromone.getFoodAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
-                foodStr += lpad(decimal_pad(food,2,"0"),"0",6) + ", ";
-                var hive = Math.round(antropy.pheromone.getHiveAt(selected_ant.x+j,selected_ant.y+i)*100)/100;
-                hiveStr += lpad(decimal_pad(hive,2,"0"),"0",6) + ", ";
-            }
-            foodStr += "<br />";
-            hiveStr += "<br />";
-        }
-        document.getElementById("food_pheromone").innerHTML = foodStr;
-        document.getElementById("hive_pheromone").innerHTML = hiveStr;*/
     }
 }
 
@@ -108,6 +97,8 @@ Antropy.prototype.draw = function() {
 
     this.canvas.paint();
     this.pheromone_canvas.paint();
+
+    this.graphHandler.draw(this.antEntropy,this.foodEntropy);
 }
 
 Antropy.prototype.showCellData = function(event) {

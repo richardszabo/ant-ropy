@@ -17,10 +17,13 @@
 <script src="canvasdata.js" type="text/javascript"></script>
 <script src="helper.js" type="text/javascript"></script>
 <script src="entropy.js" type="text/javascript"></script>
+<script src="Graph.js" type="text/javascript"></script>
+<script src="GraphHandler.js" type="text/javascript"></script>
 <script>
 var antropy = new Antropy();
 $( document ).ready(function() {
 antropy.setCanvases("canvas","pheromone_canvas");
+antropy.setEntropyCanvases("entropy_canvas","plot_canvas");
 $("#toggle").click(function toggle(){
     if (this.interval){
         clearInterval(this.interval);
@@ -47,7 +50,7 @@ $("#reset").click();
     <a id="toggle">Run</a>
     <a id="step">Step</a>
     <a id="help" href="help.html" target="_blank">What is this?</a>
-    <div id="canvases">
+    <div id="ant_canvases">
       <canvas id="canvas" width="600px" height="600px"></canvas>
       <canvas id="pheromone_canvas" width="600px" height="600px"></canvas>
     </div>
@@ -101,6 +104,18 @@ $("#reset").click();
                 </p>
             </div>
         </li>
+        <li>
+            <input type="radio" name="tabs" id="tab4" />
+            <label class="tabs-label" for="tab4">Entropy</label>
+            <div id="tab-content4" class="tab-content">
+                <p>
+                    <div id="entropy_canvases">
+                        <canvas id="entropy_canvas" width="575px" height="500px"></canvas>
+                        <canvas id="plot_canvas" width="575px" height="500px"></canvas>
+                    </div>
+                </p>
+            </div>
+        </li>
     </ul>
 
     <p class="filler"/>
@@ -118,9 +133,9 @@ $("#reset").click();
 <!-- BEGIN WebSTAT Activation Code -->
 <script type="text/javascript" language="JavaScript" src="http://hits.webstat.com/cgi-bin/wsv2.cgi?39877"></script>
 <noscript>
-<a href="http://www.webstat.com">
+    <!--<a href="http://www.webstat.com">
 <img src="http://hits.webstat.com/scripts/wsb.php?ac=39877" border="0" alt="WebSTAT - Free Web Statistics" /></a>
-</noscript>
+</noscript>-->
 <!-- END WebSTAT Activation Code -->
     </div>
     </div>

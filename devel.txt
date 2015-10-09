@@ -207,4 +207,7 @@ It is used for main canvas.
 2015. 10. 03.
 - Showing food entropy in a new textfield.
 - Design cleanup.
-- Adding tabular configuration panels from http://codepen.io/wallaceerick/share/zip/ojtal/ (original list: http://designscrazed.org/html5-css3-accordion-tabs/). 
+- Adding tabular configuration panels from http://codepen.io/wallaceerick/share/zip/ojtal/ (original list: http://designscrazed.org/html5-css3-accordion-tabs/).
+
+2015. 10. 09.
+- Adding entropy graph with Graph.js and GraphHandler.js.

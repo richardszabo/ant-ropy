@@ -7,19 +7,24 @@ body {
     margin-left: auto ;
     margin-right: auto ;
 }
-#canvases {
+#ant_canvases {
     margin-left: 1em;
     margin-top: 1em;
 }
-canvas {
+#ant_canvases canvas {
     position: absolute;
     width: 600px;
     height: 600px;
 }
-#canvas {
+#entropy_canvases canvas {
+    position: absolute;
+    width: 575px;
+    height: 500px;
+}
+#canvas, #plot_canvas {
     z-index: 2;
 }
-#pheromone_canvas {
+#pheromone_canvas, #entropy_canvas {
     z-index: 1;
 }
 h1 {
