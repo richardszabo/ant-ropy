@@ -49,17 +49,17 @@ $("#reset").click();
   <body>
     <h1>Playground for ants</h1>
     <div class="container">
-        <div class="row row-content">
+        <div class="row row-content button-row">
             <div class="col-xs-12 col-sm-6">
-                <a id="toggle">Run</a>
-                <a id="step">Step</a>
+                <a class="btn btn-success" id="toggle">Run</a>
+                <a class="btn btn-success" id="step">Step</a>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <a id="help" href="help.html" target="_blank">What is this?</a>
             </div>
         </div>
         <div class="row row-content">
-            <div class="col-xs-12 col-sm-7">
+            <div class="col-xs-12 col-sm-7 first-column">
                 <div id="ant_canvases">
                     <canvas id="canvas" width="600px" height="600px"></canvas>
                     <canvas id="pheromone_canvas" width="600px" height="600px"></canvas>
@@ -119,8 +119,14 @@ $("#reset").click();
                                     <input type="text" id="antnum" name="antnum" value="100">
                                 </div>
                             </div>
-                            <img class="ant" src="ant.png" alt="ant" />
-                            <a id="reset">Reset</a>
+                            <div class="row row-content">
+                                <div class="col-xs-12 col-sm-4">
+                                    <img class="ant" src="ant.png" alt="ant" />
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <a class="btn btn-default" id="reset">Reset</a>
+                                </div>
+                            </div>
                         </p>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="results">

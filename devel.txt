@@ -217,3 +217,4 @@ It is used for main canvas.
 2015. 11. 12.
 - Bower: bower init, bower install bootstrap -S.
 - Using bootstrap classes for page formatting, tab formatting.
+- Sizing: not really responsive.
