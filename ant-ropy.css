@@ -8,10 +8,10 @@ body {
 .button-row {
     padding-bottom: 10px;
 }
-.first-column {
-    height: 600px;
-    width: 600px;
-}
+/*.first-row {
+    min-height: 400px;
+    min-width: 400px;
+}*/
 #ant_canvases canvas {
     position: absolute;
     width: 600px;
@@ -46,7 +46,7 @@ a {
     background-color:#dddddd;
     padding:5px;
     min-height: 500px;
-    min-width: 500px;
+    //min-width: 500px;
 }
 h1 {
     text-align: center;
