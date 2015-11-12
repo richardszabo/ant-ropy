@@ -1,15 +1,6 @@
 body {
-        background-color: #44aa66;
+    background-color: #44aa66;
     background-image: url("green_nature.jpg");
-}
-#page {
-    width: 1280px;
-    margin-left: auto ;
-    margin-right: auto ;
-}
-#ant_canvases {
-    margin-left: 1em;
-    margin-top: 1em;
 }
 #ant_canvases canvas {
     position: absolute;
@@ -26,6 +17,22 @@ body {
 }
 #pheromone_canvas, #entropy_canvas {
     z-index: 1;
+}
+.nav-tabs{
+    background-color: #888888;
+}
+.tab-content{
+    background-color:#dddddd;
+    padding:5px
+}
+/*#page {
+    width: 1280px;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+#ant_canvases {
+    margin-left: 1em;
+    margin-top: 1em;
 }
 h1 {
     text-align: center;
@@ -82,4 +89,4 @@ clear: both;
 
 .right {
     float: right;
-}
+}*/

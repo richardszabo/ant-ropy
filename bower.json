@@ -1,0 +1,21 @@
+{
+  "name": "ant-ropy",
+  "main": "ant-ropy.js",
+  "authors": [
+    "Rics <richard_szabo@jataka.hu>"
+  ],
+  "description": "Ant simulation of foraging behavior",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
