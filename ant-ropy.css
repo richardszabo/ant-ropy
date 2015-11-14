@@ -8,22 +8,25 @@ body {
 .button-row {
     padding-bottom: 10px;
 }
-/*.first-row {
-    min-height: 400px;
-    min-width: 400px;
-}*/
+#ant_canvases, #entropy_canvases {
+    position: relative;
+}
 #ant_canvases canvas {
-    position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 100%;
+    height: auto;
 }
+#canvas {
+    position: absolute;
+}
+
 #entropy_canvases canvas {
-    position: absolute;
-//    width: 100%;
-//    height: auto;
-    width: 475px;
-    height: 475px;
+    width: 100%;
+    height: auto;
 }
+#plot_canvas {
+    position: absolute;
+}
+
 #canvas, #plot_canvas {
     z-index: 2;
 }
@@ -45,7 +48,7 @@ a {
 .tab-content{
     background-color:#dddddd;
     padding:5px;
-    min-height: 500px;
+    //min-height: 500px;
     //min-width: 500px;
 }
 h1 {

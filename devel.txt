@@ -218,3 +218,11 @@ It is used for main canvas.
 - Bower: bower init, bower install bootstrap -S.
 - Using bootstrap classes for page formatting, tab formatting.
 - Sizing: not really responsive.
+
+2015. 11. 14.
+- Responsive canvas size:
+    - outer canvas div is relative (to be not static),
+    - first canvas takes its place in the DOM normally with width: 100%, height: auto,
+      this way the outer div is not empty as would be with an absolute first canvas and hence
+      not overwritten with window resize
+    - second canvas inside is absolute (to the non-static outer) to be placed on top of the first canvas.
