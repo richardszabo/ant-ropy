@@ -226,3 +226,7 @@ It is used for main canvas.
       this way the outer div is not empty as would be with an absolute first canvas and hence
       not overwritten with window resize
     - second canvas inside is absolute (to the non-static outer) to be placed on top of the first canvas.
+
+2015. 11. 19.
+- Last modified is taken from javascript.
+- deploy

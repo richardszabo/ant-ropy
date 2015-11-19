@@ -43,6 +43,7 @@ $("#reset").click(function reset(){
     antropy.reset();
 });
 $("#reset").click();
+$("#last_modified").text(document.lastModified);
 });
 </script>
   </head>
@@ -249,7 +250,7 @@ $("#reset").click();
                     <p>Copyright &copy; 2015, Richárd Szabó</p>
                 </div>
                 <div class="col-xs-6">
-                    Utolsó módosítás: 2015. október 09.
+                    Last modification: <span id="last_modified">abc</span>
                 </div>
             </div>
         </div>
