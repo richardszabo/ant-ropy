@@ -103,10 +103,12 @@ Antropy.prototype.step = function() {
 Antropy.prototype.toggle = function() {
     if (this.run){
         this.run = this.window.clearInterval(this.run);
-        this.button.innerHTML = 'Run';
+        this.button.innerHTML = this.button.innerHTML.replace('Stop','Run');
+        this.button.innerHTML = this.button.innerHTML.replace('glyphicon-stop','glyphicon-play');
     } else {
         this.run = this.window.setInterval(function(){ antropy.step(); },10);
-        this.button.innerHTML = 'Stop';
+        this.button.innerHTML = this.button.innerHTML.replace('Run','Stop');
+        this.button.innerHTML = this.button.innerHTML.replace('glyphicon-play','glyphicon-stop');
     }
 }
 

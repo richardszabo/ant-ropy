@@ -233,3 +233,4 @@ It is used for main canvas.
 
 2015. 11. 24.
 - Webstat link is corrected.
+- Adding glyphicons.
