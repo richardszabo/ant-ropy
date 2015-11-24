@@ -230,3 +230,6 @@ It is used for main canvas.
 2015. 11. 19.
 - Last modified is taken from javascript.
 - deploy
+
+2015. 11. 24.
+- Webstat link is corrected.
