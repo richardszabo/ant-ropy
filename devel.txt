@@ -235,3 +235,23 @@ It is used for main canvas.
 - Webstat link is corrected.
 - Adding glyphicons.
 - Webpage image updated.
+
+2016. 10. 09.
+- Starting using gulp based on this: https://css-tricks.com/gulp-for-beginners/
+sudo npm install gulp -g (Doing it on Windows 7 so sudo is not needed.)
+
+<ant-ropy-home>> npm init
+
+<ant-ropy-home>> npm install gulp --save-dev
+
+<ant-ropy-home>> mkdir dist
+
+<ant-ropy-home>> >gulpfile.js
+
+<ant-ropy-home>> npm install gulp-useref --save-dev
+
+<ant-ropy-home>> npm install gulp-uglify --save-dev
+
+<ant-ropy-home>> npm install gulp-if --save-dev
+
+<ant-ropy-home>> npm install gulp-cssnano --save-dev

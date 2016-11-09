@@ -1,0 +1,31 @@
+{
+  "name": "ant-ropy",
+  "version": "1.0.0",
+  "description": "Foraging ant simulation with entropy calculation.",
+  "main": "ant-ropy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardszabo/ant-ropy.git"
+  },
+  "keywords": [
+    "entropy",
+    "simulation",
+    "ant"
+  ],
+  "author": "Richárd Szabó",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richardszabo/ant-ropy/issues"
+  },
+  "homepage": "https://github.com/richardszabo/ant-ropy#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.2"
+  }
+}
