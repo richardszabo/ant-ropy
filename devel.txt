@@ -271,3 +271,4 @@ sudo npm install gulp -g (Doing it on Windows 7 so sudo is not needed.)
 
 - clean task.
 - image minification (copy would have been enough)
+- pdf copy.

@@ -27,6 +27,11 @@ gulp.task('copy_bower', function(){
     .pipe(gulp.dest('dist/bower_components'))
 });
 
+gulp.task('copy_pdf', function(){
+  return gulp.src('*.pdf')
+    .pipe(gulp.dest('dist'))
+});
+
 gulp.task('images', function(){
 // a simple copy would be enough the compression does not make images smaller as they are already optimized
     return gulp.src('*.+(png|jpg|jpeg|gif|svg)')
@@ -40,7 +45,7 @@ gulp.task('images', function(){
 
 gulp.task('build', function () {
   runSequence('clean:dist', 
-	      ['copy_bower','images','useref']
+	      ['copy_bower','copy_pdf','images','useref']
   )
 })
 
