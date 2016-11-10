@@ -272,3 +272,5 @@ sudo npm install gulp -g (Doing it on Windows 7 so sudo is not needed.)
 - clean task.
 - image minification (copy would have been enough)
 - pdf copy.
+- Some javascript did not work on the page: After all js files were copied to one file so "use strict" was applied
+to Graph.js as well and it contains two undefined variables. I have fixed the undefined variables and added "use strict" in Graph.js.
