@@ -236,7 +236,7 @@ It is used for main canvas.
 - Adding glyphicons.
 - Webpage image updated.
 
-2016. 10. 09.
+2016. 11. 09.
 - Starting using gulp based on this: https://css-tricks.com/gulp-for-beginners/
 sudo npm install gulp -g (Doing it on Windows 7 so sudo is not needed.)
 
@@ -255,3 +255,19 @@ sudo npm install gulp -g (Doing it on Windows 7 so sudo is not needed.)
 <ant-ropy-home>> npm install gulp-if --save-dev
 
 <ant-ropy-home>> npm install gulp-cssnano --save-dev
+
+- js/css unification and minification is working.
+- bower components are also copied to dist.
+- complete build task.
+
+2016. 11. 10.
+<ant-ropy-home>> npm install del --save-dev
+
+<ant-ropy-home>> npm install run-sequence --save-dev
+
+<ant-ropy-home>> npm install gulp-imagemin --save-dev
+
+<ant-ropy-home>> npm install gulp-cache --save-dev
+
+- clean task.
+- image minification (copy would have been enough)

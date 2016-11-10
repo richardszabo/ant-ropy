@@ -3,6 +3,10 @@ var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
+var del = require('del');
+var runSequence = require('run-sequence');
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
 
 gulp.task('useref', function(){
   return gulp.src('*.html')
@@ -14,14 +18,31 @@ gulp.task('useref', function(){
     .pipe(gulp.dest('dist'))
 });
 
+gulp.task('clean:dist', function() {
+  return del.sync('dist');
+})
+
 gulp.task('copy_bower', function(){
   return gulp.src('bower_components/**/*')
     .pipe(gulp.dest('dist/bower_components'))
 });
 
-gulp.task('build', [`copy_bower`,`useref`],function(){
-    console.log('Building files');
+gulp.task('images', function(){
+// a simple copy would be enough the compression does not make images smaller as they are already optimized
+    return gulp.src('*.+(png|jpg|jpeg|gif|svg)')
+    // Caching images that ran through imagemin
+  .pipe(cache(imagemin({
+      // Setting interlaced to true
+      interlaced: true
+  })))
+  .pipe(gulp.dest('dist'))
 });
+
+gulp.task('build', function () {
+  runSequence('clean:dist', 
+	      ['copy_bower','images','useref']
+  )
+})
 
 gulp.task('hello', function() {
   console.log('Hello Zell');
