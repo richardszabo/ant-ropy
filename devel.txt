@@ -274,3 +274,12 @@ sudo npm install gulp -g (Doing it on Windows 7 so sudo is not needed.)
 - pdf copy.
 - Some javascript did not work on the page: After all js files were copied to one file so "use strict" was applied
 to Graph.js as well and it contains two undefined variables. I have fixed the undefined variables and added "use strict" in Graph.js.
+- deploy
+
+<ant-ropy-home>> npm i gulp-version-number (not needed)
+
+<ant-ropy-home>> npm install --save-dev gulp-rev-hash
+
+<ant-ropy-home>> npm install --save-dev gulp-rev-replace (not needed)
+- Revisioning. Only works with unification of useref function after a hack.
+

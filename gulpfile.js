@@ -7,14 +7,22 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
+var rev = require('gulp-rev-hash');
 
 gulp.task('useref', function(){
-  return gulp.src('*.html')
+    return gulp.src('*.html')
     .pipe(useref())
     // Minifies only if it's a JavaScript file
     .pipe(gulpIf('*.js', uglify()))
     // Minifies only if it's a CSS file
     .pipe(gulpIf('*.css', cssnano()))
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('rev', function(){
+// I was not able to add rev into useref so I use this awkward solution to execute revisioning in the dist folder
+    return gulp.src('dist/*.html')
+    .pipe(rev({assetsDir: 'dist'}))
     .pipe(gulp.dest('dist'))
 });
 
@@ -56,7 +64,8 @@ gulp.task('images2', function(){
 
 gulp.task('build', function () {
   runSequence('clean:dist', 
-	      ['copy_bower','copy_pdf','images','images2','useref']
+	      ['copy_bower','copy_pdf','images','images2','useref'],
+	      'rev'
   )
 })
 
