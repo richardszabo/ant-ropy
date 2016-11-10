@@ -43,9 +43,20 @@ gulp.task('images', function(){
   .pipe(gulp.dest('dist'))
 });
 
+gulp.task('images2', function(){
+// a simple copy would be enough the compression does not make images smaller as they are already optimized
+    return gulp.src('images/*.+(png|jpg|jpeg|gif|svg)')
+    // Caching images that ran through imagemin
+  .pipe(cache(imagemin({
+      // Setting interlaced to true
+      interlaced: true
+  })))
+  .pipe(gulp.dest('dist/images'))
+});
+
 gulp.task('build', function () {
   runSequence('clean:dist', 
-	      ['copy_bower','copy_pdf','images','useref']
+	      ['copy_bower','copy_pdf','images','images2','useref']
   )
 })
 
