@@ -322,4 +322,10 @@ Cannot rebase: You have unstaged changes.
 
 This file, I am editing right now. I commit it here to be able to continue.
 
+So git rebase again. Setting to edit the first 6 commits and leaving in pick the last 2 performed here at szender.
 
+git commit --amend --author="Richard Szabo <richard_szabo@jataka.hu>" --no-edit
+
+git rebase --continue
+
+The 2 commands are executed 6 times to return to the last commit.
