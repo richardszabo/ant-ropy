@@ -301,3 +301,25 @@ sudo npm install gulp-imagemin --save-dev
 sudo npm install --save-dev imagemin-gifsicle
 
 Now it works.
+
+---
+sudo npm install -g bower
+
+bower update command is working.
+
+=================================
+2016. 11. 16.
+Some commits were performed by szabori@ceu.edu. It would good to change it back to richard_szabo@jataka.hu. 
+Now Github does not show those commits in the nice contribution table. 
+The way to go is interactive rebase for the old commits to be modified: https://www.git-tower.com/learn/git/faq/change-author-name-email
+The last good commit:
+commit d349c481e1b9f6717a4217151e774f152e9e4ddc
+Author: richardszabo <richard_szabo@jataka.hu>
+Date:   Tue Nov 24 18:04:06 2015 +0100
+
+rics@szender:~/Dropbox/html5_jquery/ant-ropy$ git rebase -i -p d349c48
+Cannot rebase: You have unstaged changes.
+
+This file, I am editing right now. I commit it here to be able to continue.
+
+
