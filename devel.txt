@@ -283,3 +283,21 @@ to Graph.js as well and it contains two undefined variables. I have fixed the un
 <ant-ropy-home>> npm install --save-dev gulp-rev-replace (not needed)
 - Revisioning. Only works with unification of useref function after a hack.
 
+2016. 11. 16.
+gulp build on szender:
+
+Unhandled rejection Error: spawn /home/rics/Dropbox/html5_jquery/ant-ropy/node_modules/gulp-imagemin/node_modules/imagemin-gifsicle/node_modules/gifsicle/vendor/gifsicle ENOENT
+
+Installing all the modules above onto szender.
+During install I got this message for some modules:
+npm WARN enoent ENOENT: no such file or directory, open '/home/rics/Dropbox/html5_jquery/ant-ropy/node_modules/run-sequence/node_modules/gulp-util/package.json'
+gulp build still does not work.
+
+sudo npm install --save imagemin-gifsicle
+
+gulp build still does not work.
+
+sudo npm install gulp-imagemin --save-dev
+sudo npm install --save-dev imagemin-gifsicle
+
+Now it works.
